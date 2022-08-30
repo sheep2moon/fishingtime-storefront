@@ -99,7 +99,7 @@ const PrzelewyPaymentButton = ({
         disabled={submitting || disabled || notReady}
         onClick={handlePayment}
       >
-        {submitting ? <Spinner /> : "Checkout"}
+        {submitting ? <Spinner /> : "Zamówienie"}
       </Button>
       {errorMessage && (
         <div className="text-red-500 text-small-regular mt-2">
