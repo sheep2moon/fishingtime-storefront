@@ -62,7 +62,7 @@ const PrzelewyPaymentButton = ({
             phone: cart.billing_address.phone ?? undefined,
           },
         },
-        return_url: "http://localhost:8000/order/p24-payment",
+        return_url: "https://fishingtime-storefront.vercel.app/p24-payment",
       })
       .then(({ error, paymentIntent }) => {
         if (error) {
