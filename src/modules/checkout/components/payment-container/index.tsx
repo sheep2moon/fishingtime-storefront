@@ -1,7 +1,9 @@
 import { PaymentSession } from "@medusajs/medusa"
 import Radio from "@modules/common/components/radio"
 import clsx from "clsx"
-import React from "react"
+import React, { useEffect } from "react"
+import PaymentBlik from "../payment-blik"
+import PaymentP24 from "../payment-p24"
 import PaymentStripe from "../payment-stripe"
 import PaymentTest from "../payment-test"
 
@@ -10,28 +12,34 @@ type PaymentContainerProps = {
   selected: boolean
   setSelected: () => void
   disabled?: boolean
+  index: number
 }
 
-const PaymentInfoMap: Record<string, { title: string; description: string }> = {
-  stripe: {
-    title: "Credit card",
-    description: "Secure payment with credit card",
+const PaymentsDesc = [
+  {
+    title: "Pobranie",
+    description: "Płatnośc przy odbiorze zamówienia",
   },
-  paypal: {
-    title: "PayPal",
-    description: "Secure payment with PayPal",
+  {
+    title: "Karta płatnicza",
+    description: "Bezpieczna płatność kartą",
   },
-  manual: {
-    title: "Test payment",
-    description: "Test payment using medusa-payment-manual",
+  {
+    title: "Blik",
+    description: "Płatność blikiem za pomocą kodu",
   },
-}
+  {
+    title: "Przelewy24",
+    description: "Płatności internetowe",
+  },
+]
 
 const PaymentContainer: React.FC<PaymentContainerProps> = ({
   paymentSession,
   selected,
   setSelected,
   disabled = false,
+  index,
 }) => {
   return (
     <div
@@ -50,10 +58,10 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
         <Radio checked={selected} />
         <div className="flex flex-col text-left">
           <h3 className="text-base-semi leading-none text-gray-900">
-            {PaymentInfoMap[paymentSession.provider_id].title}
+            {PaymentsDesc[index].title}
           </h3>
           <span className="text-gray-700 text-small-regular mt-2">
-            {PaymentInfoMap[paymentSession.provider_id].description}
+            {PaymentsDesc[index].description}
           </span>
           {selected && (
             <div className="w-full mt-4">
@@ -78,8 +86,19 @@ const PaymentElement = ({
           <PaymentStripe />
         </div>
       )
+    case "stripe-blik":
+      return (
+        <div className="pt-8 pr-7">
+          <PaymentBlik />
+        </div>
+      )
+    case "stripe-przelewy24":
+      return (
+        <div className="pt-8 pr-7">
+          <PaymentP24 />
+        </div>
+      )
     case "manual":
-      // We only display the test payment form if we are in a development environment
       return process.env.NODE_ENV === "development" ? <PaymentTest /> : null
     default:
       return null

@@ -19,6 +19,8 @@ const Payment = () => {
   useEffect(() => {
     let timeout: NodeJS.Timeout | null = null
 
+    console.log(cart)
+
     if (cart?.shipping_address && cart?.payment_sessions) {
       timeout = setTimeout(() => {
         initPayment()
@@ -39,19 +41,20 @@ const Payment = () => {
       index={isSame ? 3 : 4}
       closedState={
         <div className="px-8 pb-8 text-small-regular">
-          <p>Enter your address to see available payment options.</p>
+          <p>Wprowadź adres by zobaczyć metody płatności.</p>
         </div>
       }
     >
-      <div>
+      <div className="pb-12">
         {cart?.payment_sessions?.length ? (
           cart.payment_sessions
             .sort((a, b) => {
               return a.provider_id > b.provider_id ? 1 : -1
             })
-            .map((paymentSession) => {
+            .map((paymentSession, index) => {
               return (
                 <PaymentContainer
+                  index={index}
                   paymentSession={paymentSession}
                   key={paymentSession.id}
                   selected={

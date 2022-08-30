@@ -13,7 +13,7 @@ const AccountNav = () => {
           <Link href="/account">
             <a className="flex items-center gap-x-2 text-small-regular py-2">
               <ChevronDown className="transform rotate-90" />
-              <span>Account</span>
+              <span>Konto</span>
             </a>
           </Link>
         )}
@@ -21,28 +21,28 @@ const AccountNav = () => {
       <div className="hidden small:block">
         <div>
           <div className="py-4">
-            <h3 className="text-base-semi">Account</h3>
+            <h3 className="text-base-semi">Konto</h3>
           </div>
           <div className="text-base-regular">
             <ul className="flex mb-0 justify-start items-start flex-col gap-y-4">
               <li>
                 <AccountNavLink href="/account" route={route}>
-                  Overview
+                  Przegląd
                 </AccountNavLink>
               </li>
               <li>
                 <AccountNavLink href="/account/profile" route={route}>
-                  Profile
+                  Profil
                 </AccountNavLink>
               </li>
               <li>
                 <AccountNavLink href="/account/addresses" route={route}>
-                  Addresses
+                  Adresy
                 </AccountNavLink>
               </li>
               <li>
                 <AccountNavLink href="/account/orders" route={route}>
-                  Orders
+                  Zamówienia
                 </AccountNavLink>
               </li>
             </ul>

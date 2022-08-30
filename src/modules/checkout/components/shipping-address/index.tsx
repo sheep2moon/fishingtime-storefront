@@ -13,7 +13,7 @@ const ShippingAddress = () => {
       {customer && (customer.shipping_addresses?.length || 0) > 0 && (
         <div className="mb-6 flex flex-col gap-y-4 bg-amber-100 p-4">
           <p className="text-small-regular">
-            {`Hi ${customer.first_name}, do you want to use one of your saved addresses?`}
+            {`Witaj ${customer.first_name}, chcesz użyć jednego z twoich zapisanych adresów?`}
           </p>
           <AddressSelect addresses={customer.shipping_addresses} />
         </div>
@@ -24,7 +24,7 @@ const ShippingAddress = () => {
             <Input
               label="Email"
               {...register("email", {
-                required: "Email is required",
+                required: "Email wymagany",
                 pattern: emailRegex,
               })}
               autoComplete="email"
@@ -33,18 +33,18 @@ const ShippingAddress = () => {
             />
             <div className="grid grid-cols-2 gap-x-2">
               <Input
-                label="First name"
+                label="Imię"
                 {...register("shipping_address.first_name", {
-                  required: "First name is required",
+                  required: "Imię wymagane",
                 })}
                 autoComplete="given-name"
                 errors={errors}
                 touched={touchedFields}
               />
               <Input
-                label="Last name"
+                label="Nazwisko"
                 {...register("shipping_address.last_name", {
-                  required: "Last name is required",
+                  required: "Nazwisko wymagane",
                 })}
                 autoComplete="family-name"
                 errors={errors}
@@ -52,42 +52,42 @@ const ShippingAddress = () => {
               />
             </div>
             <Input
-              label="Company"
+              label="Firma"
               {...register("shipping_address.company")}
               autoComplete="organization"
               errors={errors}
               touched={touchedFields}
             />
             <Input
-              label="Address"
+              label="Adres"
               {...register("shipping_address.address_1", {
-                required: "Address is required",
+                required: "Adres wymagany",
               })}
               autoComplete="address-line1"
               errors={errors}
               touched={touchedFields}
             />
             <Input
-              label="Apartments, suite, etc."
+              label="Dodatkowe informacje..."
               {...register("shipping_address.address_2")}
               autoComplete="address-line2"
               errors={errors}
               touched={touchedFields}
             />
-            <div className="grid grid-cols-[122px_1fr] gap-x-2">
+            <div className="grid grid-cols-[180px_1fr] gap-x-2">
               <Input
-                label="Postal code"
+                label="Kod pocztowy"
                 {...register("shipping_address.postal_code", {
-                  required: "Postal code is required",
+                  required: "Kod pocztowy wymagany",
                 })}
                 autoComplete="postal-code"
                 errors={errors}
                 touched={touchedFields}
               />
               <Input
-                label="City"
+                label="Miasto"
                 {...register("shipping_address.city", {
-                  required: "City is required",
+                  required: "Miasto wymagane",
                 })}
                 autoComplete="address-level2"
                 errors={errors}
@@ -96,21 +96,21 @@ const ShippingAddress = () => {
             </div>
             <CountrySelect
               {...register("shipping_address.country_code", {
-                required: "Country is required",
+                required: "Kraj wymagany",
               })}
               autoComplete="country"
               errors={errors}
               touched={touchedFields}
             />
             <Input
-              label="State / Province"
+              label="Województwo"
               {...register("shipping_address.province")}
               autoComplete="address-level1"
               errors={errors}
               touched={touchedFields}
             />
             <Input
-              label="Phone"
+              label="Telefon"
               {...register("shipping_address.phone")}
               autoComplete="tel"
               errors={errors}

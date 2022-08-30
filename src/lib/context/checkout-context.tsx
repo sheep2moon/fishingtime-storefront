@@ -215,6 +215,8 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
       if (!paymentSession) {
         setTimeout(initPayment, 500)
       } else {
+        console.log(paymentSession)
+
         setCart(paymentSession)
         return
       }
@@ -315,6 +317,8 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
     complete(undefined, {
       onSuccess: ({ data }) => {
         resetCart()
+        console.log(data.id)
+
         push(`/order/confirmed/${data.id}`)
       },
     })

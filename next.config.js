@@ -5,7 +5,10 @@ module.exports = withStoreConfig({
   features: store.features,
   reactStrictMode: true,
   images: {
-    domains: ["medusa-public-images.s3.eu-west-1.amazonaws.com", "localhost"],
+    domains: [
+      "fishing-medusa-storage.s3.eu-central-1.amazonaws.com",
+      "localhost",
+    ],
   },
 })
 

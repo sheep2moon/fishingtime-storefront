@@ -96,7 +96,7 @@ export const getCollectionData = async (id: string) => {
     .catch(() => undefined)
 
   if (!data) {
-    throw new Error(`Collection with handle ${id} not found`)
+    throw new Error(`Kolekcja o wartości ${id} nie znaleziona`)
   }
 
   const additionalData = await getInitialProducts(id)

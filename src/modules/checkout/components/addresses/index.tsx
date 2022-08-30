@@ -19,14 +19,14 @@ const Addresses = () => {
         <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center text-sm">
           1
         </div>
-        <h2>Shipping address</h2>
+        <h2>Adres dostawy</h2>
       </div>
       {isEdit ? (
         <div className="px-8 pb-8">
           <ShippingAddress />
           <div className="mt-6">
             <Checkbox
-              label="Same as billing address"
+              label="Taki jak adres rozliczeniowy"
               checked={checked}
               onChange={onChange}
             />
@@ -37,7 +37,7 @@ const Addresses = () => {
                 <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center font-mono text-sm">
                   2
                 </div>
-                <h2>Billing address</h2>
+                <h2>Adres rozliczeniowy</h2>
               </div>
               <BillingAddress />
             </div>
@@ -46,7 +46,7 @@ const Addresses = () => {
             className="max-w-[200px] mt-6"
             onClick={handleSubmit(setAddresses)}
           >
-            Continue to delivery
+            Przejdź do dostawy
           </Button>
         </div>
       ) : (

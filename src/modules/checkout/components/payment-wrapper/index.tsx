@@ -13,15 +13,19 @@ const Wrapper: React.FC<WrapperProps> = ({ paymentSession, children }) => {
   }
 
   switch (paymentSession.provider_id) {
-    case "stripe":
+    case "stripe" || "stripe-przelewy24" || "stripe-blik":
       return (
         <StripeWrapper paymentSession={paymentSession}>
           {children}
         </StripeWrapper>
       )
-
     default:
-      return <div>{children}</div>
+      // return <div>{children}</div>
+      return (
+        <StripeWrapper paymentSession={paymentSession}>
+          {children}
+        </StripeWrapper>
+      )
   }
 }
 
@@ -36,9 +40,11 @@ const StripeWrapper: React.FC<WrapperProps> = ({
   }
 
   return (
-    <Elements stripe={stripePromise} options={options}>
-      {children}
-    </Elements>
+    <div>
+      <Elements stripe={stripePromise} options={options}>
+        {children}
+      </Elements>
+    </div>
   )
 }
 
