@@ -318,7 +318,6 @@ export const CheckoutProvider = ({ children }: CheckoutProviderProps) => {
       onSuccess: ({ data }) => {
         resetCart()
         console.log(data.id)
-
         push(`/order/confirmed/${data.id}`)
       },
     })

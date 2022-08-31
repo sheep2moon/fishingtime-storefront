@@ -11,7 +11,12 @@ type LayoutCollection = {
   title: string
 }
 
-const fetchCollectionData = async (): Promise<LayoutCollection[]> => {
+interface NavCollections {
+  [key: string]: Array<{ id: string; title: string }>
+}
+
+// const fetchCollectionData = async (): Promise<LayoutCollection[]> => {
+const fetchCollectionData = async (): Promise<NavCollections> => {
   let collections: ProductCollection[] = []
   let offset = 0
   let count = 1
@@ -28,11 +33,42 @@ const fetchCollectionData = async (): Promise<LayoutCollection[]> => {
         count = 0
       })
   } while (collections.length < count)
+  console.log(collections)
 
-  return collections.map((c) => ({
-    id: c.id,
-    title: c.title,
-  }))
+  //Handling custom subcollections
+  let newCollections: NavCollections = {}
+  newCollections["others"] = []
+  collections.forEach((collection) => {
+    const navCollection = { id: collection.id, title: collection.title }
+    if (
+      Object.keys(collection.metadata).length > 0 &&
+      typeof collection.metadata.parent === "string"
+    ) {
+      console.log("tu", typeof newCollections[collection.metadata.parent])
+
+      if (typeof newCollections[collection.metadata.parent] === "undefined") {
+        newCollections[collection.metadata.parent] = []
+        console.log("jestem")
+      }
+
+      newCollections[collection.metadata.parent].push(navCollection)
+    } else {
+      console.log(typeof newCollections["others"])
+      newCollections["others"].push(navCollection)
+    }
+  })
+
+  console.log(newCollections)
+  return newCollections
+  // return collections.map((c) => {
+  //   const parent_collection =
+  //     Object.keys(c.metadata).length > 0 ? c.metadata.parent : false
+  //   return {
+  //     id: c.id,
+  //     title: c.title,
+  //     parent_collection,
+  //   }
+  // })
 }
 
 export const useNavigationCollections = () => {

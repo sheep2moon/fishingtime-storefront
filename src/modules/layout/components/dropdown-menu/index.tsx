@@ -10,7 +10,9 @@ import clsx from "clsx"
 import { chunk } from "lodash"
 import Link from "next/link"
 import { useRouter } from "next/router"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
+
+const collection_sections = ["wedki", "others"]
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState(false)
@@ -19,6 +21,10 @@ const DropdownMenu = () => {
     useNavigationCollections()
   const { data: products, isLoading: loadingProducts } =
     useFeaturedProductsQuery()
+
+  useEffect(() => {
+    console.log(collections)
+  }, [collections])
 
   return (
     <div
@@ -64,13 +70,13 @@ const DropdownMenu = () => {
                       </h3>
                       <div className="flex items-start">
                         {collections &&
-                          chunk(collections, 6).map((chunk, index) => {
+                          Object.keys(collections).map((key, index) => {
                             return (
                               <ul
                                 key={index}
                                 className="min-w-[152px] max-w-[200px] pr-4"
                               >
-                                {chunk.map((collection) => {
+                                {collections[key].map((collection) => {
                                   return (
                                     <div key={collection.id} className="pb-3">
                                       <Link
