@@ -17,7 +17,10 @@ const ConfirmPayment: React.FC = () => {
   const router = useRouter()
   if (!router.isReady) return null
   const options = {
-    clientSecret: router.query.payment_intent_client_secret,
+    clientSecret:
+      typeof router.query.payment_intent_client_secret === "string"
+        ? router.query.payment_intent_client_secret
+        : "",
   }
   return (
     <CheckoutProvider>
