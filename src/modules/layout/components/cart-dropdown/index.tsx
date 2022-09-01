@@ -11,6 +11,7 @@ import { formatAmount, useCart } from "medusa-react"
 import Link from "next/link"
 import { Fragment } from "react"
 import { CalculatedVariant } from "types/medusa"
+import { TbShoppingCart } from "react-icons/tb"
 
 const CartDropdown = () => {
   const { cart, totalItems } = useCart()
@@ -19,10 +20,16 @@ const CartDropdown = () => {
   const { state, open, close } = useCartDropdown()
 
   return (
-    <div className="h-full z-50" onMouseEnter={open} onMouseLeave={close}>
+    <div
+      className="h-full z-50 text-base"
+      onMouseEnter={open}
+      onMouseLeave={close}
+    >
       <Popover className="relative h-full">
         <Link href="/cart" passHref>
-          <Popover.Button className="h-full">{`Koszyk (${totalItems})`}</Popover.Button>
+          <Popover.Button className="h-full flex items-center gap-1">
+            <TbShoppingCart /> {`Koszyk (${totalItems})`}
+          </Popover.Button>
         </Link>
         <Transition
           show={state}

@@ -8,7 +8,7 @@ type PaymentDetailsProps = {
 const PaymentDetails = ({ payments, paymentStatus }: PaymentDetailsProps) => {
   return (
     <div>
-      <h2 className="text-base-semi">Payment</h2>
+      <h2 className="text-base-semi">Płatność</h2>
       <div className="my-2">
         {payments.map((p) => {
           switch (p.provider_id) {
@@ -18,11 +18,21 @@ const PaymentDetails = ({ payments, paymentStatus }: PaymentDetailsProps) => {
               return <PayPalDetails key={p.id} />
             case "manual":
               return <TestDetails key={p.id} />
+            case "stripe-przelewy24":
+              return <P24Details key={p.id} />
             default:
               return null
           }
         })}
       </div>
+    </div>
+  )
+}
+
+const P24Details = () => {
+  return (
+    <div className="flex flex-col text-base-regular">
+      <span>Przelewy 24</span>
     </div>
   )
 }

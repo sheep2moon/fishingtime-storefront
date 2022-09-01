@@ -16,13 +16,15 @@ type MobileActionsProps = {
 }
 
 const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
-  const { variant, addToCart, options, inStock, updateOptions } = useProductActions()
+  const { variant, addToCart, options, inStock, updateOptions } =
+    useProductActions()
   const { state, open, close } = useToggleState()
 
   const price = useProductPrice({ id: product.id, variantId: variant?.id })
 
   const selectedPrice = useMemo(() => {
     const { variantPrice, cheapestPrice } = price
+    console.log(product.variants.length)
 
     return variantPrice || cheapestPrice || null
   }, [price])
@@ -69,18 +71,24 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
                 <div></div>
               )}
             </div>
-            <div className="grid grid-cols-2 w-full gap-x-4">
+            <div
+              className={clsx("grid grid-cols-2 w-full gap-x-4", {
+                "grid-cols-1": product.variants.length === 1,
+              })}
+            >
               <Button onClick={open} variant="secondary">
                 <div className="flex items-center justify-between w-full">
                   <span>
                     {variant
                       ? Object.values(options).join(" / ")
-                      : "Select Options"}
+                      : "Wybierz opcje"}
                   </span>
                   <ChevronDown />
                 </div>
               </Button>
-              <Button onClick={addToCart}>{!inStock ? "Out of stock" : "Add to cart"}</Button>
+              <Button onClick={addToCart}>
+                {!inStock ? "Brak w magazynie" : "Dodaj do koszyka"}
+              </Button>
             </div>
           </div>
         </Transition>

@@ -9,7 +9,7 @@ const Hero = () => {
           Sklep wędkarski
         </h1>
         <p className="text-base-regular max-w-[32rem] mb-6 drop-shadow-md shadow-black">
-          Zapraszamy niedługo
+          tekst dolny
         </p>
         <UnderlineLink href="/store">Przejdź do sklepu</UnderlineLink>
       </div>

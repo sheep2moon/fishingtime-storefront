@@ -14,9 +14,9 @@ const FeaturedProducts = () => {
             Ostatnie produkty
           </span>
           <p className="text-2xl-regular text-gray-900 max-w-lg mb-4">
-            Najnowsze rzeczy w sklepie.
+            Najnowsze produkty w sklepie.
           </p>
-          <UnderlineLink href="/store">Zobacz</UnderlineLink>
+          <UnderlineLink href="/store">Przejdź do sklepu</UnderlineLink>
         </div>
         <ul className="grid grid-cols-2 small:grid-cols-4 gap-x-4 gap-y-8">
           {data
