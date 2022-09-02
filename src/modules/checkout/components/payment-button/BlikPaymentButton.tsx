@@ -42,6 +42,7 @@ const BlikPaymentButton = ({
     if (!stripe || !cart || !order) {
       return
     }
+
     await stripe
       .confirmP24Payment(session.data.client_secret as string, {
         payment_method: {
@@ -98,10 +99,11 @@ const BlikPaymentButton = ({
   return (
     <>
       <Button
-        disabled={submitting || disabled || notReady}
+        disabled={true}
+        // disabled={submitting || disabled || notReady}
         onClick={handlePayment}
       >
-        {submitting ? <Spinner /> : "Zamówienie"}
+        {/* {submitting ? <Spinner /> : "Zamówienie"} */}W przyszłości
       </Button>
       {errorMessage && (
         <div className="text-red-500 text-small-regular mt-2">

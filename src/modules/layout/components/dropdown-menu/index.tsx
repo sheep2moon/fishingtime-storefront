@@ -29,6 +29,11 @@ const DropdownMenu = () => {
   return (
     <div className="h-full">
       <div className="flex items-center h-full">
+        <Link href="/store" passHref>
+          <a className="flex py-4 items-center text-base font-bold">
+            Wszystkie produkty
+          </a>
+        </Link>
         {collectionSections &&
           collectionSections.map((section, index) => {
             return (

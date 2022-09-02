@@ -1,6 +1,8 @@
 import { StoreGetProductsParams } from "@medusajs/medusa"
 import { useCollections } from "medusa-react"
 import { ChangeEvent } from "react"
+import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
+import ListSection from "../list-section"
 
 type RefinementListProps = {
   refinementList: StoreGetProductsParams
@@ -12,6 +14,7 @@ const RefinementList = ({
   setRefinementList,
 }: RefinementListProps) => {
   const { collections, isLoading } = useCollections()
+  const sectionCollections = useCustomNavCollections()
 
   const handleCollectionChange = (
     e: ChangeEvent<HTMLInputElement>,
@@ -20,6 +23,7 @@ const RefinementList = ({
     const { checked } = e.target
 
     const collectionIds = refinementList.collection_id || []
+    console.log(refinementList)
 
     const exists = collectionIds.includes(id)
 
@@ -28,7 +32,6 @@ const RefinementList = ({
         ...refinementList,
         collection_id: [...collectionIds, id],
       })
-
       return
     }
 
@@ -37,12 +40,28 @@ const RefinementList = ({
         ...refinementList,
         collection_id: collectionIds.filter((c) => c !== id),
       })
-
       return
     }
-
     return
   }
+
+  return (
+    <div className="flex flex-col max-w-xs w-full shadow-md h-full ml-2 ">
+      <span className="px-4 font-bold border-b-2 border-primary w-full">
+        Kolekcje
+      </span>
+      <div className="flex flex-col p-2">
+        {sectionCollections.map((section) => (
+          <ListSection
+            key={section.metaKey}
+            section={section}
+            handleCollectionChange={handleCollectionChange}
+            refinementList={refinementList}
+          />
+        ))}
+      </div>
+    </div>
+  )
 
   return (
     <div>

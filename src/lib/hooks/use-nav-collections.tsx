@@ -10,7 +10,7 @@ import { useNavigationCollections } from "./use-layout-data"
 //   { metaKey: "kolowrotki", title: "Kołowrotki", collections: [] },
 //   { metaKey: "", title: "Pozostałe", collections: [] },
 
-type customCollections = {
+export type customCollections = {
   metaKey: string
   title: string
   icon: JSX.Element
