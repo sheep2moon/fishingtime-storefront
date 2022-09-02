@@ -1,30 +1,26 @@
 import { Popover, Transition } from "@headlessui/react"
-import {
-  useFeaturedProductsQuery,
-  useNavigationCollections,
-} from "@lib/hooks/use-layout-data"
+import { useNavigationCollections } from "@lib/hooks/use-layout-data"
 import repeat from "@lib/util/repeat"
-import ProductPreview from "@modules/products/components/product-preview"
-import SkeletonProductPreview from "@modules/skeletons/components/skeleton-product-preview"
 import clsx from "clsx"
-import { chunk } from "lodash"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { RiArrowDropRightLine } from "react-icons/ri"
-
-import { GiFishingPole, GiFishingNet } from "react-icons/gi"
 import CollectionButton from "./CollectionButton"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
+import { useStore } from "../../../../lib/context/store-context"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
   const { push } = useRouter()
-  const { data: collections, isLoading: loadingCollections } =
-    useNavigationCollections()
-  // const { data: products, isLoading: loadingProducts } =
-  //   useFeaturedProductsQuery()
   const collectionSections = useCustomNavCollections()
+  const { setParamsCollection } = useStore()
+
+  const handleSelectCollection = (id: string) => {
+    setOpen("none")
+    setParamsCollection(id)
+    push("/store")
+  }
 
   return (
     <div className="h-full">
@@ -45,21 +41,17 @@ const DropdownMenu = () => {
               >
                 <Popover className="h-full flex">
                   <>
-                    <Link href="/shop" passHref>
-                      <a className="relative flex h-full">
-                        <Popover.Button
-                          className={clsx(
-                            "relative h-full flex items-center transition-all ease-out duration-200 p-4"
-                          )}
-                          onClick={() => push("/store")}
-                        >
-                          <CollectionButton
-                            title={section.title}
-                            icon={section.icon}
-                          />
-                        </Popover.Button>
-                      </a>
-                    </Link>
+                    <Popover.Button
+                      className={clsx(
+                        "relative h-full flex items-center transition-all ease-out duration-200 p-4"
+                      )}
+                      onClick={() => push("/store")}
+                    >
+                      <CollectionButton
+                        title={section.title}
+                        icon={section.icon}
+                      />
+                    </Popover.Button>
 
                     <Transition
                       show={open === section.metaKey ? true : false}
@@ -71,24 +63,22 @@ const DropdownMenu = () => {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <div className="absolute top-full bg-slate-100 p-2 rounded-b-sm shadow-lg">
+                      <div className="absolute top-full bg-slate-100 rounded-b-sm shadow-lg shadow-slate-500">
                         <Popover.Panel>
-                          <ul className="min-w-[152px] max-w-[200px] pr-4 ">
+                          <ul className="min-w-[152px] max-w-[260px]  ">
                             {section.collections.map((collection) => {
                               return (
                                 <div
-                                  className="py-2 text-lg w-fit whitespace-nowrap"
+                                  className="py-2 text-lg w-full whitespace-nowrap cursor-pointer hover:bg-slate-200 pr-4"
                                   key={collection.id}
+                                  onClick={() =>
+                                    handleSelectCollection(collection.id)
+                                  }
                                 >
-                                  <Link href={`/collections/${collection.id}`}>
-                                    <a
-                                      onClick={() => setOpen("none")}
-                                      className="flex items-center"
-                                    >
-                                      <RiArrowDropRightLine />
-                                      {collection.title}
-                                    </a>
-                                  </Link>
+                                  <span className="flex items-center ">
+                                    <RiArrowDropRightLine />
+                                    {collection.title}
+                                  </span>
                                 </div>
                               )
                             })}
@@ -101,10 +91,6 @@ const DropdownMenu = () => {
               </div>
             )
           })}
-        {loadingCollections &&
-          repeat(6).map((index) => (
-            <div key={index} className="w-12 h-4 bg-gray-100 animate-pulse" />
-          ))}
       </div>
     </div>
   )

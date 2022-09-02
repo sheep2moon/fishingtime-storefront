@@ -1,6 +1,6 @@
 import { medusaClient } from "@lib/config"
 import { handleError } from "@lib/util/handle-error"
-import { Region } from "@medusajs/medusa"
+import { Region, StoreGetProductsParams } from "@medusajs/medusa"
 import {
   useCart,
   useCreateLineItem,
@@ -22,11 +22,14 @@ interface LineInfoProps {
 
 interface StoreContext {
   countryCode: string | undefined
+  params: StoreGetProductsParams
   setRegion: (regionId: string, countryCode: string) => void
   addItem: (item: VariantInfoProps) => void
   updateItem: (item: LineInfoProps) => void
   deleteItem: (lineId: string) => void
   resetCart: () => void
+  updateParams: (id: string) => void
+  setParamsCollection: (id: string) => void
 }
 
 const StoreContext = React.createContext<StoreContext | null>(null)
@@ -53,6 +56,7 @@ export const StoreProvider = ({ children }: StoreProps) => {
   const addLineItem = useCreateLineItem(cart?.id!)
   const removeLineItem = useDeleteLineItem(cart?.id!)
   const adjustLineItem = useUpdateLineItem(cart?.id!)
+  const [params, setParams] = useState<StoreGetProductsParams>({})
 
   const storeRegion = (regionId: string, countryCode: string) => {
     if (!IS_SERVER) {
@@ -83,6 +87,22 @@ export const StoreProvider = ({ children }: StoreProps) => {
       }
     }
     return null
+  }
+
+  const updateParams = (id: string) => {
+    if (params.collection_id?.includes(id)) {
+      setParams({
+        ...params,
+        collection_id: params.collection_id.filter((c) => c !== id),
+      })
+    } else {
+      let ids = params.collection_id || []
+      setParams({ ...params, collection_id: [...ids, id] })
+    }
+  }
+
+  const setParamsCollection = (id: string) => {
+    setParams({ ...params, collection_id: [id] })
   }
 
   const setRegion = async (regionId: string, countryCode: string) => {
@@ -286,12 +306,15 @@ export const StoreProvider = ({ children }: StoreProps) => {
   return (
     <StoreContext.Provider
       value={{
+        params,
         countryCode,
         setRegion,
         addItem,
         deleteItem,
         updateItem,
         resetCart,
+        updateParams,
+        setParamsCollection,
       }}
     >
       {children}

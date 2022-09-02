@@ -9,18 +9,15 @@ import { useCart } from "medusa-react"
 import { useEffect, useMemo } from "react"
 import { useInView } from "react-intersection-observer"
 import { useInfiniteQuery } from "react-query"
+import { useStore } from "../../../../lib/context/store-context"
 
-type InfiniteProductsType = {
-  params: StoreGetProductsParams
-}
-
-const InfiniteProducts = ({ params }: InfiniteProductsType) => {
+const InfiniteProducts = () => {
   const { cart } = useCart()
-
   const { ref, inView } = useInView()
-
+  const { params } = useStore()
   const queryParams = useMemo(() => {
     const p: StoreGetProductsParams = {}
+    console.log(params)
 
     if (cart?.id) {
       p.cart_id = cart.id

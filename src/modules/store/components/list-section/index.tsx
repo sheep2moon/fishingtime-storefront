@@ -4,22 +4,16 @@ import { ChangeEvent, useState } from "react"
 import { StoreGetProductsParams } from "@medusajs/medusa"
 import ChevronDown from "../../../common/icons/chevron-down"
 import clsx from "clsx"
+import { useStore } from "../../../../lib/context/store-context"
 
 type SectionsProps = {
   section: customCollections
-  handleCollectionChange: (e: ChangeEvent<HTMLInputElement>, id: string) => void
-  refinementList: StoreGetProductsParams
 }
 
-const ListSection = ({
-  section,
-  handleCollectionChange,
-  refinementList,
-}: SectionsProps) => {
+const ListSection = ({ section }: SectionsProps) => {
   const [isOpen, setIsOpen] = useState(false)
-
   const toggleOpen = () => setIsOpen(!isOpen)
-
+  const { params, updateParams } = useStore()
   return (
     <div className="flex flex-col" key={`side-collections${section.title}`}>
       <span
@@ -36,10 +30,8 @@ const ListSection = ({
               <label className="flex items-center gap-x-2">
                 <input
                   type="checkbox"
-                  defaultChecked={refinementList.collection_id?.includes(
-                    collection.id
-                  )}
-                  onChange={(e) => handleCollectionChange(e, collection.id)}
+                  defaultChecked={params.collection_id?.includes(collection.id)}
+                  onChange={() => updateParams(collection.id)}
                   className="accent-amber-200"
                 />
                 {collection.title}

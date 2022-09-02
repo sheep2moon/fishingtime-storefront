@@ -7,6 +7,7 @@ import Search from "@modules/common/icons/search"
 import X from "@modules/common/icons/x"
 import { useCollections, useMeCustomer } from "medusa-react"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useEffect } from "react"
 import ReactCountryFlag from "react-country-flag"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
@@ -31,6 +32,14 @@ const MainMenu = () => {
 
   const setScreenCountry = () => setScreen("country")
   const setScreenSearch = () => setScreen("search")
+  const { push } = useRouter()
+  const { setParamsCollection } = useStore()
+
+  const handleSelectCollection = (id: string) => {
+    setParamsCollection(id)
+    push("/store")
+    close()
+  }
 
   return (
     <div className="flex flex-col flex-1">
@@ -102,15 +111,16 @@ const MainMenu = () => {
                         {open && (
                           <Disclosure.Panel className="flex flex-col gap-4 p-2 pl-6">
                             {section.collections.map((collection) => (
-                              <Link
-                                href={`/collections/${collection.id}`}
+                              <span
+                                onClick={() =>
+                                  handleSelectCollection(collection.id)
+                                }
                                 key={collection.id}
+                                className="flex items-center p-2 cursor-pointer hover:bg-slate-200"
                               >
-                                <a href="" className="flex items-center p-2">
-                                  <ChevronDown className="-rotate-90 " />
-                                  <span>{collection.title}</span>
-                                </a>
-                              </Link>
+                                <ChevronDown className="-rotate-90 " />
+                                <span>{collection.title}</span>
+                              </span>
                             ))}
                           </Disclosure.Panel>
                         )}

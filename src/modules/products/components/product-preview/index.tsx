@@ -10,12 +10,14 @@ const ProductPreview = ({
   price,
 }: ProductPreviewType) => {
   return (
-    <div className="shadow-lg rounded-sm">
+    <div className="shadow-lg shadow-slate-300 p-1 h-80 rounded-sm">
       <Link href={`/products/${handle}`}>
-        <a>
-          <div>
-            <Thumbnail thumbnail={thumbnail} size="full" />
-            <div className="text-base-regular mt-2 p-2">
+        <a className="block h-80">
+          <div className="h-80 flex flex-col justify-between">
+            <div className="h-60">
+              <Thumbnail thumbnail={thumbnail} size="full" />
+            </div>
+            <div className="text-base-regularh h-full p-2 flex flex-col justify-between">
               <span>{title}</span>
               <div className="flex items-center gap-x-2 mt-1 ">
                 {price ? (
