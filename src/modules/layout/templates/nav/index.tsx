@@ -46,9 +46,9 @@ const Nav = () => {
         "!fixed": isHome,
       })}
     >
-      <header className="relative h-16 px-8 mx-auto transition-colors bg-white border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200 shadow-lg text-base">
+      <header className="relative h-16 px-4 mx-auto transition-colors bg-white border-b border-transparent duration-200 group-hover:bg-white group-hover:border-gray-200 shadow-lg text-base">
         <nav className="text-gray-900  flex items-center justify-start w-full h-full text-small-regular transition-colors duration-200">
-          <div className="block small:hidden">
+          <div className="block small:hidden pr-4">
             <Hamburger setOpen={toggle} />
           </div>
 
