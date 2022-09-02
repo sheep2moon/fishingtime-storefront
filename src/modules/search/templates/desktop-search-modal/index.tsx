@@ -12,9 +12,12 @@ const DesktopSearchModal = () => {
 
   return (
     <>
-      <button onClick={open} className="flex items-center gap-x-2 h-full">
+      <button
+        onClick={open}
+        className="flex items-center gap-x-2 h-full text-base"
+      >
         <Search />
-        Search
+        Wyszukaj
       </button>
 
       <Modal isOpen={state} close={close} size="large">

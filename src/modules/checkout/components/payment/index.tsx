@@ -45,7 +45,7 @@ const Payment = () => {
         </div>
       }
     >
-      <div className="pb-12">
+      <div className="pb-36">
         {cart?.payment_sessions?.length ? (
           cart.payment_sessions
             .sort((a, b) => {

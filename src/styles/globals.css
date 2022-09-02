@@ -110,3 +110,14 @@
     @apply text-[36px] leading-[48px] font-semibold;
   }
 }
+#headlessui-disclosure-panel-55 > div > div.flex.flex-col.gap-y-4.border-b.border-gray-200.last\:border-b-0.bg-gray-50 > button > div.flex.flex-col.text-left > div > div > div > div > div > iframe:nth-child(1){
+  height: 2rem !important;
+  z-index: 9999;
+}
+
+.P24BankSelectList .SelectListItem{
+  padding: 4px !important;
+}
+#headlessui-disclosure-panel-55 > div > div.flex.flex-col.gap-y-4.border-b.border-gray-200.last\:border-b-0.bg-gray-50 > button > div.flex.flex-col.text-left > div > div > div > div > div > iframe:nth-child(1){
+  z-index: 9999;
+}

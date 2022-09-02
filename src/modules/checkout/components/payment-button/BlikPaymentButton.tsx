@@ -6,7 +6,7 @@ import { useCheckout } from "../../../../lib/context/checkout-context"
 import Button from "../../../common/components/button"
 import Spinner from "../../../common/icons/spinner"
 
-const PrzelewyPaymentButton = ({
+const BlikPaymentButton = ({
   session,
   notReady,
 }: {
@@ -42,7 +42,6 @@ const PrzelewyPaymentButton = ({
     if (!stripe || !cart || !order) {
       return
     }
-
     await stripe
       .confirmP24Payment(session.data.client_secret as string, {
         payment_method: {
@@ -66,7 +65,7 @@ const PrzelewyPaymentButton = ({
         return_url: `http://localhost:8000/order/confirm?cartId=${cart.id}`,
       })
       .then(({ error, paymentIntent }) => {
-        console.log("Zobacz przelewy payment button 68")
+        console.log("Zobacz Blik payment button 68")
 
         if (error) {
           const pi = error.payment_intent
@@ -113,4 +112,4 @@ const PrzelewyPaymentButton = ({
   )
 }
 
-export default PrzelewyPaymentButton
+export default BlikPaymentButton

@@ -819,17 +819,17 @@
   "resolved" "https://registry.npmjs.org/@sqltools/formatter/-/formatter-1.2.3.tgz"
   "version" "1.2.3"
 
-"@stripe/react-stripe-js@^1.7.2":
-  "integrity" "sha512-IAVg2nPUPoSwI//XDRCO7D8mGeK4+N3Xg63fYZHmlfEWAuFVcuaqJKTT67uzIdKYZhHZ/NMdZw/ttz+GOjP/rQ=="
-  "resolved" "https://registry.npmjs.org/@stripe/react-stripe-js/-/react-stripe-js-1.7.2.tgz"
-  "version" "1.7.2"
+"@stripe/react-stripe-js@^1.10.0":
+  "integrity" "sha512-vuIjJUZJ3nyiaGa5z5iyMCzZfGGsgzOOjWjqknbbhkNsewyyginfeky9EZLSz9+iSAsgC9K6MeNOTLKVGcMycQ=="
+  "resolved" "https://registry.npmjs.org/@stripe/react-stripe-js/-/react-stripe-js-1.10.0.tgz"
+  "version" "1.10.0"
   dependencies:
     "prop-types" "^15.7.2"
 
-"@stripe/stripe-js@^1.26.0", "@stripe/stripe-js@^1.29.0":
-  "integrity" "sha512-OsUxk0VLlum8E2d6onlEdKuQcvLMs7qTrOXCnl/BGV3fAm65qr6h3e1IZ5AX4lgUlPRrzRcddSOA5DvkKKYLvg=="
-  "resolved" "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-1.29.0.tgz"
-  "version" "1.29.0"
+"@stripe/stripe-js@^1.34.0", "@stripe/stripe-js@^1.35.0":
+  "integrity" "sha512-UIuzpbJqgXCTvJhY/aZYvBtaKdMfQgnIv6kkLlfRJ9smZcC4zoPvq3j7k9wobYI+idHAWP4BRiPnqA8lvzJCtg=="
+  "resolved" "https://registry.npmjs.org/@stripe/stripe-js/-/stripe-js-1.35.0.tgz"
+  "version" "1.35.0"
 
 "@swc/helpers@0.4.2":
   "integrity" "sha512-556Az0VX7WR6UdoTn4htt/l3zPQ7bsQWK+HqdG4swV7beUCxo/BqmvbOpUkTIm/9ih86LIf1qsUnywNL3obGHw=="
@@ -5731,7 +5731,7 @@
   "resolved" "https://registry.npmjs.org/react-country-flag/-/react-country-flag-3.0.2.tgz"
   "version" "3.0.2"
 
-"react-dom@^16 || ^17 || ^18", "react-dom@^16.8.0 || ^17.0.0", "react-dom@^17.0.2 || ^18.0.0-0", "react-dom@>= 16.8.0 < 19", "react-dom@>=16.3.0", "react-dom@>=16.8.0", "react-dom@17.0.2":
+"react-dom@^16 || ^17 || ^18", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^17.0.2 || ^18.0.0-0", "react-dom@>= 16.8.0 < 19", "react-dom@>=16.3.0", "react-dom@>=16.8.0", "react-dom@17.0.2":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"

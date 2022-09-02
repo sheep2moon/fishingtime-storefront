@@ -15,39 +15,28 @@ import { RiArrowDropRightLine } from "react-icons/ri"
 
 import { GiFishingPole, GiFishingNet } from "react-icons/gi"
 import CollectionButton from "./CollectionButton"
-
-interface CollectionSections {
-  [key: string]: { title: string; icon: JSX.Element }
-}
-
-const collection_sections: CollectionSections = {
-  wedki: { title: "Wędki", icon: <GiFishingPole /> },
-  others: { title: "Pozostałe", icon: <GiFishingNet /> },
-}
+import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 
 const DropdownMenu = () => {
-  const [open, setOpen] = useState("")
+  const [open, setOpen] = useState("none")
   const { push } = useRouter()
   const { data: collections, isLoading: loadingCollections } =
     useNavigationCollections()
-  const { data: products, isLoading: loadingProducts } =
-    useFeaturedProductsQuery()
-
-  useEffect(() => {
-    console.log(collections)
-  }, [collections])
+  // const { data: products, isLoading: loadingProducts } =
+  //   useFeaturedProductsQuery()
+  const collectionSections = useCustomNavCollections()
 
   return (
     <div className="h-full">
       <div className="flex items-center h-full">
-        {collections &&
-          Object.keys(collections).map((key, index) => {
+        {collectionSections &&
+          collectionSections.map((section, index) => {
             return (
               <div
                 className="relative h-full"
                 key={index}
-                onMouseEnter={() => setOpen(key)}
-                onMouseLeave={() => setOpen("")}
+                onMouseEnter={() => setOpen(section.metaKey)}
+                onMouseLeave={() => setOpen("none")}
               >
                 <Popover className="h-full flex">
                   <>
@@ -60,15 +49,15 @@ const DropdownMenu = () => {
                           onClick={() => push("/store")}
                         >
                           <CollectionButton
-                            title={collection_sections[key].title}
-                            icon={collection_sections[key].icon}
+                            title={section.title}
+                            icon={section.icon}
                           />
                         </Popover.Button>
                       </a>
                     </Link>
 
                     <Transition
-                      show={open === key ? true : false}
+                      show={open === section.metaKey ? true : false}
                       as={React.Fragment}
                       enter="transition ease-out duration-200"
                       enterFrom="opacity-0"
@@ -80,7 +69,7 @@ const DropdownMenu = () => {
                       <div className="absolute top-full bg-slate-100 p-2 rounded-b-sm shadow-lg">
                         <Popover.Panel>
                           <ul className="min-w-[152px] max-w-[200px] pr-4 ">
-                            {collections[key].map((collection) => {
+                            {section.collections.map((collection) => {
                               return (
                                 <div
                                   className="py-2 text-lg w-fit whitespace-nowrap"
@@ -88,7 +77,7 @@ const DropdownMenu = () => {
                                 >
                                   <Link href={`/collections/${collection.id}`}>
                                     <a
-                                      onClick={() => setOpen("")}
+                                      onClick={() => setOpen("none")}
                                       className="flex items-center"
                                     >
                                       <RiArrowDropRightLine />

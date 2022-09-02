@@ -1,3 +1,4 @@
+import { Disclosure } from "@headlessui/react"
 import { useMobileMenu } from "@lib/context/mobile-menu-context"
 import { useStore } from "@lib/context/store-context"
 import useCountryOptions from "@lib/hooks/use-country-options"
@@ -6,12 +7,20 @@ import Search from "@modules/common/icons/search"
 import X from "@modules/common/icons/x"
 import { useCollections, useMeCustomer } from "medusa-react"
 import Link from "next/link"
+import { useEffect } from "react"
 import ReactCountryFlag from "react-country-flag"
+import { BiChevronDown, BiChevronUp } from "react-icons/bi"
+import { useNavigationCollections } from "../../../../lib/hooks/use-layout-data"
+import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 
 const MainMenu = () => {
-  const { collections } = useCollections()
+  // const { collections } = useCollections()
   const { customer } = useMeCustomer()
   const { countryCode } = useStore()
+  // const { data: collections, isLoading: loadingCollections } =
+  //   useNavigationCollections()
+
+  const collectionSections = useCustomNavCollections()
 
   const countries = useCountryOptions()
 
@@ -32,7 +41,6 @@ const MainMenu = () => {
             onClick={setScreenCountry}
           >
             <ReactCountryFlag countryCode={countryCode || "us"} svg />
-            <ChevronDown />
           </button>
         </div>
         <div>
@@ -68,34 +76,49 @@ const MainMenu = () => {
                     onClick={close}
                   >
                     <span className="sr-only">Idź do sklepu</span>
-                    <span>Sklep</span>
+                    <span>Przeglądaj wszystkie produkty</span>
                     <ChevronDown className="-rotate-90" />
                   </button>
                 </a>
               </Link>
             </li>
-            {collections ? (
-              <>
-                {collections.map((collection) => (
-                  <li key={collection.id} className="bg-gray-50 p-4">
-                    <Link href={`/collections/${collection.id}`}>
-                      <a>
-                        <button
-                          className="flex items-center justify-between w-full"
-                          onClick={close}
-                        >
-                          <span className="sr-only">
-                            Idź do {collection.title}
-                          </span>
-                          <span>{collection.title}</span>
-                          <ChevronDown className="-rotate-90" />
-                        </button>
-                      </a>
-                    </Link>
-                  </li>
+            <div className="flex flex-col gap-2 justify-start">
+              {collectionSections &&
+                collectionSections.map((section) => (
+                  <Disclosure key={section.metaKey}>
+                    {({ open }) => (
+                      <div className="flex flex-col  justify-start">
+                        <Disclosure.Button className="text-left p-4 flex justify-between border-l-2 border-primary shadow-md">
+                          <div className="flex gap-2 items-center">
+                            {section.icon}
+                            {section.title}
+                          </div>
+                          {open ? (
+                            <ChevronDown className="-rotate-180" />
+                          ) : (
+                            <ChevronDown />
+                          )}
+                        </Disclosure.Button>
+                        {open && (
+                          <Disclosure.Panel className="flex flex-col gap-4 p-2 pl-6">
+                            {section.collections.map((collection) => (
+                              <Link
+                                href={`/collections/${collection.id}`}
+                                key={collection.id}
+                              >
+                                <a href="" className="flex items-center p-2">
+                                  <ChevronDown className="-rotate-90 " />
+                                  <span>{collection.title}</span>
+                                </a>
+                              </Link>
+                            ))}
+                          </Disclosure.Panel>
+                        )}
+                      </div>
+                    )}
+                  </Disclosure>
                 ))}
-              </>
-            ) : null}
+            </div>
           </ul>
         </div>
 
@@ -128,7 +151,7 @@ const MainMenu = () => {
                       className="flex items-center justify-between border-b border-gray-200 py-2 w-full"
                       onClick={close}
                     >
-                      <span className="sr-only">Idź do strony konta</span>
+                      <span className="sr-only">Przejdź do konta</span>
                       <span className="normal-case">{customer.email}</span>
                       <ChevronDown className="-rotate-90" />
                     </button>
