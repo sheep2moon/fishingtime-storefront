@@ -18,7 +18,7 @@ const ProductPreview = ({
               <Thumbnail thumbnail={thumbnail} size="full" />
             </div>
             <div className="text-base-regularh h-full py-2 flex flex-col justify-between text-stone-900">
-              <span className="bg-emerald-900 px-1 text-slate-50 text-sm whitespace-nowrap">
+              <span className="bg-emerald-900 px-1 text-slate-50 text-sm whitespace-nowrap ">
                 {title}
               </span>
               <div className="flex items-center px-1">
