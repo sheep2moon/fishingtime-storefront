@@ -10,16 +10,18 @@ const ProductPreview = ({
   price,
 }: ProductPreviewType) => {
   return (
-    <div className="shadow-lg shadow-slate-300 p-1 h-80 rounded-sm">
+    <div className="shadow-lg shadow-slate-300 h-80 rounded-sm">
       <Link href={`/products/${handle}`}>
         <a className="block h-80">
           <div className="h-80 flex flex-col justify-between">
-            <div className="h-60">
+            <div className="h-60 p-1 ">
               <Thumbnail thumbnail={thumbnail} size="full" />
             </div>
-            <div className="text-base-regularh h-full p-2 flex flex-col justify-between">
-              <span>{title}</span>
-              <div className="flex items-center gap-x-2 mt-1 ">
+            <div className="text-base-regularh h-full py-2 flex flex-col justify-between text-stone-900">
+              <span className="bg-emerald-900 px-1 text-slate-50 text-sm whitespace-nowrap">
+                {title}
+              </span>
+              <div className="flex items-center px-1">
                 {price ? (
                   <>
                     {price.price_type === "sale" && (

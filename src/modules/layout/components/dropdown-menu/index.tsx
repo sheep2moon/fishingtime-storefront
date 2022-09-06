@@ -23,10 +23,10 @@ const DropdownMenu = () => {
   }
 
   return (
-    <div className="h-full">
+    <div className="h-full px-2">
       <div className="flex items-center h-full">
         <Link href="/store" passHref>
-          <a className="flex py-4 items-center text-base font-bold">
+          <a className="flex bg-emerald-800 px-2 py-1 text-lime-200 items-center text-base ">
             Wszystkie produkty
           </a>
         </Link>
@@ -43,7 +43,7 @@ const DropdownMenu = () => {
                   <>
                     <Popover.Button
                       className={clsx(
-                        "relative h-full flex items-center transition-all ease-out duration-200 p-4"
+                        "relative h-full flex items-center transition-all ease-out duration-200 p-4 hover:bg-emerald-900"
                       )}
                       onClick={() => push("/store")}
                     >
@@ -63,13 +63,13 @@ const DropdownMenu = () => {
                       leaveFrom="opacity-100"
                       leaveTo="opacity-0"
                     >
-                      <div className="absolute top-full bg-slate-100 rounded-b-sm shadow-lg shadow-slate-500">
+                      <div className="absolute top-full bg-emerald-700 rounded-b-sm shadow-lg shadow-slate-500">
                         <Popover.Panel>
                           <ul className="min-w-[152px] max-w-[260px]  ">
                             {section.collections.map((collection) => {
                               return (
                                 <div
-                                  className="py-2 text-lg w-full whitespace-nowrap cursor-pointer hover:bg-slate-200 pr-4"
+                                  className="py-2 text-lg w-full whitespace-nowrap cursor-pointer hover:bg-emerald-900 pr-4"
                                   key={collection.id}
                                   onClick={() =>
                                     handleSelectCollection(collection.id)
