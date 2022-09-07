@@ -49,8 +49,9 @@ export const ProductProvider = ({
   useEffect(() => {
     // initialize the option state
     const optionObj: Record<string, string> = {}
+    console.log(product)
     for (const option of product.options) {
-      Object.assign(optionObj, { [option.id]: undefined })
+      Object.assign(optionObj, { [option.id]: option.values[0].value })
     }
     setOptions(optionObj)
   }, [product])

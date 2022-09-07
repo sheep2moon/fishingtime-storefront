@@ -6,6 +6,7 @@ import ChevronDown from "@modules/common/icons/chevron-down"
 import Search from "@modules/common/icons/search"
 import X from "@modules/common/icons/x"
 import { useCollections, useMeCustomer } from "medusa-react"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
@@ -13,6 +14,7 @@ import ReactCountryFlag from "react-country-flag"
 import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 import { useNavigationCollections } from "../../../../lib/hooks/use-layout-data"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
+import logoImg from "../../../../../public/logo3.svg"
 
 const MainMenu = () => {
   // const { collections } = useCollections()
@@ -53,7 +55,7 @@ const MainMenu = () => {
           </button>
         </div>
         <div>
-          <h1 className="text-xl-semi uppercase">Fishing Time</h1>
+          <Image src={logoImg} alt="logotyp sklepu" />
         </div>
         <div className="flex-1 basis-0 flex justify-end">
           <button onClick={close}>

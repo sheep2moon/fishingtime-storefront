@@ -5,10 +5,12 @@ import DropdownMenu from "@modules/layout/components/dropdown-menu"
 import MobileMenu from "@modules/mobile-menu/templates"
 import DesktopSearchModal from "@modules/search/templates/desktop-search-modal"
 import clsx from "clsx"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { VscAccount } from "react-icons/vsc"
+import logo from "../../../../../public/logo3.svg"
 
 const Nav = () => {
   const { pathname } = useRouter()
@@ -57,7 +59,9 @@ const Nav = () => {
               {/* LOGO */}
               <div className="flex items-center h-full">
                 <Link href="/">
-                  <a className="text-lg small:text-xl-semi">FishingTime</a>
+                  <a className="text-lg small:text-xl-semi w-52 small:w-64 flex items-center ">
+                    <Image src={logo} alt="logotyp sklepu" objectFit="cover" />
+                  </a>
                 </Link>
               </div>
               {/* SEARCH */}
@@ -73,7 +77,7 @@ const Nav = () => {
                 <CartDropdown />
               </div>
             </div>
-            <div className="hidden small:block h-8 bg-emerald-800 text-slate-50 ">
+            <div className="hidden small:block h-8 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-900 text-slate-50 ">
               <DropdownMenu />
             </div>
           </div>

@@ -4,7 +4,7 @@ import Button from "@modules/common/components/button"
 import OptionSelect from "@modules/products/components/option-select"
 import clsx from "clsx"
 import Link from "next/link"
-import React, { useMemo } from "react"
+import React, { useMemo, useEffect } from "react"
 import { Product } from "types/medusa"
 
 type ProductActionsProps = {

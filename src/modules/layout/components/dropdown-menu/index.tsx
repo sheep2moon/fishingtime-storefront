@@ -26,7 +26,7 @@ const DropdownMenu = () => {
     <div className="h-full px-2">
       <div className="flex items-center h-full">
         <Link href="/store" passHref>
-          <a className="flex bg-emerald-800 px-2 py-1 text-lime-200 items-center text-base ">
+          <a className="flex bg-emerald-700 px-2 py-1 text-lime-200 items-center text-base ">
             Wszystkie produkty
           </a>
         </Link>

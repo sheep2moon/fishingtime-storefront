@@ -1,5 +1,6 @@
 import { onlyUnique } from "@lib/util/only-unique"
 import { ProductOption } from "@medusajs/medusa"
+import { useEffect } from "react"
 import clsx from "clsx"
 import React from "react"
 
@@ -20,7 +21,7 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
 
   return (
     <div className="flex flex-col gap-y-3">
-      <span className="text-base-semi">Select {title}</span>
+      <span className="text-base-semi">Wybierz {title}</span>
       <div className="grid grid-cols-3 lg:grid-cols-6 gap-2">
         {filteredOptions.map((v) => {
           return (

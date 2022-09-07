@@ -51,6 +51,6 @@ export const useCustomNavCollections = (): customCollections[] => {
       }
     })
   }
-  console.log(customCollections)
+
   return customCollections
 }
