@@ -50,10 +50,10 @@ const InfiniteProducts = () => {
   }, [inView, hasNextPage])
 
   return (
-    <div className="flex-1 content-container mt-2">
-      <ul className="grid grid-cols-1 xsmall:grid-cols-2 small:grid-cols-3 medium:grid-cols-4 large:grid-cols-5 gap-x-4 gap-y-8 flex-1 items-center">
+    <div className="flex-1 mt-2 flex ">
+      <ul className="flex flex-wrap justify-center small:justify-start gap-2 flex-1 items-center">
         {previews.map((p) => (
-          <li key={p.id} className="w-52 mx-auto">
+          <li key={p.id} className="w-52 small:w-60">
             <ProductPreview {...p} />
           </li>
         ))}
