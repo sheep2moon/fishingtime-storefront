@@ -9,6 +9,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <link rel="manifest" href="/manifest.json" />
           <link rel="preconnect" href={`//${hostname}`} crossOrigin="true" />
           <link rel="dns-prefetch" href={`//${hostname}`} />
           <link
