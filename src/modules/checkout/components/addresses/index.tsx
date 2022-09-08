@@ -83,12 +83,12 @@ const Addresses = () => {
                         <div className="flex items-center justify-center border border-gray-700 bg-gray-100 w-4 h-4">
                           ✓
                         </div>
-                        <span>Same as billing address</span>
+                        <span>Taki jak rozliczeniowy</span>
                       </div>
                     )}
                   </div>
                   <div>
-                    <button onClick={setEdit}>Edit</button>
+                    <button onClick={setEdit}>Edytuj</button>
                   </div>
                 </div>
               </div>
@@ -104,7 +104,7 @@ const Addresses = () => {
                 <div className="bg-gray-900 w-8 h-8 rounded-full text-white flex justify-center items-center font-mono text-sm">
                   2
                 </div>
-                <h2>Billing address</h2>
+                <h2>Adres rozliczeniowy</h2>
               </div>
               <div className="bg-gray-50 px-8 py-6 text-small-regular">
                 {cart && cart.billing_address ? (
@@ -135,7 +135,7 @@ const Addresses = () => {
                         </div>
                       </div>
                       <div>
-                        <button onClick={setEdit}>Edit</button>
+                        <button onClick={setEdit}>Edytuj</button>
                       </div>
                     </div>
                   </div>

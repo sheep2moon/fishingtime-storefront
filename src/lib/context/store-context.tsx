@@ -7,6 +7,7 @@ import {
   useDeleteLineItem,
   useUpdateLineItem,
 } from "medusa-react"
+import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { useCartDropdown } from "./cart-dropdown-context"
 
@@ -29,7 +30,8 @@ interface StoreContext {
   deleteItem: (lineId: string) => void
   resetCart: () => void
   updateParams: (id: string) => void
-  setParamsCollection: (id: string) => void
+  selectManyCollections: (collections: { id: string; title: string }[]) => void
+  selectCollection: (id: string) => void
 }
 
 const StoreContext = React.createContext<StoreContext | null>(null)
@@ -57,6 +59,7 @@ export const StoreProvider = ({ children }: StoreProps) => {
   const removeLineItem = useDeleteLineItem(cart?.id!)
   const adjustLineItem = useUpdateLineItem(cart?.id!)
   const [params, setParams] = useState<StoreGetProductsParams>({})
+  const { push } = useRouter()
 
   const storeRegion = (regionId: string, countryCode: string) => {
     if (!IS_SERVER) {
@@ -101,8 +104,17 @@ export const StoreProvider = ({ children }: StoreProps) => {
     }
   }
 
-  const setParamsCollection = (id: string) => {
+  const selectCollection = (id: string) => {
     setParams({ ...params, collection_id: [id] })
+    push("/store")
+  }
+
+  const selectManyCollections = (
+    collections: { title: string; id: string }[]
+  ) => {
+    const collectionsId = collections.map((c) => c.id)
+    setParams({ ...params, collection_id: collectionsId })
+    push("/store")
   }
 
   const setRegion = async (regionId: string, countryCode: string) => {
@@ -314,7 +326,8 @@ export const StoreProvider = ({ children }: StoreProps) => {
         updateItem,
         resetCart,
         updateParams,
-        setParamsCollection,
+        selectManyCollections,
+        selectCollection,
       }}
     >
       {children}

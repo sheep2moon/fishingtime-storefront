@@ -1,32 +1,35 @@
 import clsx from "clsx"
 import { useCollections } from "medusa-react"
 import Link from "next/link"
+import { useStore } from "../../../../lib/context/store-context"
+import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import CountrySelect from "../country-select"
 
 const FooterNav = () => {
-  const { collections } = useCollections()
+  const { selectManyCollections } = useStore()
+  const customCollections = useCustomNavCollections()
 
   return (
-    <div className="content-container flex flex-col gap-y-8 pt-16 pb-8">
-      <div className="flex flex-col gap-y-6 xsmall:flex-row items-start justify-between">
+    <div className="content-container flex flex-col gap-y-8 pt-16 pb-8 w-full">
+      <div className="flex flex-col gap-y-6 xsmall:flex-row items-start w-full justify-around gap-2 ">
         <div>
           <Link href="/">
             <a className="text-xl-semi uppercase">Fishing Time</a>
           </Link>
         </div>
-        <div className="text-small-regular grid grid-cols-2 gap-x-16">
+        <div className="text-small-regular flex">
           <div className="flex flex-col gap-y-2">
             <span className="text-base-semi">Kolekcje</span>
             <ul
               className={clsx("grid grid-cols-1 gap-y-2", {
-                "grid-cols-2": (collections?.length || 0) > 4,
+                "grid-cols-2 gap-4": (customCollections?.length || 0) > 4,
               })}
             >
-              {collections?.map((c) => (
-                <li key={c.id}>
-                  <Link href={`/collections/${c.id}`}>
+              {customCollections?.map((c) => (
+                <li key={c.metaKey}>
+                  <button onClick={() => selectManyCollections(c.collections)}>
                     <a>{c.title}</a>
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>

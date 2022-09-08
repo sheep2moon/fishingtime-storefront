@@ -1,10 +1,12 @@
 import { CheckoutProvider } from "@lib/context/checkout-context"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import MedusaCTA from "@modules/layout/components/medusa-cta"
+import Image from "next/image"
 import Link from "next/link"
 import CheckoutLoader from "../components/checkout-loader"
 import CheckoutForm from "./checkout-form"
 import CheckoutSummary from "./checkout-summary"
+import logoImg from "../../../../public/logo3.svg"
 
 const CheckoutTemplate = () => {
   return (
@@ -22,20 +24,21 @@ const CheckoutTemplate = () => {
               </a>
             </Link>
             <Link href="/">
-              <a className="text-xl-semi">FishingTime</a>
+              <a className="text-xl-semi">
+                <div className="flex w-52">
+                  <Image src={logoImg} alt="logotyp sklepu" />
+                </div>
+              </a>
             </Link>
             <div className="flex-1 basis-0" />
           </nav>
         </div>
         <div className="relative">
           <CheckoutLoader />
-          <div className="grid grid-cols-1 small:grid-cols-[1fr_416px] gap-y-8 content-container gap-x-8 py-12">
+          <div className="grid grid-cols-1 small:grid-cols-[1fr_416px] gap-y-8 content-container gap-x-8 py-12 px-0 small:px-4">
             <CheckoutForm />
             <CheckoutSummary />
           </div>
-        </div>
-        <div className="py-4 w-full flex items-center justify-center">
-          <MedusaCTA />
         </div>
       </div>
     </CheckoutProvider>

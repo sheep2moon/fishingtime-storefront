@@ -8,7 +8,7 @@ const Store: NextPageWithLayout = () => {
   return (
     <>
       <Head title="Sklep" description="Zobacz asortyment naszego sklepu." />
-      <div className="flex flex-col small:flex-row py-6 items-start">
+      <div className="flex flex-col small:flex-row py-6 w-full items-start">
         <RefinementList />
         <InfiniteProducts />
       </div>

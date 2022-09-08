@@ -34,12 +34,15 @@ const MainMenu = () => {
 
   const setScreenCountry = () => setScreen("country")
   const setScreenSearch = () => setScreen("search")
-  const { push } = useRouter()
-  const { setParamsCollection } = useStore()
+  const { selectCollection, selectManyCollections } = useStore()
 
   const handleSelectCollection = (id: string) => {
-    setParamsCollection(id)
-    push("/store")
+    selectCollection(id)
+    close()
+  }
+
+  const handleSelectMany = (collections: { title: string; id: string }[]) => {
+    selectManyCollections(collections)
     close()
   }
 
@@ -112,6 +115,15 @@ const MainMenu = () => {
                         </Disclosure.Button>
                         {open && (
                           <Disclosure.Panel className="flex flex-col gap-4 p-2 pl-6">
+                            <span
+                              onClick={() =>
+                                handleSelectMany(section.collections)
+                              }
+                              className="flex items-center p-2 cursor-pointer hover:bg-slate-200 font-semibold"
+                            >
+                              <ChevronDown className="-rotate-90 " />
+                              <span>Pokaż wszystko</span>
+                            </span>
                             {section.collections.map((collection) => (
                               <span
                                 onClick={() =>

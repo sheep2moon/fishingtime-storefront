@@ -51,9 +51,9 @@ const InfiniteProducts = () => {
 
   return (
     <div className="flex-1 content-container mt-2">
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-4 gap-y-8 flex-1">
+      <ul className="grid grid-cols-1 xsmall:grid-cols-2 small:grid-cols-3 medium:grid-cols-4 large:grid-cols-5 gap-x-4 gap-y-8 flex-1 items-center">
         {previews.map((p) => (
-          <li key={p.id} className="w-52">
+          <li key={p.id} className="w-52 mx-auto">
             <ProductPreview {...p} />
           </li>
         ))}
@@ -71,12 +71,12 @@ const InfiniteProducts = () => {
             </li>
           ))}
       </ul>
-      <div
+      {/* <div
         className="py-16 flex justify-center items-center text-small-regular text-gray-700"
         ref={ref}
       >
         <span ref={ref}></span>
-      </div>
+      </div> */}
     </div>
   )
 }

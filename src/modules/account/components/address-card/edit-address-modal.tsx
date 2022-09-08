@@ -135,36 +135,36 @@ const EditAddress: React.FC<EditAddressProps> = ({
             onClick={open}
           >
             <Edit size={16} />
-            Edit
+            Edytuj
           </button>
           <button
             className="text-small-regular text-gray-700 flex items-center gap-x-2"
             onClick={removeAddress}
           >
             <Trash />
-            Remove
+            Usuń
           </button>
         </div>
       </div>
 
       <Modal isOpen={state} close={close}>
-        <Modal.Title>Edit address</Modal.Title>
+        <Modal.Title>Edytuj adres</Modal.Title>
         <Modal.Body>
           <div className="grid grid-cols-1 gap-y-2">
             <div className="grid grid-cols-2 gap-x-2">
               <Input
-                label="First name"
+                label="Imię"
                 {...register("first_name", {
-                  required: "First name is required",
+                  required: "Imię jest wymagane",
                 })}
                 required
                 errors={errors}
                 autoComplete="given-name"
               />
               <Input
-                label="Last name"
+                label="Nazwisko"
                 {...register("last_name", {
-                  required: "Last name is required",
+                  required: "Nazwisko jest wymagane",
                 })}
                 required
                 errors={errors}
@@ -173,34 +173,34 @@ const EditAddress: React.FC<EditAddressProps> = ({
             </div>
             <Input label="Company" {...register("company")} errors={errors} />
             <Input
-              label="Address"
+              label="Adres"
               {...register("address_1", {
-                required: "Address is required",
+                required: "Adres jest wymagany",
               })}
               required
               errors={errors}
               autoComplete="address-line1"
             />
             <Input
-              label="Apartment, suite, etc."
+              label="Dodatkowe informacje"
               {...register("address_2")}
               errors={errors}
               autoComplete="address-line2"
             />
             <div className="grid grid-cols-[144px_1fr] gap-x-2">
               <Input
-                label="Postal code"
+                label="Kod pocztowy"
                 {...register("postal_code", {
-                  required: "Postal code is required",
+                  required: "Kod pocztowy jest wymagany",
                 })}
                 required
                 errors={errors}
                 autoComplete="postal-code"
               />
               <Input
-                label="City"
+                label="Miasto"
                 {...register("city", {
-                  required: "City is required",
+                  required: "Miasto jest wymagane",
                 })}
                 errors={errors}
                 required
@@ -208,7 +208,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
             </div>
             <Input
-              label="Province / State"
+              label="Województwo"
               {...register("province")}
               errors={errors}
               autoComplete="address-level1"
@@ -218,7 +218,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               autoComplete="country"
             />
             <Input
-              label="Phone"
+              label="Telefon"
               {...register("phone")}
               errors={errors}
               autoComplete="phone"
@@ -230,10 +230,10 @@ const EditAddress: React.FC<EditAddressProps> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={close}>
-            Cancel
+            Anuluj
           </Button>
           <Button onClick={submit} disabled={submitting}>
-            Save
+            Zapisz
             {submitting && <Spinner />}
           </Button>
         </Modal.Footer>

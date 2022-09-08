@@ -5,7 +5,7 @@ const RefinementList = () => {
   const sectionCollections = useCustomNavCollections()
 
   return (
-    <div className="flex flex-col w-full max-w-md small:max-w-xs shadow-md h-full">
+    <div className=" flex-col w-full hidden xsmall:flex max-w-md small:max-w-xs shadow-md h-full">
       <span className="px-4 font-bold border-b-2 border-primary w-full">
         Kolekcje
       </span>

@@ -51,18 +51,20 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
       )}
     >
       <button
-        className={"grid grid-cols-[12px_1fr] gap-x-4 py-4 px-8"}
+        className={"grid grid-cols-1 gap-x-4 py-4 px-2"}
         onClick={setSelected}
         disabled={disabled}
       >
-        <Radio checked={selected} />
-        <div className="flex flex-col text-left">
-          <h3 className="text-base-semi leading-none text-gray-900">
+        <div className="flex text-left gap-1">
+          <Radio checked={selected} />
+          <h3 className="text-lg leading-none text-gray-900">
             {PaymentsDesc[index].title}
           </h3>
-          <span className="text-gray-700 text-small-regular mt-2">
-            {PaymentsDesc[index].description}
-          </span>
+        </div>
+        <span className="text-gray-700 text-base text-left mt-2">
+          {PaymentsDesc[index].description}
+        </span>
+        <div className="flex">
           {selected && (
             <div className="w-full mt-4">
               <PaymentElement paymentSession={paymentSession} />
@@ -94,7 +96,7 @@ const PaymentElement = ({
       )
     case "stripe-przelewy24":
       return (
-        <div className="pt-8 pr-7">
+        <div className="pt-8 px-1">
           <PaymentP24 />
         </div>
       )

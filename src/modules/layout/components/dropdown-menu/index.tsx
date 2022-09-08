@@ -14,12 +14,11 @@ const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
   const { push } = useRouter()
   const collectionSections = useCustomNavCollections()
-  const { setParamsCollection } = useStore()
+  const { selectCollection } = useStore()
 
   const handleSelectCollection = (id: string) => {
     setOpen("none")
-    setParamsCollection(id)
-    push("/store")
+    selectCollection(id)
   }
 
   return (
