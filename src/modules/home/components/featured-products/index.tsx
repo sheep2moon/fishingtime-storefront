@@ -18,7 +18,7 @@ const FeaturedProducts = () => {
         <ul className="flex gap-2 flex-wrap justify-center small:justify-start">
           {data
             ? data.map((product) => (
-                <li key={product.id} className="w-44">
+                <li key={product.id}>
                   <ProductPreview {...product} />
                 </li>
               ))

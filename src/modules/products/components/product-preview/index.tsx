@@ -12,9 +12,9 @@ const ProductPreview = ({
   console.log()
 
   return (
-    <div className="shadow-lg shadow-slate-300 rounded-md p-1">
+    <div className="shadow-lg shadow-slate-300 rounded-md p-1 w-full">
       <Link href={`/products/${handle}`}>
-        <a className="block h-72 w-52 2xsmall:h-64 2xsmall:w-40 small:w-52 small:h-72">
+        <a className="block w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72">
           <div className=" flex flex-col justify-between h-full">
             <div className=" p-1 ">
               <Thumbnail thumbnail={thumbnail} size="full" />

@@ -55,10 +55,10 @@ const CollectionTemplate: React.FC<CollectionTemplateProps> = ({
 
   return (
     <div className="content-container py-6">
-      <div className="mb-8 text-2xl-semi">
+      <div className="mb-8 text-2xl-semi text-center ">
         <h1>{collection.title}</h1>
       </div>
-      <ul className="grid grid-cols-2 small:grid-cols-3 medium:grid-cols-4 gap-x-4 gap-y-8">
+      <ul className="flex flex-wrap gap-1 justify-center">
         {previews.map((p) => (
           <li key={p.id}>
             <ProductPreview {...p} />

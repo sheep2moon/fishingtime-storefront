@@ -72,20 +72,26 @@ const MobileActions: React.FC<MobileActionsProps> = ({ product, show }) => {
               )}
             </div>
             <div
-              className={clsx("grid grid-cols-2 w-full gap-x-4", {
-                "grid-cols-1": product.variants.length === 1,
-              })}
+              className={clsx(
+                "grid w-full gap-x-4",
+                {
+                  "grid-cols-1": product.variants.length === 1,
+                },
+                { "grid-cols-2": product.variants.length > 1 }
+              )}
             >
-              <Button onClick={open} variant="secondary">
-                <div className="flex items-center justify-between w-full">
-                  <span>
-                    {variant
-                      ? Object.values(options).join(" / ")
-                      : "Wybierz opcje"}
-                  </span>
-                  <ChevronDown />
-                </div>
-              </Button>
+              {product.variants.length > 1 && (
+                <Button onClick={open} variant="secondary">
+                  <div className="flex items-center justify-between w-full">
+                    <span>
+                      {variant
+                        ? Object.values(options).join(" / ")
+                        : "Wybierz opcje"}
+                    </span>
+                    <ChevronDown />
+                  </div>
+                </Button>
+              )}
               <Button onClick={addToCart}>
                 {!inStock ? "Brak w magazynie" : "Dodaj do koszyka"}
               </Button>

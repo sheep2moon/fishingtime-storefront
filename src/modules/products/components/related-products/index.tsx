@@ -63,7 +63,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
         </p>
       </div>
 
-      <ul className="flex gap-2">
+      <ul className="flex gap-2 flex-wrap justify-center">
         {previews.map((p) => (
           <li key={p.id}>
             <ProductPreview {...p} />
