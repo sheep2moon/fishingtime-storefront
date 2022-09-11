@@ -19,7 +19,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
 
   return (
     <ProductProvider product={product}>
-      <div className="content-container flex flex-col small:flex-row small:items-start py-12 relative">
+      <div className="content-container small:px-4 flex flex-col small:flex-row small:items-start py-12 relative">
         <div className="flex flex-col gap-y-8 w-full">
           <ImageGallery images={product.images} />
         </div>
@@ -31,8 +31,8 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
           <ProductTabs product={product} />
         </div>
       </div>
-      <div className="content-container flex flex-col">
-        <h3 className="text-center text-2xl border-b-2 border-emerald-800">
+      <div className="content-container small:px-12 flex flex-col">
+        <h3 className="text-center text-2xl border-b-2 border-emerald-800 mb-4">
           Opis produktu
         </h3>
         <p>{product.description}</p>

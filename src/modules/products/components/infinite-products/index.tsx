@@ -55,9 +55,9 @@ const InfiniteProducts = () => {
 
   return (
     <div className="flex-1 mt-2 flex ">
-      <ul className="flex flex-wrap justify-center small:justify-start gap-2 flex-1 items-center">
+      <ul className="flex flex-wrap justify-center small:justify-start gap-1 flex-1 items-center">
         {previews.map((p) => (
-          <li key={p.id} className="w-52 small:w-60">
+          <li key={p.id} className="">
             <ProductPreview {...p} />
           </li>
         ))}

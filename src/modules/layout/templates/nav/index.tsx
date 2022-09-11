@@ -51,15 +51,15 @@ const Nav = () => {
       <header className="relative h-16 small:h-24 mx-auto transition-colors bg-white duration-200 group-hover:bg-white shadow-lg text-base">
         <nav className="text-gray-900  flex items-center justify-start w-full h-full text-small-regular transition-colors duration-200">
           <div className="flex flex-col w-full h-full">
-            <div className="flex h-16 justify-between items-center px-4 ">
+            <div className="flex h-16 justify-between items-center px-1 2xsmall:px-4">
               {/* HAMBURGER */}
-              <div className="block small:hidden pr-4 ">
+              <div className="block small:hidden">
                 <Hamburger setOpen={toggle} />
               </div>
               {/* LOGO */}
               <div className="flex items-center h-full relative">
                 <Link href="/">
-                  <a className="text-lg small:text-xl-semi w-56 h-1 mx-[-2rem] small:w-64 flex items-center ">
+                  <a className="text-lg small:text-xl-semi w-60 2xsmall:w-72 h-1 mx-[-2rem] small:w-64 flex items-center ">
                     <Image
                       src="/cut.svg"
                       layout="fill"
@@ -69,8 +69,9 @@ const Nav = () => {
                   </a>
                 </Link>
               </div>
-              {/* SEARCH */}
-              <div className="flex items-center ml-auto gap-x-6 h-full justify-end ">
+              {/* RIGHT SIDE */}
+              <div className="flex items-center small:ml-auto gap-x-6 h-full justify-end text-3xl">
+                {/* SEARCH */}
                 <div className="hidden small:flex items-center gap-x-6 h-full">
                   {process.env.FEATURE_SEARCH_ENABLED && <DesktopSearchModal />}
                   <Link href="/account">
@@ -79,6 +80,7 @@ const Nav = () => {
                     </a>
                   </Link>
                 </div>
+                {/* CART */}
                 <CartDropdown />
               </div>
             </div>

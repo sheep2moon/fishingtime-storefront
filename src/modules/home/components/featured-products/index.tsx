@@ -11,14 +11,14 @@ const FeaturedProducts = () => {
       <div className="content-container py-12">
         <div className="flex justify-between flex-col small:flex-row items-center text-center mb-16">
           <p className="text-2xl-regular text-gray-900 max-w-lg">
-            Najnowsze produkty w sklepie.
+            Wyróżnione produkty.
           </p>
           <UnderlineLink href="/store">Przejdź do sklepu</UnderlineLink>
         </div>
-        <ul className="flex gap-4 flex-wrap justify-center small:justify-start">
+        <ul className="flex gap-2 flex-wrap justify-center small:justify-start">
           {data
             ? data.map((product) => (
-                <li key={product.id} className="w-52">
+                <li key={product.id} className="w-44">
                   <ProductPreview {...product} />
                 </li>
               ))

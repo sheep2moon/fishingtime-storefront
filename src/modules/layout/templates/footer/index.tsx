@@ -6,6 +6,7 @@ const Footer = () => {
   return (
     <footer>
       {/* <FooterCTA /> */}
+
       <FooterNav />
       {/* <MedusaCTA /> */}
     </footer>
