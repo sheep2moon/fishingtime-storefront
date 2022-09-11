@@ -8,10 +8,10 @@ type CollectionButtonProps = {
 
 const CollectionButton = ({ title, icon }: CollectionButtonProps) => {
   return (
-    <div className="flex items-center text-lg justify-start">
+    <div className="flex items-center text-lg justify-start w-full">
       {icon}
       <p className="ml-2">{title}</p>
-      <BiChevronDown />
+      <BiChevronDown className="-rotate-90 ml-auto" />
     </div>
   )
 }

@@ -31,6 +31,12 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
           <ProductTabs product={product} />
         </div>
       </div>
+      <div className="content-container flex flex-col">
+        <h3 className="text-center text-2xl border-b-2 border-emerald-800">
+          Opis produktu
+        </h3>
+        <p>{product.description}</p>
+      </div>
       <div className="content-container my-16 px-6 small:px-8 small:my-32">
         <RelatedProducts product={product} />
       </div>

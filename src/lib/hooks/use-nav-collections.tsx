@@ -1,4 +1,14 @@
-import { GiFishingNet, GiFishingPole } from "react-icons/gi"
+import {
+  GiFishingNet,
+  GiFishingPole,
+  GiClothes,
+  GiElectric,
+  GiCampingTent,
+  GiFishingLure,
+} from "react-icons/gi"
+import { BsInboxes } from "react-icons/bs"
+import { FcFilmReel } from "react-icons/fc"
+import { TbCircles } from "react-icons/tb"
 import { useNavigationCollections } from "./use-layout-data"
 
 // let customCollections: {
@@ -27,12 +37,48 @@ export const useCustomNavCollections = (): customCollections[] => {
     },
     {
       metaKey: "kolowrotki",
-      icon: <GiFishingNet />,
+      icon: <FcFilmReel />,
       title: "Kołowrotki",
       collections: [],
     },
     {
-      metaKey: "",
+      metaKey: "namioty",
+      icon: <GiCampingTent />,
+      title: "Parasole I Namioty",
+      collections: [],
+    },
+    {
+      metaKey: "elektronika",
+      icon: <GiElectric />,
+      title: "Sprzęt elektroniczny",
+      collections: [],
+    },
+    {
+      metaKey: "kulki",
+      icon: <TbCircles />,
+      title: "Kulki i pellety",
+      collections: [],
+    },
+    {
+      metaKey: "przynety",
+      icon: <GiFishingLure />,
+      title: "Przynęty",
+      collections: [],
+    },
+    {
+      metaKey: "pojemniki",
+      icon: <BsInboxes />,
+      title: "Torby, pokrowce, pojemniki",
+      collections: [],
+    },
+    {
+      metaKey: "ubrania",
+      icon: <GiClothes />,
+      title: "Odzież i obuwie",
+      collections: [],
+    },
+    {
+      metaKey: "pozostale",
       icon: <GiFishingNet />,
       title: "Pozostałe",
       collections: [],

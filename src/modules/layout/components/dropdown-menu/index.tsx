@@ -9,9 +9,12 @@ import { RiArrowDropRightLine } from "react-icons/ri"
 import CollectionButton from "./CollectionButton"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import { useStore } from "../../../../lib/context/store-context"
+import ChevronDown from "../../../common/icons/chevron-down"
+import NavLink from "./NavLink"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
+  const [categoriesOpen, setCategoriesOpen] = useState(false)
   const { push } = useRouter()
   const collectionSections = useCustomNavCollections()
   const { selectCollection } = useStore()
@@ -19,6 +22,11 @@ const DropdownMenu = () => {
   const handleSelectCollection = (id: string) => {
     setOpen("none")
     selectCollection(id)
+  }
+
+  const handleCategoriesLeave = () => {
+    setCategoriesOpen(false)
+    setOpen("none")
   }
 
   return (
@@ -29,7 +37,103 @@ const DropdownMenu = () => {
             Wszystkie produkty
           </a>
         </Link>
-        {collectionSections &&
+
+        <div
+          className="relative h-full"
+          onMouseEnter={() => setCategoriesOpen(true)}
+          onMouseLeave={handleCategoriesLeave}
+        >
+          <Popover className="h-full flex">
+            <>
+              <Popover.Button
+                className={clsx(
+                  "relative h-full flex items-center transition-all ease-out duration-200 gap-1 p-4 text-lg"
+                )}
+                onClick={() => push("/store")}
+              >
+                Kategorie
+                <ChevronDown />
+              </Popover.Button>
+
+              <Transition
+                show={categoriesOpen}
+                as={React.Fragment}
+                enter="transition ease-out duration-200"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition ease-in duration-150"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="absolute top-full  text-black rounded-b-sm shadow-lg shadow-slate-500 border-l-2 border-emerald-900">
+                  <Popover.Panel>
+                    <ul className="min-w-[152px] max-w-[260px]  ">
+                      {collectionSections.map((section) => {
+                        return (
+                          // <div
+                          //   className="py-2 text-lg w-full whitespace-nowrap cursor-pointer hover:bg-emerald-900 pr-4"
+                          //   key={section.metaKey}
+                          //   // onClick={() =>
+                          //   //   handleSelectCollection(collection.id)
+                          //   // }
+                          // >
+                          //   <span className="flex items-center ">
+                          //     <RiArrowDropRightLine />
+                          //     {section.title}
+                          //   </span>
+                          // </div>
+                          <div
+                            key={section.metaKey}
+                            onMouseEnter={() => setOpen(section.metaKey)}
+                            onMouseLeave={() => setOpen("none")}
+                            className="relative p-2 text-lg w-80 bg-emerald-50"
+                          >
+                            <Popover>
+                              <Popover.Button className="w-full">
+                                <CollectionButton
+                                  icon={section.icon}
+                                  title={section.title}
+                                />
+                              </Popover.Button>
+                              <Transition
+                                show={open === section.metaKey ? true : false}
+                              >
+                                <div className="absolute left-full bg-emerald-50  top-0 shadow-lg border-l-2 border-emerald-900">
+                                  <Popover.Panel>
+                                    {section.collections.map((collection) => (
+                                      <div
+                                        className="py-2 text-lg w-full whitespace-nowrap cursor-pointer pr-4"
+                                        key={collection.id}
+                                        onClick={() =>
+                                          handleSelectCollection(collection.id)
+                                        }
+                                      >
+                                        <span className="flex items-center ">
+                                          <RiArrowDropRightLine />
+                                          {collection.title}
+                                        </span>
+                                      </div>
+                                    ))}
+                                  </Popover.Panel>
+                                </div>
+                              </Transition>
+                            </Popover>
+                          </div>
+                        )
+                      })}
+                    </ul>
+                  </Popover.Panel>
+                </div>
+              </Transition>
+            </>
+          </Popover>
+        </div>
+        <NavLink href="/store">Kontakt</NavLink>
+        <NavLink href="/store">Regulamin</NavLink>
+        <NavLink href="/store">Wysyłka</NavLink>
+        <NavLink href="/store">Rabaty</NavLink>
+
+        {/* {collectionSections &&
           collectionSections.map((section, index) => {
             return (
               <div
@@ -89,7 +193,7 @@ const DropdownMenu = () => {
                 </Popover>
               </div>
             )
-          })}
+          })} */}
       </div>
     </div>
   )

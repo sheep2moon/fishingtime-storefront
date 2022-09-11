@@ -49,6 +49,10 @@ const InfiniteProducts = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, hasNextPage])
 
+  useEffect(() => {
+    console.log(previews)
+  }, [previews])
+
   return (
     <div className="flex-1 mt-2 flex ">
       <ul className="flex flex-wrap justify-center small:justify-start gap-2 flex-1 items-center">

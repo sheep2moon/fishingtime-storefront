@@ -1,6 +1,6 @@
 import { Image as MedusaImage } from "@medusajs/medusa"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 type ImageGalleryProps = {
   images: MedusaImage[]
@@ -8,17 +8,7 @@ type ImageGalleryProps = {
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
   const imageRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  const handleScrollTo = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      })
-    }
-  }
+  const [currentImage, setCurrentImage] = useState(0)
 
   return (
     <div className="flex items-start relative">
@@ -29,7 +19,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               key={image.id}
               className="h-14 small:h-28 w-12 small:w-24 relative border  border-black/10 rounded-sm"
               onClick={() => {
-                handleScrollTo(image.id)
+                setCurrentImage(index)
               }}
             >
               <span className="sr-only">Idź do zdjęcia {index + 1}</span>
@@ -45,6 +35,17 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
         })}
       </div>
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4 ">
+        <div className="relative aspect-[29/34] w-full my-1 shadow-md">
+          <Image
+            src={images[currentImage].url}
+            layout="fill"
+            objectFit="cover"
+            className="absolute inset-0"
+            alt={`podgląd produktu ${currentImage + 1}`}
+          />
+        </div>
+      </div>
+      {/* <div className="flex flex-col flex-1 small:mx-16 gap-y-4 ">
         {images.map((image, index) => {
           return (
             <div
@@ -64,7 +65,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
             </div>
           )
         })}
-      </div>
+      </div> */}
     </div>
   )
 }

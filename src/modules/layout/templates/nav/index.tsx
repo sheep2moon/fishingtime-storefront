@@ -57,10 +57,15 @@ const Nav = () => {
                 <Hamburger setOpen={toggle} />
               </div>
               {/* LOGO */}
-              <div className="flex items-center h-full">
+              <div className="flex items-center h-full relative">
                 <Link href="/">
-                  <a className="text-lg small:text-xl-semi w-52 small:w-64 flex items-center ">
-                    <Image src={logo} alt="logotyp sklepu" objectFit="cover" />
+                  <a className="text-lg small:text-xl-semi w-56 h-1 mx-[-2rem] small:w-64 flex items-center ">
+                    <Image
+                      src="/cut.svg"
+                      layout="fill"
+                      alt="logotyp sklepu"
+                      objectFit="contain"
+                    />
                   </a>
                 </Link>
               </div>
