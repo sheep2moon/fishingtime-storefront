@@ -26,7 +26,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
               <Image
                 src={image.url}
                 layout="fill"
-                objectFit="cover"
+                objectFit="contain"
                 className="absolute inset-0 "
                 alt="Thumbnail"
               />
@@ -35,11 +35,11 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
         })}
       </div>
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4 ">
-        <div className="relative aspect-[29/34] w-full my-1 shadow-md">
+        <div className="relative aspect-square w-full my-1 shadow-md">
           <Image
             src={images[currentImage].url}
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             className="absolute inset-0"
             alt={`podgląd produktu ${currentImage + 1}`}
           />
