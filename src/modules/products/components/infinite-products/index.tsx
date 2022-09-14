@@ -43,6 +43,8 @@ const InfiniteProducts = () => {
   const previews = usePreviews({ pages: data?.pages, region: cart?.region })
 
   useEffect(() => {
+    console.log(inView)
+
     if (inView && hasNextPage) {
       fetchNextPage()
     }
@@ -54,7 +56,7 @@ const InfiniteProducts = () => {
   }, [previews])
 
   return (
-    <div className="flex-1 mt-2 flex ">
+    <div className="flex-1 flex-col mt-2 flex ">
       <ul className="flex flex-wrap justify-center small:justify-start gap-1 flex-1 items-center">
         {previews.map((p) => (
           <li key={p.id} className="">
@@ -64,23 +66,33 @@ const InfiniteProducts = () => {
         {isLoading &&
           !previews.length &&
           repeat(8).map((index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className="w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72"
+            >
               <SkeletonProductPreview />
             </li>
           ))}
         {isFetchingNextPage &&
           repeat(getNumberOfSkeletons(data?.pages)).map((index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className="w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72"
+            >
               <SkeletonProductPreview />
             </li>
           ))}
       </ul>
-      {/* <div
+      <div
         className="py-16 flex justify-center items-center text-small-regular text-gray-700"
         ref={ref}
       >
-        <span ref={ref}></span>
-      </div> */}
+        <span ref={ref}>
+          {hasNextPage || isLoading
+            ? "Wczytuje produkty..."
+            : "To już wszystkie produkty"}
+        </span>
+      </div>
     </div>
   )
 }

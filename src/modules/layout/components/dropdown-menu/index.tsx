@@ -32,12 +32,6 @@ const DropdownMenu = () => {
   return (
     <div className="h-full px-2">
       <div className="flex items-center h-full">
-        <Link href="/store" passHref>
-          <a className="flex bg-emerald-700 px-2 py-1 text-lime-200 items-center text-base ">
-            Wszystkie produkty
-          </a>
-        </Link>
-
         <div
           className="relative h-full"
           onMouseEnter={() => setCategoriesOpen(true)}
@@ -47,7 +41,7 @@ const DropdownMenu = () => {
             <>
               <Popover.Button
                 className={clsx(
-                  "relative h-full flex items-center transition-all ease-out duration-200 gap-1 p-4 text-lg"
+                  "relative h-full flex items-center transition-all ease-out duration-200 gap-1 p-4 text-lg bg-emerald-700 border-l-2 border-r-2 border-emerald-900 shadow-sm shadow-emerald-900 "
                 )}
                 onClick={() => push("/store")}
               >
