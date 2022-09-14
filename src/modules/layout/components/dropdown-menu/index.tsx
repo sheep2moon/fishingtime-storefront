@@ -64,23 +64,11 @@ const DropdownMenu = () => {
                     <ul className="min-w-[152px] max-w-[260px]  ">
                       {collectionSections.map((section) => {
                         return (
-                          // <div
-                          //   className="py-2 text-lg w-full whitespace-nowrap cursor-pointer hover:bg-emerald-900 pr-4"
-                          //   key={section.metaKey}
-                          //   // onClick={() =>
-                          //   //   handleSelectCollection(collection.id)
-                          //   // }
-                          // >
-                          //   <span className="flex items-center ">
-                          //     <RiArrowDropRightLine />
-                          //     {section.title}
-                          //   </span>
-                          // </div>
                           <div
                             key={section.metaKey}
                             onMouseEnter={() => setOpen(section.metaKey)}
                             onMouseLeave={() => setOpen("none")}
-                            className="relative p-2 text-lg w-80 bg-emerald-50"
+                            className="relative p-2 text-lg w-80 bg-slate-50 hover:bg-emerald-200 text-emerald-900 border-b "
                           >
                             <Popover>
                               <Popover.Button className="w-full">
@@ -92,11 +80,11 @@ const DropdownMenu = () => {
                               <Transition
                                 show={open === section.metaKey ? true : false}
                               >
-                                <div className="absolute left-full bg-emerald-50  top-0 shadow-lg border-l-2 border-emerald-900">
+                                <div className="absolute left-full bg-emerald-50  top-0 shadow-lg border-l-2 border-emerald-900 ">
                                   <Popover.Panel>
                                     {section.collections.map((collection) => (
                                       <div
-                                        className="py-2 text-lg w-full whitespace-nowrap cursor-pointer pr-4"
+                                        className="py-2 text-lg w-full whitespace-nowrap cursor-pointer pr-4 border-b"
                                         key={collection.id}
                                         onClick={() =>
                                           handleSelectCollection(collection.id)

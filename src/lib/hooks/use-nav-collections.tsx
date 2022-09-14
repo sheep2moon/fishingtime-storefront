@@ -5,6 +5,11 @@ import {
   GiElectric,
   GiCampingTent,
   GiFishingLure,
+  GiBackpack,
+  GiBugNet,
+  GiGrain,
+  GiBottledShadow,
+  GiBarStool,
 } from "react-icons/gi"
 import { BsInboxes } from "react-icons/bs"
 import { FcFilmReel } from "react-icons/fc"
@@ -42,9 +47,39 @@ export const useCustomNavCollections = (): customCollections[] => {
       collections: [],
     },
     {
-      metaKey: "namioty",
-      icon: <GiCampingTent />,
-      title: "Parasole I Namioty",
+      metaKey: "akcesoria-wedkarskie",
+      icon: <GiBugNet />,
+      title: "Akcesoria wędkarskie",
+      collections: [],
+    },
+    {
+      metaKey: "torby-pojemniki",
+      icon: <BsInboxes />,
+      title: "Torby i pojemniki",
+      collections: [],
+    },
+    {
+      metaKey: "zanety-ziarna",
+      icon: <GiGrain />,
+      title: "Zanęty i ziarna",
+      collections: [],
+    },
+    {
+      metaKey: "kulki-pellety",
+      icon: <TbCircles />,
+      title: "Kulki proteinowe i pellety",
+      collections: [],
+    },
+    {
+      metaKey: "atraktory",
+      icon: <GiBottledShadow />,
+      title: "Atraktory i dodatki",
+      collections: [],
+    },
+    {
+      metaKey: "przynety-spinningowe",
+      icon: <GiFishingLure />,
+      title: "Przynęty spinningowe",
       collections: [],
     },
     {
@@ -54,27 +89,27 @@ export const useCustomNavCollections = (): customCollections[] => {
       collections: [],
     },
     {
-      metaKey: "kulki",
-      icon: <TbCircles />,
-      title: "Kulki i pellety",
+      metaKey: "krzesla-lozka",
+      icon: <GiBarStool />,
+      title: "Krzesła i łóżka",
       collections: [],
     },
     {
-      metaKey: "przynety",
-      icon: <GiFishingLure />,
-      title: "Przynęty",
+      metaKey: "parasole-namioty",
+      icon: <GiCampingTent />,
+      title: "Parasole I Namioty",
       collections: [],
     },
     {
-      metaKey: "pojemniki",
-      icon: <BsInboxes />,
-      title: "Torby, pokrowce, pojemniki",
-      collections: [],
-    },
-    {
-      metaKey: "ubrania",
+      metaKey: "odziez-obuwie",
       icon: <GiClothes />,
       title: "Odzież i obuwie",
+      collections: [],
+    },
+    {
+      metaKey: "turystyka",
+      icon: <GiBackpack />,
+      title: "Turystyka",
       collections: [],
     },
     {
