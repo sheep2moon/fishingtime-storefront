@@ -16,6 +16,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
   const info = useRef<HTMLDivElement>(null)
 
   const inView = useIntersection(info, "0px")
+  console.log(product)
 
   return (
     <ProductProvider product={product}>
@@ -28,14 +29,16 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({ product }) => {
           ref={info}
         >
           <ProductInfo product={product} />
-          <ProductTabs product={product} />
+          {/* <ProductTabs product={product} /> */}
         </div>
       </div>
       <div className="content-container small:px-12 flex flex-col">
         <h3 className="text-center text-2xl border-b-2 border-emerald-800 mb-4">
           Opis produktu
         </h3>
-        <p>{product.description}</p>
+        <pre className="whitespace-pre-wrap font-sans p-2">
+          {product.description}
+        </pre>
       </div>
       <div className="content-container my-16 px-6 small:px-8 small:my-32">
         <RelatedProducts product={product} />

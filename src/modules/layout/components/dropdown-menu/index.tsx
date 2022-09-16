@@ -61,14 +61,14 @@ const DropdownMenu = () => {
               >
                 <div className="absolute top-full  text-black rounded-b-sm shadow-lg shadow-slate-500 border-l-2 border-emerald-900">
                   <Popover.Panel>
-                    <ul className="min-w-[152px] max-w-[260px]  ">
+                    <ul className="min-w-[152px] max-w-[320px] ">
                       {collectionSections.map((section) => {
                         return (
                           <div
                             key={section.metaKey}
                             onMouseEnter={() => setOpen(section.metaKey)}
                             onMouseLeave={() => setOpen("none")}
-                            className="relative p-2 text-lg w-80 bg-slate-50 hover:bg-emerald-200 text-emerald-900 border-b "
+                            className=" p-2 text-lg w-80 bg-slate-50 hover:bg-emerald-200 text-emerald-900 border-b "
                           >
                             <Popover>
                               <Popover.Button className="w-full">
@@ -80,18 +80,17 @@ const DropdownMenu = () => {
                               <Transition
                                 show={open === section.metaKey ? true : false}
                               >
-                                <div className="absolute left-full bg-emerald-50  top-0 shadow-lg border-l-2 border-emerald-900 ">
+                                <div className="absolute left-full bg-slate-50  top-0 bottom-0 shadow-lg border-l border-emerald-900 w-full">
                                   <Popover.Panel>
                                     {section.collections.map((collection) => (
                                       <div
-                                        className="py-2 text-lg w-full whitespace-nowrap cursor-pointer pr-4 border-b"
+                                        className="py-2 text-lg w-full whitespace-nowrap cursor-pointer pr-4 border-b hover:bg-emerald-200"
                                         key={collection.id}
                                         onClick={() =>
                                           handleSelectCollection(collection.id)
                                         }
                                       >
-                                        <span className="flex items-center ">
-                                          <RiArrowDropRightLine />
+                                        <span className="flex items-center px-2 ">
                                           {collection.title}
                                         </span>
                                       </div>

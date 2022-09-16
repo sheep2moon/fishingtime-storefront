@@ -30,7 +30,7 @@ const CartDropdown = () => {
           <Popover.Button className="h-full flex items-center gap-1 relative w-12">
             <BsCart3 className="text-3xl small:text-lg font-light" />
             <div className="flex items-center text-lg relative ">
-              <span className="absolute -left-4 top-1 border-2 bg-white border-emerald-700 h-6 w-6 flex items-center justify-center rounded-full text-emerald-900 font-bold small:-left-1 small:top-0">
+              <span className="absolute -left-4 top-1  bg-emerald-900  h-6 w-6 flex items-center justify-center rounded-full text-white font-bold small:-left-1 small:top-0">
                 {totalItems}
               </span>
             </div>

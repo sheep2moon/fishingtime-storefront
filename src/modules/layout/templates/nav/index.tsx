@@ -48,7 +48,7 @@ const Nav = () => {
         "!fixed": isHome,
       })}
     >
-      <header className="relative h-16 small:h-24 mx-auto transition-colors bg-white duration-200 group-hover:bg-white shadow-lg text-base">
+      <header className="relative h-16 small:h-28 mx-auto transition-colors bg-white duration-200 group-hover:bg-white shadow-lg text-base">
         <nav className="text-gray-900  flex items-center justify-start w-full h-full text-small-regular transition-colors duration-200">
           <div className="flex flex-col w-full h-full">
             <div className="flex h-16 justify-between items-center px-1 2xsmall:px-4">
@@ -84,7 +84,7 @@ const Nav = () => {
                 <CartDropdown />
               </div>
             </div>
-            <div className="hidden small:block h-8 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-900 text-slate-50 ">
+            <div className="hidden small:block h-12 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-900 text-slate-50 ">
               <DropdownMenu />
             </div>
           </div>

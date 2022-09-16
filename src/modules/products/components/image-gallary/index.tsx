@@ -12,30 +12,8 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
 
   return (
     <div className="flex items-start relative">
-      <div className="hidden small:flex flex-col gap-y-4 sticky top-28">
-        {images.map((image, index) => {
-          return (
-            <button
-              key={image.id}
-              className="h-14 small:h-28 w-12 small:w-24 relative border  border-black/10 rounded-sm"
-              onClick={() => {
-                setCurrentImage(index)
-              }}
-            >
-              <span className="sr-only">Idź do zdjęcia {index + 1}</span>
-              <Image
-                src={image.url}
-                layout="fill"
-                objectFit="contain"
-                className="absolute inset-0 "
-                alt="Thumbnail"
-              />
-            </button>
-          )
-        })}
-      </div>
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4 ">
-        <div className="relative aspect-square w-full my-1 shadow-md">
+        <div className="relative aspect-square w-full  my-1 shadow-md">
           <Image
             src={images[currentImage].url}
             layout="fill"
@@ -43,6 +21,28 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
             className="absolute inset-0"
             alt={`podgląd produktu ${currentImage + 1}`}
           />
+        </div>
+        <div className=" flex gap-x-2 flex-wrap px-2">
+          {images.map((image, index) => {
+            return (
+              <button
+                key={image.id}
+                className="h-20 small:h-28 aspect-square relative border  border-black/10 rounded-sm"
+                onClick={() => {
+                  setCurrentImage(index)
+                }}
+              >
+                <span className="sr-only">Idź do zdjęcia {index + 1}</span>
+                <Image
+                  src={image.url}
+                  layout="fill"
+                  objectFit="contain"
+                  className="absolute inset-0 "
+                  alt="Thumbnail"
+                />
+              </button>
+            )
+          })}
         </div>
       </div>
       {/* <div className="flex flex-col flex-1 small:mx-16 gap-y-4 ">
