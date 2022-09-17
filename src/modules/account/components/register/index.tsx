@@ -94,7 +94,7 @@ const Register = () => {
         )}
         <span className="text-center text-gray-700 text-small-regular mt-6">
           Tworząc konto akceptujesz polityke prywatności sklepu{" "}
-          <Link href="/content/privacy-policy">
+          <Link href="/polityka-prywatnosci">
             <a className="underline">Polityka prywatności</a>
           </Link>{" "}
           oraz{" "}

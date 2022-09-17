@@ -10,7 +10,19 @@ const FooterNav = () => {
   const customCollections = useCustomNavCollections()
 
   return (
-    <div className="content-container px-0 flex flex-col pt-8 pb-8 w-full">
+    <div className="content-container flex flex-col pt-4 pb-4 w-full px-2 border-t-2 border-emerald-900/20">
+      <ul className="flex flex-col items-center justify-center py-2 gap-2 text-slate-600 ">
+        <li>
+          <Link href="/polityka-prywatnosci">
+            <a>Polityka Prywatności</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/regulamin-sklepu">
+            <a>Regulamin Sklepu</a>
+          </Link>
+        </li>
+      </ul>
       <span className="text-xsmall-regular text-gray-500 text-center">
         © Copyright 2022 Fishing Time
       </span>

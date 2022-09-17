@@ -113,6 +113,8 @@ const DropdownMenu = () => {
         <NavLink href="/store">Regulamin</NavLink>
         <NavLink href="/store">Wysyłka</NavLink>
         <NavLink href="/store">Rabaty</NavLink>
+        <NavLink href="/polityka-prywatnosci">Polityka Prywatności</NavLink>
+        <NavLink href="/regulamin-sklepu">Regulamin</NavLink>
 
         {/* {collectionSections &&
           collectionSections.map((section, index) => {
