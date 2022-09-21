@@ -16,12 +16,16 @@ const transformProductPreview = (
     }
     return acc
   })
+  console.log("tu",product);
+  
+  const is_available = product.variants.some(v => v.inventory_quantity > 0)
 
   return {
     id: product.id,
     title: product.title,
     handle: product.handle,
     thumbnail: product.thumbnail,
+    is_available,
     price: {
       calculated_price: formatAmount({
         amount: cheapestVariant.calculated_price,

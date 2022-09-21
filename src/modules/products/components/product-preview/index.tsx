@@ -8,11 +8,16 @@ const ProductPreview = ({
   handle,
   thumbnail,
   price,
+  is_available,
 }: ProductPreviewType) => {
   console.log()
 
   return (
-    <div className="shadow-lg shadow-slate-300 rounded-md p-1 w-full">
+    <div
+      className={clsx("shadow-lg shadow-slate-300 rounded-md p-1 w-full", {
+        "opacity-50": !is_available,
+      })}
+    >
       <Link href={`/products/${handle}`}>
         <a className="block w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72">
           <div className=" flex flex-col justify-between h-full">
@@ -39,7 +44,12 @@ const ProductPreview = ({
                         }
                       )}
                     >
-                      {price?.original_price.replace("PLN", "") + "zł"}
+                      {is_available ? (
+                        price?.original_price.replace("PLN", "") + "zł"
+                      ) : (
+                        <span>Brak w magazynie</span>
+                      )}
+                      {}
                     </span>
                   </>
                 ) : (
