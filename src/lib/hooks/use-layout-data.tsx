@@ -72,12 +72,13 @@ const fetchFeaturedProducts = async (
       }
       return acc
     })
-
+    const is_available = p.variants.some((v) => v.inventory_quantity > 0)
     return {
       id: p.id,
       title: p.title,
       handle: p.handle,
       thumbnail: p.thumbnail,
+      is_available,
       price: {
         calculated_price: formatAmount({
           amount: cheapestVariant.calculated_price,
