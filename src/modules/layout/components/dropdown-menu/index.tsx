@@ -20,7 +20,7 @@ const DropdownMenu = () => {
   const { selectCollection } = useStore()
 
   const handleSelectCollection = (id: string) => {
-    setOpen("none")
+    handleCategoriesLeave()
     selectCollection(id)
   }
 
