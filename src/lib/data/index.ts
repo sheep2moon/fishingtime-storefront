@@ -124,7 +124,7 @@ export const fetchProductsList = async ({
     limit: 12,
     offset: pageParam,
     ...queryParams,
-  })
+  },{})
 
   
   return {

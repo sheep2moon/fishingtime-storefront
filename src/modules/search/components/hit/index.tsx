@@ -31,9 +31,6 @@ const Hit = ({ hit }: HitProps) => {
             </Link>
           )}
           <span className="text-base-regular">{hit.title}</span>
-          <span className="text-small-regular text-gray-700">
-            {hit.description}
-          </span>
         </div>
       </div>
     </div>

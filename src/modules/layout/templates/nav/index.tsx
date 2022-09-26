@@ -44,14 +44,14 @@ const Nav = () => {
 
   return (
     <div
-      className={clsx("sticky top-0 inset-x-0 z-50 group", {
+      className={clsx("sticky top-0  inset-x-0 z-50 group", {
         "!fixed": isHome,
       })}
     >
       <header className="relative h-16 small:h-28 mx-auto transition-colors bg-white duration-200 group-hover:bg-white shadow-lg text-base">
         <nav className="text-gray-900  flex items-center justify-start w-full h-full text-small-regular transition-colors duration-200">
           <div className="flex flex-col w-full h-full">
-            <div className="flex h-16 justify-between items-center px-1 2xsmall:px-4">
+            <div className="flex h-16 justify-between items-center px-1 2xsmall:px-4 max-w-[1440px] mx-auto w-full">
               {/* HAMBURGER */}
               <div className="block small:hidden">
                 <Hamburger setOpen={toggle} />
@@ -85,7 +85,9 @@ const Nav = () => {
               </div>
             </div>
             <div className="hidden small:block h-12 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-900 text-slate-50 ">
-              <DropdownMenu />
+              <div className="max-w-[1440px] h-full mx-auto">
+                <DropdownMenu />
+              </div>
             </div>
           </div>
         </nav>

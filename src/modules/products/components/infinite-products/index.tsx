@@ -15,10 +15,9 @@ const InfiniteProducts = () => {
   const { cart } = useCart()
   const { ref, inView } = useInView()
   const { params } = useStore()
+
   const queryParams = useMemo(() => {
     const p: StoreGetProductsParams = {}
-    console.log(params)
-
     if (cart?.id) {
       p.cart_id = cart.id
     }
@@ -43,17 +42,11 @@ const InfiniteProducts = () => {
   const previews = usePreviews({ pages: data?.pages, region: cart?.region })
 
   useEffect(() => {
-    console.log(inView)
-
     if (inView && hasNextPage) {
       fetchNextPage()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, hasNextPage])
-
-  useEffect(() => {
-    console.log(previews)
-  }, [previews])
 
   return (
     <div className="flex-1 flex-col mt-2 flex ">
