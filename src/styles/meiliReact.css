@@ -1,0 +1,29 @@
+.preview-hits-list ol{
+    max-width: 30rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+}
+
+.ais-RefinementList-item .ais-RefinementList-label{
+    display: flex;
+    gap:1rem;
+    
+}
+.ais-RefinementList-item .ais-RefinementList-label span:last-child{
+    margin-left: auto;
+}
+
+
+.ais-CurrentRefinements-label {
+    text-transform: capitalize;
+  }
+  
+  .ais-PoweredBy {
+    margin-top: 0.5rem;
+  }
+  
+  .ais-PoweredBy-logo {
+    height: 1rem;
+  }
+  

@@ -6,6 +6,7 @@ import { StoreProvider } from "@lib/context/store-context"
 import { CartProvider, MedusaProvider } from "medusa-react"
 import { Hydrate } from "react-query"
 import "styles/globals.css"
+import "styles/meiliReact.css"
 import { AppPropsWithLayout } from "types/global"
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
