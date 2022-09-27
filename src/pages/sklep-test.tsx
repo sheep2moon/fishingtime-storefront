@@ -63,32 +63,7 @@ const StoreMeili: NextPageWithLayout = () => {
               <span className="bg-emerald-900 w-full block p-1 text-slate-50 text-lg mb-4">
                 Cena
               </span>
-              {/* <NumericMenu
-                attribute="variants.prices.amount"
-                items={[
-                  {
-                    label: "Mniej niż 5ł",
-                    end: 500,
-                  },
-                  {
-                    label: "Od 5zł do 15zł",
-                    start: 500,
-                    end: 1500,
-                  },
-                  {
-                    label: "Od 15zł do 30zł",
-                    start: 1500,
-                    end: 3000,
-                  },
-                ]}
-              />
-              <RangeInput
-                attribute="variants.prices.amount"
-                min={0}
-                max={700}
-                precision={0}
-                placeholder="Filtruj"
-              /> */}
+
               <PriceSlider attribute="variants.prices.amount" label="Cena" />
             </div>
 
@@ -100,11 +75,6 @@ const StoreMeili: NextPageWithLayout = () => {
             </div>
           </div>
           <div className="w-full flex flex-col ">
-            {/* <Hits
-              className="flex preview-hits-list"
-              hitComponent={ProductHitPreview}
-            />
-            <Pagination padding={4} showFirst={false} showLast={false} /> */}
             <InfiniteProductHits />
           </div>
         </div>

@@ -1,10 +1,16 @@
 import React, { useEffect, useRef } from "react"
 import { useInfiniteHits } from "react-instantsearch-hooks-web"
 import Spinner from "../../../common/icons/spinner"
+import { ProductHit } from "../../../search/components/hit"
 import ProductHitPreview from "../product-hit-preview"
 
 export function InfiniteProductHits({}) {
-  const { hits, isLastPage, showMore } = useInfiniteHits()
+  const {
+    hits,
+    isLastPage,
+    showMore,
+  }: { hits: ProductHit[]; isLastPage: boolean; showMore: any } =
+    useInfiniteHits()
   const sentinelRef = useRef(null)
 
   useEffect(() => {
@@ -28,8 +34,8 @@ export function InfiniteProductHits({}) {
   return (
     <div className="flex flex-col items-center">
       <div className="grid grid-cols-2 xsmall:grid-cols-3 medium:grid-cols-4  large:grid-cols-5">
-        {hits.map((hit) => (
-          <ProductHitPreview key={hit.objectID} hit={hit} />
+        {hits.map((hit: ProductHit) => (
+          <ProductHitPreview key={hit.id} hit={hit} />
         ))}
         <span
           className="ais-InfiniteHits-sentinel"
