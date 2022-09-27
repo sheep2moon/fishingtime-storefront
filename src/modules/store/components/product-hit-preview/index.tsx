@@ -25,9 +25,12 @@ const ProductHitPreview = ({ hit }: HitProps) => {
 
   return (
     <div
-      className={clsx("shadow-lg shadow-slate-300 rounded-md p-1 w-full", {
-        "opacity-50": !is_available,
-      })}
+      className={clsx(
+        "shadow-lg shadow-slate-300 rounded-md p-1 w-full max-w-[256px]",
+        {
+          "opacity-50": !is_available,
+        }
+      )}
     >
       <Link href={`/products/${hit.handle}`}>
         <a className="block w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72">

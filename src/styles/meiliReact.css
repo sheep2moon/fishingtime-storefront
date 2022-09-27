@@ -9,7 +9,12 @@
 
 
 
-/* ToggleRefinement */
+.ais-RangeInput-input {
+  max-width: 70px;
+  padding: 0 0 0 5px;
+}
+
+/* Refinement */
 
 .ais-RefinementList-item,
 .ais-Menu-item,

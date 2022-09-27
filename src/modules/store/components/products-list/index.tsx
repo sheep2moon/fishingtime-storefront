@@ -1,29 +1,44 @@
-import React from "react"
-import {
-  Highlight,
-  useInfiniteHits,
-  Snippet,
-} from "react-instantsearch-hooks-web"
+import React, { useEffect, useRef } from "react"
+import { useInfiniteHits } from "react-instantsearch-hooks-web"
+import Spinner from "../../../common/icons/spinner"
 import ProductHitPreview from "../product-hit-preview"
 
 export function InfiniteProductHits({}) {
-  const { hits } = useInfiniteHits({
-    transformItems: (items) => {
-      return items.map((item) => {
-        console.log(item)
-        return item
+  const { hits, isLastPage, showMore } = useInfiniteHits()
+  const sentinelRef = useRef(null)
+
+  useEffect(() => {
+    if (sentinelRef.current !== null) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isLastPage) {
+            showMore()
+          }
+        })
       })
-    },
-  })
+
+      observer.observe(sentinelRef.current)
+
+      return () => {
+        observer.disconnect()
+      }
+    }
+  }, [isLastPage, showMore])
 
   return (
-    <div className="ais-InfiniteHits">
-      <ul className="ais-InfiniteHits-list">
+    <div className="flex flex-col items-center">
+      <div className="grid grid-cols-2 xsmall:grid-cols-3 medium:grid-cols-4  large:grid-cols-5">
         {hits.map((hit) => (
-          <h1 key={hit.objectID}>hit</h1>
-          //   <ProductHitPreview hit={hit.} key={hit.objectID}/>
+          <ProductHitPreview key={hit.objectID} hit={hit} />
         ))}
-      </ul>
+        <span
+          className="ais-InfiniteHits-sentinel"
+          ref={sentinelRef}
+          aria-hidden="true"
+        >
+          {isLastPage ? "Koniec" : <Spinner />}
+        </span>
+      </div>
     </div>
   )
 }

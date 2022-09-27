@@ -11,6 +11,7 @@ import {
 import { searchClient, SEARCH_INDEX_NAME } from "../lib/search-client"
 import Head from "../modules/common/components/head"
 import Layout from "../modules/layout/templates"
+import PriceSlider from "../modules/store/components/filter-list/PriceSlider"
 import { NumericMenu } from "../modules/store/components/numeric-menu"
 import ProductHitPreview from "../modules/store/components/product-hit-preview"
 import { InfiniteProductHits } from "../modules/store/components/products-list"
@@ -22,9 +23,9 @@ const StoreMeili: NextPageWithLayout = () => {
       <Head title="Sklep" description="Zobacz asortyment naszego sklepu." />
       <InstantSearch indexName="products" searchClient={searchClient}>
         <div className="flex flex-col small:flex-row gap-1 py-6 w-full items-start small:justify-center content-container">
-          <div className="flex flex-col p-2 gap-4 w-full small:max-w-sm">
+          <div className="flex flex-col p-2 gap-4 w-full small:max-w-sm bg-slate-100 shadow-lg rounded-md">
             <div>
-              <span className="bg-emerald-900 w-full block p-1 text-slate-50 text-lg">
+              <span className="bg-emerald-900 w-full block p-1 text-slate-50 text-lg mb-4">
                 Sortuj
               </span>
               <SortBy
@@ -57,14 +58,12 @@ const StoreMeili: NextPageWithLayout = () => {
                 ]}
               />
             </div>
-            <h1>Test z filtrami</h1>
-            <RefinementList attribute="collection.title" showMore={true} />
 
             <div>
-              <span className="bg-emerald-900 w-full block p-1 text-slate-50 text-lg">
+              <span className="bg-emerald-900 w-full block p-1 text-slate-50 text-lg mb-4">
                 Cena
               </span>
-              <NumericMenu
+              {/* <NumericMenu
                 attribute="variants.prices.amount"
                 items={[
                   {
@@ -83,15 +82,30 @@ const StoreMeili: NextPageWithLayout = () => {
                   },
                 ]}
               />
+              <RangeInput
+                attribute="variants.prices.amount"
+                min={0}
+                max={700}
+                precision={0}
+                placeholder="Filtruj"
+              /> */}
+              <PriceSlider attribute="variants.prices.amount" label="Cena" />
+            </div>
+
+            <div>
+              <span className="bg-emerald-900 w-full block p-1 text-slate-50 text-lg mb-4">
+                Kategorie
+              </span>
+              <RefinementList attribute="collection.title" showMore={true} />
             </div>
           </div>
           <div className="w-full flex flex-col ">
-            <Hits
+            {/* <Hits
               className="flex preview-hits-list"
               hitComponent={ProductHitPreview}
             />
-            <Pagination padding={4} showFirst={false} showLast={false} />
-            {/* <InfiniteProductHits /> */}
+            <Pagination padding={4} showFirst={false} showLast={false} /> */}
+            <InfiniteProductHits />
           </div>
         </div>
       </InstantSearch>
