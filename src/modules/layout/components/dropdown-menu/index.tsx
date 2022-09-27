@@ -11,6 +11,7 @@ import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collectio
 import { useStore } from "../../../../lib/context/store-context"
 import ChevronDown from "../../../common/icons/chevron-down"
 import NavLink from "./NavLink"
+import { navLinks } from "../../../../lib/data/NavLinks"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
@@ -109,75 +110,11 @@ const DropdownMenu = () => {
             </>
           </Popover>
         </div>
-        <NavLink href="/store">Kontakt</NavLink>
-        <NavLink href="/sklep-test">TEST FILTRY</NavLink>
-        <NavLink href="/store">Regulamin</NavLink>
-        <NavLink href="/store">Wysyłka</NavLink>
-        <NavLink href="/store">Rabaty</NavLink>
-        <NavLink href="/polityka-prywatnosci">Polityka Prywatności</NavLink>
-        <NavLink href="/regulamin-sklepu">Regulamin</NavLink>
-
-        {/* {collectionSections &&
-          collectionSections.map((section, index) => {
-            return (
-              <div
-                className="relative h-full"
-                key={index}
-                onMouseEnter={() => setOpen(section.metaKey)}
-                onMouseLeave={() => setOpen("none")}
-              >
-                <Popover className="h-full flex">
-                  <>
-                    <Popover.Button
-                      className={clsx(
-                        "relative h-full flex items-center transition-all ease-out duration-200 p-4 hover:bg-emerald-900"
-                      )}
-                      onClick={() => push("/store")}
-                    >
-                      <CollectionButton
-                        title={section.title}
-                        icon={section.icon}
-                      />
-                    </Popover.Button>
-
-                    <Transition
-                      show={open === section.metaKey ? true : false}
-                      as={React.Fragment}
-                      enter="transition ease-out duration-200"
-                      enterFrom="opacity-0"
-                      enterTo="opacity-100"
-                      leave="transition ease-in duration-150"
-                      leaveFrom="opacity-100"
-                      leaveTo="opacity-0"
-                    >
-                      <div className="absolute top-full bg-emerald-700 rounded-b-sm shadow-lg shadow-slate-500">
-                        <Popover.Panel>
-                          <ul className="min-w-[152px] max-w-[260px]  ">
-                            {section.collections.map((collection) => {
-                              return (
-                                <div
-                                  className="py-2 text-lg w-full whitespace-nowrap cursor-pointer hover:bg-emerald-900 pr-4"
-                                  key={collection.id}
-                                  onClick={() =>
-                                    handleSelectCollection(collection.id)
-                                  }
-                                >
-                                  <span className="flex items-center ">
-                                    <RiArrowDropRightLine />
-                                    {collection.title}
-                                  </span>
-                                </div>
-                              )
-                            })}
-                          </ul>
-                        </Popover.Panel>
-                      </div>
-                    </Transition>
-                  </>
-                </Popover>
-              </div>
-            )
-          })} */}
+        {navLinks.map((link) => (
+          <NavLink key={link.title} href={link.href}>
+            {link.title}
+          </NavLink>
+        ))}
       </div>
     </div>
   )
