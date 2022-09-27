@@ -1,29 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .preview-hits-list ol{
-    max-width: 30rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-
-}
-
-.ais-RefinementList-item .ais-RefinementList-label{
-    display: flex;
-    gap:1rem;
-    
-}
-.ais-RefinementList-item .ais-RefinementList-label span:last-child{
-    margin-left: auto;
+   @apply grid grid-cols-2 small:grid-cols-3 large:grid-cols-5 mx-auto small:mx-0
 }
 
 
-.ais-CurrentRefinements-label {
-    text-transform: capitalize;
-  }
-  
-  .ais-PoweredBy {
-    margin-top: 0.5rem;
-  }
-  
-  .ais-PoweredBy-logo {
-    height: 1rem;
-  }
-  
+
+
+/* ToggleRefinement */
+
+.ais-RefinementList-item,
+.ais-Menu-item,
+.ais-HierarchicalMenu-item,
+.ais-RatingMenu-item {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ais-RefinementList-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: rgba(65, 66, 71, 0.08);
+  border: none;
+  border-radius: 2px;
+  height: 1rem;
+  margin: 0;
+  margin-right: 1rem;
+  position: relative;
+  width: 1rem;
+}
+
+.ais-RefinementList-label{
+  display: flex;
+  width: 100%;
+}
+
+.ais-RefinementList-count{
+  @apply bg-slate-100  rounded-md shadow-sm ml-auto
+}
+
+.ais-RefinementList-item--selected {
+  font-weight: bold;
+}
+
+.ais-RefinementList-item--selected .ais-RefinementList-checkbox {
+  @apply bg-emerald-900
+}
+
+.ais-RefinementList-item--selected .ais-RefinementList-checkbox::after {
+  background-color: #fff;
+  border-radius: 4px;
+  content: '';
+  height: 4px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-2px) translateY(-2px);
+  width: 4px;
+}
+
+.ais-RefinementList-item,
+.ais-RefinementList-item *,
+.ais-RatingMenu-item {
+  cursor: pointer;
+}
+
+.ais-RefinementList-item {
+  padding-bottom: 1rem;
+}
+
+.ais-ToggleRefinement-label {
+  cursor: pointer;
+  display: flex;
+}
+
+.ais-ToggleRefinement-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: rgba(65, 66, 71, 0.08);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 16px;
+  margin-right: 16px;
+  min-width: 30px;
+  transition: background 150ms ease-out;
+}
+
+.ais-ToggleRefinement-checkbox:checked {
+  background: #e2a400;
+}
+
+.ais-ToggleRefinement-checkbox::after {
+  background-image: linear-gradient(to top, #f5f5fa, #fff);
+  border-radius: 100%;
+  box-shadow: 0 4px 11px 0 rgba(37, 44, 97, 0.15),
+    0 2px 3px 0 rgba(93, 100, 148, 0.2);
+  content: '';
+  height: 16px;
+  position: absolute;
+  transition: transform 150ms ease-out;
+  width: 16px;
+}
+
+.ais-ToggleRefinement-checkbox:checked::after {
+  transform: translateX(100%);
+}
+
+
+/* PAGINATION */
+.ais-Pagination-list {
+  @apply mx-auto flex justify-center my-2
+}
+
+.ais-Pagination-item,
+.ais-Pagination-link {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.ais-Pagination-item {
+  height: 38px;
+  width: 38px;
+}
+
+.ais-Pagination-item {
+  background-color: rgba(65, 66, 71, 0.08);
+  border-radius: 4px;
+  color: #414247;
+}
+
+.ais-Pagination-item--selected {
+  @apply bg-emerald-900 font-bold  
+}
+
+.ais-Pagination-item--firstPage,
+.ais-Pagination-item--previousPage,
+.ais-Pagination-item--nextPage,
+.ais-Pagination-item--lastPage {
+  background: none;
+  font-size: larger;
+}
+
+.ais-Pagination-item--disabled {
+  opacity: 0.33;
+}
+
+.ais-Pagination-item--selected a {
+  color: #fff;
+}
+
+.ais-Pagination-item.ais-Pagination-item--page {
+  margin-right: 4px;
+}
+
+.ais-Pagination-item.ais-Pagination-item--previousPage {
+  margin-right: 1rem;
+}
+
+.ais-Pagination-item.ais-Pagination-item--nextPage {
+  margin-left: calc(1rem - 4px);
+}
+
+.ais-Pagination-link {
+  height: 100%;
+  width: 100%;
+}

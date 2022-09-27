@@ -3,6 +3,7 @@ import {
   DynamicWidgets,
   Hits,
   InstantSearch,
+  Pagination,
   RangeInput,
   RefinementList,
   SortBy,
@@ -12,6 +13,7 @@ import Head from "../modules/common/components/head"
 import Layout from "../modules/layout/templates"
 import { NumericMenu } from "../modules/store/components/numeric-menu"
 import ProductHitPreview from "../modules/store/components/product-hit-preview"
+import { InfiniteProductHits } from "../modules/store/components/products-list"
 import { NextPageWithLayout } from "../types/global"
 
 const StoreMeili: NextPageWithLayout = () => {
@@ -20,7 +22,7 @@ const StoreMeili: NextPageWithLayout = () => {
       <Head title="Sklep" description="Zobacz asortyment naszego sklepu." />
       <InstantSearch indexName="products" searchClient={searchClient}>
         <div className="flex flex-col small:flex-row gap-1 py-6 w-full items-start small:justify-center content-container">
-          <div className="flex flex-col p-2 gap-4">
+          <div className="flex flex-col p-2 gap-4 w-full small:max-w-sm">
             <div>
               <span className="bg-emerald-900 w-full block p-1 text-slate-50 text-lg">
                 Sortuj
@@ -83,11 +85,13 @@ const StoreMeili: NextPageWithLayout = () => {
               />
             </div>
           </div>
-          <div className="w-full flex ">
+          <div className="w-full flex flex-col ">
             <Hits
               className="flex preview-hits-list"
               hitComponent={ProductHitPreview}
             />
+            <Pagination padding={4} showFirst={false} showLast={false} />
+            {/* <InfiniteProductHits /> */}
           </div>
         </div>
       </InstantSearch>

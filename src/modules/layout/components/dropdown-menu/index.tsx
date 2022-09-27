@@ -110,6 +110,7 @@ const DropdownMenu = () => {
           </Popover>
         </div>
         <NavLink href="/store">Kontakt</NavLink>
+        <NavLink href="/sklep-test">TEST FILTRY</NavLink>
         <NavLink href="/store">Regulamin</NavLink>
         <NavLink href="/store">Wysyłka</NavLink>
         <NavLink href="/store">Rabaty</NavLink>
