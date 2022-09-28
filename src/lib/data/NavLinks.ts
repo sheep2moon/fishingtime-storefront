@@ -14,8 +14,8 @@ type NavLink = {
 
 export const navLinks: NavLink[] = [
     {
-        href: "/sklep-test",
-        title: "Wersja z filtrami"
+        href: "/sklep/all",
+        title: "Przeglądaj wszystko"
     },
     {
         href: "/polityka-prywatnosci",

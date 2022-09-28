@@ -1,19 +1,70 @@
-import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
-import ListSection from "../list-section"
+import React, { useEffect, useRef, useState, useCallback } from "react"
+import {
+  useRefinementList,
+  UseRefinementListProps,
+} from "react-instantsearch-hooks"
+import { RefinementListWidgetParams } from "instantsearch.js/es/widgets/refinement-list/refinement-list"
+import Checkbox from "../../../common/components/checkbox"
+import PanelTitle from "../filter-list/PanelTitle"
 
-const RefinementList = () => {
-  const sectionCollections = useCustomNavCollections()
+export type RefinementListProps = React.ComponentProps<"div"> &
+  UseRefinementListProps &
+  Pick<RefinementListWidgetParams, "searchable" | "searchablePlaceholder"> & {
+    title?: string
+  }
+
+const RefinementList = (props: RefinementListProps) => {
+  const transformItems = useCallback(
+    (items) =>
+      items.map((item: any) => {
+        return item
+      }),
+    []
+  )
+
+  const {
+    canToggleShowMore,
+    isFromSearch,
+    isShowingMore,
+    items,
+    refine,
+    searchForItems,
+    toggleShowMore,
+  } = useRefinementList({ ...props, transformItems })
 
   return (
-    <div className=" flex-col w-full hidden xsmall:flex max-w-md small:max-w-xs shadow-md h-full">
-      <span className="px-4 font-bold border-b-2 border-primary w-full">
-        Kolekcje
-      </span>
-      <div className="flex flex-col p-2">
-        {sectionCollections.map((section) => (
-          <ListSection key={section.metaKey} section={section} />
+    <div className="flex flex-col">
+      {props.title && <PanelTitle>{props.title}</PanelTitle>}
+      <ul className=" p-2">
+        {items.map((item) => (
+          <li key={item.value}>
+            <label className="flex items-center">
+              <Checkbox
+                label=""
+                checked={item.isRefined}
+                onChange={() => {
+                  refine(item.value)
+                }}
+              />
+              <span
+                className="ais-RefinementList-labelText"
+                dangerouslySetInnerHTML={{ __html: item.highlighted! }}
+              />
+              <span className="ais-RefinementList-count">{item.count}</span>
+            </label>
+          </li>
         ))}
-      </div>
+      </ul>
+
+      {props.showMore && canToggleShowMore && (
+        <button
+          className=""
+          disabled={!canToggleShowMore}
+          onClick={toggleShowMore}
+        >
+          {isShowingMore ? "Zwiń" : "Rozwiń"}
+        </button>
+      )}
     </div>
   )
 }

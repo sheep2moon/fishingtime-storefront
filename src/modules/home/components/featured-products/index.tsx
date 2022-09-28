@@ -13,7 +13,7 @@ const FeaturedProducts = () => {
           <p className="text-2xl-regular text-gray-900 max-w-lg">
             Wyróżnione produkty.
           </p>
-          <UnderlineLink href="/store">Przejdź do sklepu</UnderlineLink>
+          <UnderlineLink href="/sklep/all">Przejdź do sklepu</UnderlineLink>
         </div>
         <ul className="flex gap-2 flex-wrap justify-center small:justify-start">
           {data

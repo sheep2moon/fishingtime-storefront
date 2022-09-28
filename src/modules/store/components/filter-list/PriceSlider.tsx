@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useRange } from "react-instantsearch-hooks-web"
 import Button from "../../../common/components/button"
 import InputNumber from "../../../common/components/input-number"
+import PanelTitle from "./PanelTitle"
 
 type SliderProps = {
   attribute: string
@@ -10,11 +11,9 @@ type SliderProps = {
 
 function PriceSlider({ attribute, label }: SliderProps) {
   const min = 100,
-    max = 6000
+    max = 80000
   const { range, canRefine, refine, start } = useRange({
     attribute,
-    min,
-    max,
   })
 
   const [minValue, setMinValue] = useState(min / 100)
@@ -33,8 +32,9 @@ function PriceSlider({ attribute, label }: SliderProps) {
   }
 
   return (
-    <div className="p-2">
-      <div className="">
+    <div>
+      <PanelTitle>Cena</PanelTitle>
+      <div className="p-2">
         {/* <div className="flex justify-between">
           <p>{(minSlider / 100).toFixed(2)}zł</p>
           <p>{(maxSlider / 100).toFixed(2)}zł</p>

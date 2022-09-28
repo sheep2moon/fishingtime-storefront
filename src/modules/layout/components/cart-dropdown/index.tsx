@@ -21,7 +21,7 @@ const CartDropdown = () => {
 
   return (
     <div
-      className="h-full z-50 text-base w-12"
+      className="h-full  text-base w-12"
       onMouseEnter={open}
       onMouseLeave={close}
     >

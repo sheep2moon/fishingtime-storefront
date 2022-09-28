@@ -6,12 +6,13 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { RiArrowDropRightLine } from "react-icons/ri"
-import CollectionButton from "./CollectionButton"
+import CollectionLink from "./CollectionLink"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import { useStore } from "../../../../lib/context/store-context"
 import ChevronDown from "../../../common/icons/chevron-down"
 import NavLink from "./NavLink"
 import { navLinks } from "../../../../lib/data/NavLinks"
+import { titleToHandle } from "../../../../lib/util/transform-titles-links"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
@@ -69,13 +70,14 @@ const DropdownMenu = () => {
                             key={section.metaKey}
                             onMouseEnter={() => setOpen(section.metaKey)}
                             onMouseLeave={() => setOpen("none")}
-                            className=" p-2 text-lg w-80 bg-slate-50 hover:bg-emerald-200 text-emerald-900 border-b "
+                            className="bg-slate-50"
                           >
                             <Popover>
                               <Popover.Button className="w-full">
-                                <CollectionButton
+                                <CollectionLink
                                   icon={section.icon}
                                   title={section.title}
+                                  href={`/sklep/${section.metaKey}`}
                                 />
                               </Popover.Button>
                               <Transition
@@ -84,17 +86,15 @@ const DropdownMenu = () => {
                                 <div className="absolute left-full bg-slate-50  top-0 bottom-0 shadow-lg border-l border-emerald-900 w-full">
                                   <Popover.Panel>
                                     {section.collections.map((collection) => (
-                                      <div
-                                        className="py-2 text-lg w-full whitespace-nowrap cursor-pointer pr-4 border-b hover:bg-emerald-200"
+                                      <CollectionLink
+                                        href={`/sklep/${
+                                          section.metaKey
+                                        }?kolekcja=${titleToHandle(
+                                          collection.title
+                                        )}`}
                                         key={collection.id}
-                                        onClick={() =>
-                                          handleSelectCollection(collection.id)
-                                        }
-                                      >
-                                        <span className="flex items-center px-2 ">
-                                          {collection.title}
-                                        </span>
-                                      </div>
+                                        title={collection.title}
+                                      />
                                     ))}
                                   </Popover.Panel>
                                 </div>

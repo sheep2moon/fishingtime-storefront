@@ -21,8 +21,6 @@ const ProductHitPreview = ({ hit }: HitProps) => {
   })
   price = price / 100
 
-  console.log(hit)
-
   return (
     <div
       className={clsx(
