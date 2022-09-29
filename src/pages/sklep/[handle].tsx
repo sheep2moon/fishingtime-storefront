@@ -35,7 +35,7 @@ const CategoryStore: NextPageWithLayout = () => {
       <InstantSearch indexName="products" searchClient={searchClient}>
         <Configure filters={searchFilters} facets={["*"]} />
         <div className="flex flex-col items-center">
-          {query.handle && (
+          {query.handle && query.handle !== "all" && (
             <h2 className="my-2 text-lg font-bold border-b-2 border-emerald-900">
               {navCollections[query.handle as string].title}
             </h2>

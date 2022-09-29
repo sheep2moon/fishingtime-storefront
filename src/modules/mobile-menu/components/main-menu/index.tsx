@@ -16,6 +16,7 @@ import { useNavigationCollections } from "../../../../lib/hooks/use-layout-data"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import logoImg from "../../../../../public/logo3.svg"
 import CollectionLink from "../../../common/components/CollectionLink"
+import { titleToHandle } from "../../../../lib/util/transform-titles-links"
 
 const MainMenu = () => {
   // const { collections } = useCollections()
@@ -106,7 +107,7 @@ const MainMenu = () => {
                         {open && (
                           <Disclosure.Panel className="flex flex-col gap-4 p-2 pl-6">
                             <CollectionLink
-                              href="/sklep/all"
+                              href={`/sklep/${key}`}
                               title="Pokaż Wszystko"
                               onClick={close}
                             />
@@ -123,7 +124,9 @@ const MainMenu = () => {
                                 //   <span>{collection.title}</span>
                                 // </span>
                                 <CollectionLink
-                                  href={`/sklep/${key}`}
+                                  href={`/sklep/${key}?kolekcja=${titleToHandle(
+                                    collection.title
+                                  )}`}
                                   key={collection.id}
                                   title={collection.title}
                                   onClick={close}
