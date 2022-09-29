@@ -16,7 +16,7 @@ import { FcFilmReel } from "react-icons/fc"
 import { TbCircles } from "react-icons/tb"
 
 import { useNavigationCollections } from "./use-layout-data"
-import { customCollection, navCollections } from "../data/navCollections"
+import { customCollection } from "../data/navCollections"
 
 export const useCustomNavCollections = (): {
   [key: string]: customCollection
