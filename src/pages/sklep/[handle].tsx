@@ -4,6 +4,7 @@ import {
   Configure,
   CurrentRefinements,
   InstantSearch,
+  useInstantSearch,
 } from "react-instantsearch-hooks-web"
 import { searchClient } from "../../lib/search-client"
 import Head from "../../modules/common/components/head"
@@ -23,6 +24,7 @@ import {
 
 const CategoryStore: NextPageWithLayout = () => {
   const { query, isFallback, replace } = useRouter()
+
   if (isFallback) return <div>SKELETON TODO</div>
   //   if (!(query.handle instanceof String)) return <Spinner />
 
@@ -89,12 +91,12 @@ const CategoryStore: NextPageWithLayout = () => {
               title="Producent"
               operator="or"
             />
-            <RefinementList
+            {/* <RefinementList
               attribute="tags.value"
               showMore={true}
               title="Tagi"
               operator="or"
-            />
+            /> */}
 
             <PriceSlider attribute="variants.prices.amount" label="Cena" />
           </div>

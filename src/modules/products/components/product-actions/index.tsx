@@ -6,6 +6,7 @@ import clsx from "clsx"
 import Link from "next/link"
 import React, { useMemo, useEffect } from "react"
 import { Product } from "types/medusa"
+import { navCollections } from "../../../../lib/data/navCollections"
 
 type ProductActionsProps = {
   product: Product
@@ -26,11 +27,22 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
   return (
     <div className="flex flex-col gap-y-2">
       {product.collection && (
-        <Link href={`/collections/${product.collection.id}`}>
-          <a className="text-small-regular text-gray-700">
-            {product.collection.title}
-          </a>
-        </Link>
+        <div>
+          <Link href={`/sklep/${product.collection.metadata.parent}`}>
+            <a className="text-small-regular text-gray-700">
+              {
+                navCollections[product.collection.metadata.parent as string]
+                  .title
+              }
+            </a>
+          </Link>
+          <span>{">"}</span>
+          <Link href={`/sklep/${product.collection.metadata.parent}`}>
+            <a className="text-small-regular text-gray-700">
+              {product.collection.title}
+            </a>
+          </Link>
+        </div>
       )}
       <h3 className="text-xl-regular">{product.title}</h3>
 

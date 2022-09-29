@@ -14,6 +14,8 @@ function PriceSlider({ attribute, label }: SliderProps) {
     max = 80000
   const { range, canRefine, refine, start } = useRange({
     attribute,
+    min,
+    max,
   })
 
   const [minValue, setMinValue] = useState(min / 100)
@@ -21,6 +23,9 @@ function PriceSlider({ attribute, label }: SliderProps) {
   const [change, setChange] = useState(false)
 
   const handleRefine = () => {
+    console.log(canRefine)
+    console.log(range)
+
     refine([minValue * 100, maxValue * 100])
   }
 
