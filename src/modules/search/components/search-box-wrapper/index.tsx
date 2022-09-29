@@ -25,14 +25,17 @@ type SearchBoxProps = {
     isSearchStalled: boolean
     onChange: (event: ChangeEvent<HTMLInputElement>) => void
     onReset: () => void
+
     placeholder: string
   }) => React.ReactNode
   placeholder?: string
+  autoFocus?: boolean
 } & UseSearchBoxProps
 
 const SearchBoxWrapper = ({
   children,
   placeholder = "Wyszukaj produkty...",
+  autoFocus = false,
   ...rest
 }: SearchBoxProps) => {
   const { query, refine, isSearchStalled } = useSearchBox(rest)
@@ -66,10 +69,10 @@ const SearchBoxWrapper = ({
   }, [query])
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (inputRef.current && autoFocus) {
       inputRef.current.focus()
     }
-  }, [])
+  }, [autoFocus])
 
   const state = {
     value,

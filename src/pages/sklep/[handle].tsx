@@ -1,117 +1,81 @@
-import { useMemo } from "react"
+import { useMemo, useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import {
   Configure,
-  CurrentRefinements,
   InstantSearch,
-  useInstantSearch,
+  useClearRefinements,
 } from "react-instantsearch-hooks-web"
 import { searchClient } from "../../lib/search-client"
 import Head from "../../modules/common/components/head"
-import Spinner from "../../modules/common/icons/spinner"
 import Layout from "../../modules/layout/templates"
 import PriceSlider from "../../modules/store/components/filter-list/PriceSlider"
 import { InfiniteProductHits } from "../../modules/store/components/products-list"
 import RefinementList from "../../modules/store/components/refinement-list"
 import SortSelector from "../../modules/store/components/sort-selector"
 import { NextPageWithLayout } from "../../types/global"
-import { history } from "instantsearch.js/es/lib/routers"
-import CategoryMenu from "../../modules/store/components/category-menu"
-import {
-  handleToTitle,
-  titleToHandle,
-} from "../../lib/util/transform-titles-links"
 import SearchBox from "../../modules/search/components/search-box"
-import ClearFilters from "../../modules/store/components/filter-list/ClearFilters"
 import CurrentFilters from "../../modules/store/components/filter-list/CurrentFilters"
+import { handleToTitle } from "../../lib/util/transform-titles-links"
+import { navCollections } from "../../lib/data/navCollections"
 
 const CategoryStore: NextPageWithLayout = () => {
   const { query, isFallback, replace } = useRouter()
+  const [searchFilters, setSearchFilters] = useState("")
+
+  useEffect(() => {
+    if (query.handle === "all" || query.handle === "pozostale")
+      setSearchFilters("")
+    else setSearchFilters(`collection.metadata.parent=${query.handle}`)
+  }, [query])
 
   if (isFallback) return <div>SKELETON TODO</div>
-  //   if (!(query.handle instanceof String)) return <Spinner />
-
-  const indexName = "products"
-  // const routing = {
-  //   router: history(),
-  //   stateMapping: {
-  //     stateToRoute(uiState: any) {
-  //       const indexUiState = uiState[indexName]
-  //       console.log(indexUiState)
-
-  //       return {
-  //         q: indexUiState.query,
-  //         kolekcja: indexUiState.menu?.["collection.title"]
-  //           ? titleToHandle(indexUiState.menu?.["collection.title"])
-  //           : undefined,
-  //       }
-  //     },
-  //     routeToState(routeState: any) {
-  //       console.log(routeState)
-
-  //       return {
-  //         [indexName]: {
-  //           query: routeState.q,
-  //           menu: {
-  //             "collection.title": routeState["kolekcja"]
-  //               ? handleToTitle(routeState["kolekcja"])
-  //               : undefined,
-  //           },
-  //         },
-  //       }
-  //     },
-  //   },
-  // }
-
   return (
     <>
       <Head title="Sklep" description="Zobacz asortyment naszego sklepu." />
-      <InstantSearch
-        indexName="products"
-        searchClient={searchClient}
-        routing={true}
-      >
-        <Configure
-          filters={
-            query.handle !== "all"
-              ? `collection.metadata.parent=${query.handle}`
-              : undefined
-          }
-          facets={["*"]}
-        />
-        <div className="flex flex-col small:flex-row gap-1 py-6 w-full items-start small:justify-center content-container">
-          <div className="flex flex-col p-2 gap-4 w-full small:max-w-xs border border-slate-200 rounded-md">
-            <CurrentFilters />
+      <InstantSearch indexName="products" searchClient={searchClient}>
+        <Configure filters={searchFilters} facets={["*"]} />
+        <div className="flex flex-col items-center">
+          {query.handle && (
+            <h2 className="my-2 text-lg font-bold border-b-2 border-emerald-900">
+              {navCollections[query.handle as string].title}
+            </h2>
+          )}
+          <div className="flex flex-col small:flex-row gap-1 pb-6 w-full items-start small:justify-center content-container">
+            <div className="flex flex-col p-2 gap-4 w-full small:max-w-xs border border-slate-200 rounded-md">
+              <CurrentFilters />
 
-            <CategoryMenu
-              attribute="collection.title"
-              showMore={true}
-              sortBy={["count:desc"]}
-            />
-
-            <RefinementList
-              attribute="hs_code"
-              showMore={true}
-              title="Producent"
-              operator="or"
-            />
-            {/* <RefinementList
+              <RefinementList
+                attribute="hs_code"
+                showMore={true}
+                title="Producent"
+                operator="or"
+                handle=""
+              />
+              <RefinementList
+                attribute="collection.title"
+                showMore={true}
+                title="Podkategorie"
+                operator="or"
+                handle="kolekcja"
+              />
+              {/* <RefinementList
               attribute="tags.value"
               showMore={true}
               title="Tagi"
               operator="or"
             /> */}
 
-            <PriceSlider attribute="variants.prices.amount" label="Cena" />
-          </div>
-          <div className="w-full flex flex-col bg-slate-50 p-1">
-            <div className="flex ">
-              <div className="bg-slate-50 w-full border border-slate-300">
-                <SearchBox />
-              </div>
-              <SortSelector />
+              <PriceSlider attribute="variants.prices.amount" label="Cena" />
             </div>
-            <InfiniteProductHits />
+            <div className="w-full flex flex-col bg-slate-50 p-1">
+              <div className="flex ">
+                <div className="bg-slate-50 w-full border border-slate-300">
+                  <SearchBox />
+                </div>
+                <SortSelector />
+              </div>
+              <InfiniteProductHits />
+            </div>
           </div>
         </div>
       </InstantSearch>

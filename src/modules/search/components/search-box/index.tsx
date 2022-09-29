@@ -69,9 +69,9 @@ const ControlledSearchBox = ({
   )
 }
 
-const SearchBox = () => {
+const SearchBox = ({ autoFocus }: { autoFocus?: boolean }) => {
   return (
-    <SearchBoxWrapper>
+    <SearchBoxWrapper autoFocus={autoFocus}>
       {(props) => {
         return (
           <>

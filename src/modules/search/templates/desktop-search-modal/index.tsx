@@ -29,7 +29,7 @@ const DesktopSearchModal = () => {
             <div className="flex flex-col h-full">
               <div className="w-full flex items-center gap-x-2 bg-gray-50 p-4">
                 <Search />
-                <SearchBox />
+                <SearchBox autoFocus={true} />
               </div>
 
               <div className="overflow-y-scroll flex-1 no-scrollbar mt-6">

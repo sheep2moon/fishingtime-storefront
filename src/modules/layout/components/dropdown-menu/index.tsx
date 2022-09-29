@@ -1,14 +1,9 @@
 import { Popover, Transition } from "@headlessui/react"
-import { useNavigationCollections } from "@lib/hooks/use-layout-data"
-import repeat from "@lib/util/repeat"
 import clsx from "clsx"
-import Link from "next/link"
 import { useRouter } from "next/router"
-import React, { useEffect, useState } from "react"
-import { RiArrowDropRightLine } from "react-icons/ri"
+import React, { useState } from "react"
 import CollectionLink from "../../../common/components/CollectionLink"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
-import { useStore } from "../../../../lib/context/store-context"
 import ChevronDown from "../../../common/icons/chevron-down"
 import NavLink from "./NavLink"
 import { navLinks } from "../../../../lib/data/NavLinks"
@@ -19,8 +14,6 @@ const DropdownMenu = () => {
   const [categoriesOpen, setCategoriesOpen] = useState(false)
   const { push } = useRouter()
   const collectionSections = useCustomNavCollections()
-  const { selectCollection } = useStore()
-  console.log(collectionSections)
 
   const close = () => {
     setCategoriesOpen(false)

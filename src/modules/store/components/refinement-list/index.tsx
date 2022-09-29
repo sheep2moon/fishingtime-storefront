@@ -2,15 +2,22 @@ import React, { useEffect, useRef, useState, useCallback } from "react"
 import {
   useRefinementList,
   UseRefinementListProps,
+  useClearRefinements,
 } from "react-instantsearch-hooks"
 import { RefinementListWidgetParams } from "instantsearch.js/es/widgets/refinement-list/refinement-list"
 import Checkbox from "../../../common/components/checkbox"
 import PanelTitle from "../filter-list/PanelTitle"
+import { useRouter } from "next/router"
+import {
+  handleToTitle,
+  titleToHandle,
+} from "../../../../lib/util/transform-titles-links"
 
 export type RefinementListProps = React.ComponentProps<"div"> &
   UseRefinementListProps &
   Pick<RefinementListWidgetParams, "searchable" | "searchablePlaceholder"> & {
     title?: string
+    handle?: string
   }
 
 const RefinementList = (props: RefinementListProps) => {
@@ -32,8 +39,16 @@ const RefinementList = (props: RefinementListProps) => {
     toggleShowMore,
   } = useRefinementList({ ...props, transformItems })
 
-  if (items.length === 0) return null
+  const router = useRouter()
 
+  useEffect(() => {
+    if (props.handle && Object.keys(router.query).includes(props.handle)) {
+      const item = router.query[props.handle] as string
+      refine(handleToTitle(item))
+    }
+  }, [router.query, props.handle, refine])
+
+  if (items.length === 0) return null
   return (
     <div className="flex flex-col">
       {props.title && <PanelTitle>{props.title}</PanelTitle>}

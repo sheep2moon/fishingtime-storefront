@@ -10,7 +10,6 @@ const labelsMap: { [key: string]: string } = {
 
 const CurrentFilters = () => {
   const { items, canRefine, refine } = useCurrentRefinements()
-  console.log("variants.prices.amount" in labelsMap)
 
   return (
     <div>
@@ -27,7 +26,7 @@ const CurrentFilters = () => {
                 ? labelsMap[item.attribute]
                 : item.attribute}
             </span>
-            <div className="h-full flex gap-1 p-1">
+            <div className="h-full flex gap-1 p-1 flex-wrap">
               {item.refinements.map((filter, index) => {
                 let label = filter.label
                 if (

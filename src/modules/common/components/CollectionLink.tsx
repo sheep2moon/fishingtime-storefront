@@ -18,7 +18,7 @@ const CollectionLink = ({
   return (
     <Link href={href} passHref>
       <a
-        className="flex items-center justify-start  p-2 text-lg w-80 bg-slate-50 hover:bg-emerald-200 text-emerald-900 border-b"
+        className="flex items-center justify-start  p-2 text-lg w-80 bg-slate-50 hover:bg-amber-100 text-emerald-900 border-b"
         onClick={onClick}
       >
         {icon ?? icon}

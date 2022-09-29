@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import React, { useEffect } from "react"
 import {
   ClearRefinements,
@@ -8,7 +9,12 @@ import {
 import Button from "../../../common/components/button"
 
 const ClearFilters = () => {
-  const { refine } = useClearRefinements()
+  const { refine, canRefine } = useClearRefinements()
+  const { query } = useRouter()
+
+  useEffect(() => {
+    refine()
+  }, [query])
 
   return (
     <div>

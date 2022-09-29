@@ -18,7 +18,7 @@ const SearchMenu = () => {
           <div className="flex-1 basis-0">
             <div className="flex items-center gap-x-2">
               <Search className="text-gray-500" size={20} />
-              <SearchBox />
+              <SearchBox autoFocus={true} />
             </div>
           </div>
           <div className="flex justify-end ml-4">
