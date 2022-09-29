@@ -106,7 +106,7 @@ const MainMenu = () => {
                         {open && (
                           <Disclosure.Panel className="flex flex-col gap-4 p-2 pl-6">
                             <CollectionLink
-                              href="/store/all"
+                              href="/sklep/all"
                               title="Pokaż Wszystko"
                               onClick={close}
                             />
