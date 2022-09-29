@@ -6,12 +6,21 @@ type CollectionButtonProps = {
   title: string
   href: string
   icon?: JSX.Element
+  onClick?: () => void
 }
 
-const CollectionButton = ({ title, icon, href }: CollectionButtonProps) => {
+const CollectionLink = ({
+  title,
+  icon,
+  href,
+  onClick,
+}: CollectionButtonProps) => {
   return (
     <Link href={href} passHref>
-      <a className="flex items-center justify-start  p-2 text-lg w-80 bg-slate-50 hover:bg-emerald-200 text-emerald-900 border-b">
+      <a
+        className="flex items-center justify-start  p-2 text-lg w-80 bg-slate-50 hover:bg-emerald-200 text-emerald-900 border-b"
+        onClick={onClick}
+      >
         {icon ?? icon}
         <p className="ml-2">{title}</p>
         <BiChevronDown className="-rotate-90 ml-auto" />
@@ -20,4 +29,4 @@ const CollectionButton = ({ title, icon, href }: CollectionButtonProps) => {
   )
 }
 
-export default CollectionButton
+export default CollectionLink

@@ -15,6 +15,7 @@ import { BiChevronDown, BiChevronUp } from "react-icons/bi"
 import { useNavigationCollections } from "../../../../lib/hooks/use-layout-data"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import logoImg from "../../../../../public/logo3.svg"
+import CollectionLink from "../../../common/components/CollectionLink"
 
 const MainMenu = () => {
   // const { collections } = useCollections()
@@ -34,17 +35,6 @@ const MainMenu = () => {
 
   const setScreenCountry = () => setScreen("country")
   const setScreenSearch = () => setScreen("search")
-  const { selectCollection, selectManyCollections } = useStore()
-
-  const handleSelectCollection = (id: string) => {
-    selectCollection(id)
-    close()
-  }
-
-  const handleSelectMany = (collections: { title: string; id: string }[]) => {
-    selectManyCollections(collections)
-    close()
-  }
 
   return (
     <div className="flex flex-col flex-1">
@@ -83,7 +73,7 @@ const MainMenu = () => {
         <div className="flex flex-col flex-1 text-large-regular text-gray-900">
           <ul className="flex flex-col gap-y-2">
             <li className="bg-gray-50 p-4">
-              <Link href="/store">
+              <Link href="/sklep/all">
                 <a>
                   <button
                     className="flex items-center justify-between w-full"
@@ -98,14 +88,14 @@ const MainMenu = () => {
             </li>
             <div className="flex flex-col gap-2 justify-start">
               {collectionSections &&
-                collectionSections.map((section) => (
-                  <Disclosure key={section.metaKey}>
+                Object.keys(collectionSections).map((key) => (
+                  <Disclosure key={key}>
                     {({ open }) => (
                       <div className="flex flex-col  justify-start">
                         <Disclosure.Button className="text-left p-4 flex justify-between border-l-2 border-primary shadow-md">
                           <div className="flex gap-2 items-center">
-                            {section.icon}
-                            {section.title}
+                            {collectionSections[key].icon}
+                            {collectionSections[key].title}
                           </div>
                           {open ? (
                             <ChevronDown className="-rotate-180" />
@@ -115,27 +105,31 @@ const MainMenu = () => {
                         </Disclosure.Button>
                         {open && (
                           <Disclosure.Panel className="flex flex-col gap-4 p-2 pl-6">
-                            <span
-                              onClick={() =>
-                                handleSelectMany(section.collections)
-                              }
-                              className="flex items-center p-2 cursor-pointer hover:bg-slate-200 font-semibold"
-                            >
-                              <ChevronDown className="-rotate-90 " />
-                              <span>Pokaż wszystko</span>
-                            </span>
-                            {section.collections.map((collection) => (
-                              <span
-                                onClick={() =>
-                                  handleSelectCollection(collection.id)
-                                }
-                                key={collection.id}
-                                className="flex items-center p-2 cursor-pointer hover:bg-slate-200"
-                              >
-                                <ChevronDown className="-rotate-90 " />
-                                <span>{collection.title}</span>
-                              </span>
-                            ))}
+                            <CollectionLink
+                              href="/store/all"
+                              title="Pokaż Wszystko"
+                              onClick={close}
+                            />
+                            {collectionSections[key].collections.map(
+                              (collection) => (
+                                // <span
+                                //   onClick={() =>
+                                //     handleSelectCollection(collection.id)
+                                //   }
+                                //   key={collection.id}
+                                //   className="flex items-center p-2 cursor-pointer hover:bg-slate-200"
+                                // >
+                                //   <ChevronDown className="-rotate-90 " />
+                                //   <span>{collection.title}</span>
+                                // </span>
+                                <CollectionLink
+                                  href={`/sklep/${key}`}
+                                  key={collection.id}
+                                  title={collection.title}
+                                  onClick={close}
+                                />
+                              )
+                            )}
                           </Disclosure.Panel>
                         )}
                       </div>

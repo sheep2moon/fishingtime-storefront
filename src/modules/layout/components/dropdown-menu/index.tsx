@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import { RiArrowDropRightLine } from "react-icons/ri"
-import CollectionLink from "./CollectionLink"
+import CollectionLink from "../../../common/components/CollectionLink"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import { useStore } from "../../../../lib/context/store-context"
 import ChevronDown from "../../../common/icons/chevron-down"
@@ -22,12 +22,7 @@ const DropdownMenu = () => {
   const { selectCollection } = useStore()
   console.log(collectionSections)
 
-  const handleSelectCollection = (id: string) => {
-    handleCategoriesLeave()
-    selectCollection(id)
-  }
-
-  const handleCategoriesLeave = () => {
+  const close = () => {
     setCategoriesOpen(false)
     setOpen("none")
   }
@@ -39,7 +34,7 @@ const DropdownMenu = () => {
           <div
             className="relative h-full"
             onMouseEnter={() => setCategoriesOpen(true)}
-            onMouseLeave={handleCategoriesLeave}
+            onMouseLeave={close}
           >
             <Popover className="h-full flex">
               <>
@@ -79,6 +74,7 @@ const DropdownMenu = () => {
                                   icon={collectionSections[key].icon}
                                   title={collectionSections[key].title}
                                   href={`/sklep/${key}`}
+                                  onClick={close}
                                 />
                               </Popover.Button>
                               <Transition show={open === key ? true : false}>
@@ -92,6 +88,7 @@ const DropdownMenu = () => {
                                           )}`}
                                           key={collection.id}
                                           title={collection.title}
+                                          onClick={close}
                                         />
                                       )
                                     )}
