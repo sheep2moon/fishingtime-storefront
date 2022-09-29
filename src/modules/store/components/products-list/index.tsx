@@ -1,18 +1,24 @@
+import repeat from "@lib/util/repeat"
 import React, { useEffect, useRef } from "react"
 import { useInfiniteHits } from "react-instantsearch-hooks-web"
 import { resourceLimits } from "worker_threads"
+import getNumberOfSkeletons from "../../../../lib/util/get-number-of-skeletons"
 import Spinner from "../../../common/icons/spinner"
 import { ProductHit } from "../../../search/components/hit"
+import SkeletonProductPreview from "../../../skeletons/components/skeleton-product-preview"
 import ProductHitPreview from "../product-hit-preview"
 
 type InfiniteHitsRes = {
   hits: ProductHit[]
   isLastPage: boolean
   showMore: () => void
+  results?: any
 }
 
 export function InfiniteProductHits({}) {
-  const { hits, isLastPage, showMore }: InfiniteHitsRes = useInfiniteHits()
+  // const what: InfiniteHitsRes = useInfiniteHits()
+  const { hits, isLastPage, showMore, results }: InfiniteHitsRes =
+    useInfiniteHits()
   const sentinelRef = useRef(null)
 
   useEffect(() => {
@@ -35,7 +41,7 @@ export function InfiniteProductHits({}) {
 
   return (
     <div className="flex flex-col items-center">
-      <span>{hits.length}</span>
+      <span className="mt-6">Znaleziono {results?.nbHits} produktów </span>
       <div className="grid grid-cols-2 xsmall:grid-cols-3 medium:grid-cols-4  large:grid-cols-5">
         {hits.map((hit: ProductHit) => (
           <ProductHitPreview key={hit.id} hit={hit} />
@@ -44,9 +50,16 @@ export function InfiniteProductHits({}) {
           className="ais-InfiniteHits-sentinel"
           ref={sentinelRef}
           aria-hidden="true"
-        >
-          {isLastPage ? "" : <Spinner />}
-        </span>
+        ></span>
+        {!isLastPage &&
+          repeat(20).map((index) => (
+            <li
+              key={index}
+              className="w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72"
+            >
+              <SkeletonProductPreview />
+            </li>
+          ))}
       </div>
     </div>
   )

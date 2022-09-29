@@ -21,6 +21,9 @@ import {
   handleToTitle,
   titleToHandle,
 } from "../../lib/util/transform-titles-links"
+import SearchBox from "../../modules/search/components/search-box"
+import ClearFilters from "../../modules/store/components/filter-list/ClearFilters"
+import CurrentFilters from "../../modules/store/components/filter-list/CurrentFilters"
 
 const CategoryStore: NextPageWithLayout = () => {
   const { query, isFallback, replace } = useRouter()
@@ -78,7 +81,8 @@ const CategoryStore: NextPageWithLayout = () => {
         />
         <div className="flex flex-col small:flex-row gap-1 py-6 w-full items-start small:justify-center content-container">
           <div className="flex flex-col p-2 gap-4 w-full small:max-w-xs border border-slate-200 rounded-md">
-            <CurrentRefinements />
+            <CurrentFilters />
+
             <CategoryMenu
               attribute="collection.title"
               showMore={true}
@@ -101,7 +105,12 @@ const CategoryStore: NextPageWithLayout = () => {
             <PriceSlider attribute="variants.prices.amount" label="Cena" />
           </div>
           <div className="w-full flex flex-col bg-slate-50 p-1">
-            <SortSelector />
+            <div className="flex ">
+              <div className="bg-slate-50 w-full border border-slate-300">
+                <SearchBox />
+              </div>
+              <SortSelector />
+            </div>
             <InfiniteProductHits />
           </div>
         </div>

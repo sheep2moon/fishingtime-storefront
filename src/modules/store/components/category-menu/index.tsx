@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import React, { useCallback } from "react"
 import { useMenu, UseMenuProps } from "react-instantsearch-hooks"
 import PanelTitle from "../filter-list/PanelTitle"
@@ -8,7 +9,6 @@ const CategoryMenu = (props: MenuProps) => {
   const transformItems = useCallback(
     (items: any) =>
       items.map((item: any) => {
-        console.log(item)
         return item
       }),
     []
@@ -38,7 +38,9 @@ const CategoryMenu = (props: MenuProps) => {
                 }}
                 href={createURL(item.value)}
               >
-                <span className="ais-Menu-label">{item.label}</span>
+                <span className={clsx("", { "font-bold": item.isRefined })}>
+                  {item.label}
+                </span>
                 <span className="ais-Menu-count">{item.count}</span>
               </a>
             </li>
@@ -46,7 +48,11 @@ const CategoryMenu = (props: MenuProps) => {
         </ul>
 
         {props.showMore && canToggleShowMore && (
-          <button disabled={!canToggleShowMore} onClick={toggleShowMore}>
+          <button
+            className="mx-auto w-full bg-slate-200"
+            disabled={!canToggleShowMore}
+            onClick={toggleShowMore}
+          >
             {isShowingMore ? "Zwiń" : "Rozwiń"}
           </button>
         )}

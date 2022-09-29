@@ -45,7 +45,7 @@ const SortSelector = () => {
   return (
     <div className="ml-auto relative z-20">
       <Listbox value={currentRefinement} onChange={refine}>
-        <Listbox.Button className="bg-slate-200 px-4 py-2 shadow-md rounded-md font-semibold w-fit flex gap-1 items-center">
+        <Listbox.Button className="border border-slate-300 px-4 py-2 shadow-md rounded-sm font-semibold w-fit flex gap-1 items-center">
           Sortuj
           <FaSort />
         </Listbox.Button>

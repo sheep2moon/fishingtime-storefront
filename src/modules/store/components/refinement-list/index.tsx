@@ -32,6 +32,8 @@ const RefinementList = (props: RefinementListProps) => {
     toggleShowMore,
   } = useRefinementList({ ...props, transformItems })
 
+  if (items.length === 0) return null
+
   return (
     <div className="flex flex-col">
       {props.title && <PanelTitle>{props.title}</PanelTitle>}
