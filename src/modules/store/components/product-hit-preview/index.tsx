@@ -31,7 +31,7 @@ const ProductHitPreview = ({ hit }: HitProps) => {
       )}
     >
       <Link href={`/products/${hit.handle}`}>
-        <a className="block relative  w-32 xsmall:w-44 small:w-52">
+        <a className="block relative  w-full xsmall:w-44 small:w-52">
           <div className="flex flex-col p-1 justify-between h-full">
             <div className="p-1 ">
               <Thumbnail thumbnail={hit.thumbnail} size="full" />

@@ -79,10 +79,12 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           <div></div>
         )}
       </div>
-      <div className="text-lg">
-        <span className="font-semibold mr-1">Producent:</span>
-        <span>{product.hs_code}</span>
-      </div>
+      {product.hs_code && (
+        <div className="text-lg">
+          <span className="font-semibold mr-1">Producent:</span>
+          <span>{product.hs_code}</span>
+        </div>
+      )}
       <Button onClick={addToCart}>
         {!inStock ? "Brak w magazynie" : "Dodaj do koszyka"}
       </Button>

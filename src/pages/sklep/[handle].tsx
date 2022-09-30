@@ -22,7 +22,7 @@ const CategoryStore: NextPageWithLayout = () => {
   useEffect(() => {
     if (query.handle === "all" || query.handle === "pozostale")
       setSearchFilters("")
-    else setSearchFilters(`collection.metadata.parent=${query.handle}`)
+    else setSearchFilters(` AND collection.metadata.parent=${query.handle}`)
   }, [query])
 
   if (isFallback) return <div>SKELETON TODO</div>
@@ -30,7 +30,10 @@ const CategoryStore: NextPageWithLayout = () => {
     <>
       <Head title="Sklep" description="Zobacz asortyment naszego sklepu." />
       <InstantSearch indexName="products" searchClient={searchClient}>
-        <Configure filters={searchFilters} facets={["*"]} />
+        <Configure
+          filters={`status=published${searchFilters}`}
+          facets={["*"]}
+        />
         <div>
           {filtersOpened && (
             <MobileFilters close={() => setFiltersOpened(false)} />
