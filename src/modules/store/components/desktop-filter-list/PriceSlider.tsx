@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react"
+import React, { ChangeEvent, useEffect, useState } from "react"
 import { useRange } from "react-instantsearch-hooks-web"
+import useDebounce from "../../../../lib/hooks/use-debounce"
 import Button from "../../../common/components/button"
 import InputNumber from "../../../common/components/input-number"
 import PanelTitle from "./PanelTitle"
@@ -18,23 +19,21 @@ function PriceSlider({ attribute, label }: SliderProps) {
     max,
   })
 
-  const [minValue, setMinValue] = useState(min / 100)
-  const [maxValue, setMaxValue] = useState(max / 100)
-  const [change, setChange] = useState(false)
-
-  const handleRefine = () => {
-    console.log(canRefine)
-    console.log(range)
-
-    refine([minValue * 100, maxValue * 100])
+  const [values, setValues] = useState({ min: min / 100, max: max / 100 })
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setValues((prev) => ({
+      ...prev,
+      [e.target.name]: parseInt(e.target.value),
+    }))
   }
 
-  const handleMinValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMinValue(parseInt(e.target.value))
-  }
-  const handleMaxValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMaxValue(parseInt(e.target.value))
-  }
+  const debouncedValues = useDebounce(values, 500)
+
+  useEffect(() => {
+    if (debouncedValues && debouncedValues.min > 0 && debouncedValues.max > 0) {
+      refine([debouncedValues.min * 100, debouncedValues.max * 100])
+    }
+  }, [debouncedValues, refine])
 
   return (
     <div>
@@ -46,21 +45,18 @@ function PriceSlider({ attribute, label }: SliderProps) {
         </div> */}
         <div className="grid grid-cols-2 mb-2">
           <InputNumber
-            value={minValue}
-            onChange={handleMinValue}
+            value={values.min}
+            onChange={handleInputChange}
             label="Od"
             name="min"
           />
           <InputNumber
-            value={maxValue}
-            onChange={handleMaxValue}
+            value={values.max}
+            onChange={handleInputChange}
             label="Do"
             name="max"
           />
         </div>
-        <Button variant="primary" onClick={handleRefine}>
-          Zastosuj
-        </Button>
       </div>
     </div>
   )

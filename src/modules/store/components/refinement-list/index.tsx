@@ -6,7 +6,7 @@ import {
 } from "react-instantsearch-hooks"
 import { RefinementListWidgetParams } from "instantsearch.js/es/widgets/refinement-list/refinement-list"
 import Checkbox from "../../../common/components/checkbox"
-import PanelTitle from "../filter-list/PanelTitle"
+import PanelTitle from "../desktop-filter-list/PanelTitle"
 import { useRouter } from "next/router"
 import {
   handleToTitle,

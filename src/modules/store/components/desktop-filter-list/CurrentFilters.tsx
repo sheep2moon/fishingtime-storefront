@@ -14,7 +14,7 @@ const CurrentFilters = () => {
   return (
     <div>
       <PanelTitle>Aktywne Filtry</PanelTitle>
-      <div className="flex flex-wrap gap-1 my-1">
+      <div className="flex flex-wrap gap-1 my-1 mx-2">
         {items.length === 0 && <span>Brak</span>}
         {items.map((item) => (
           <div
@@ -55,7 +55,9 @@ const CurrentFilters = () => {
           </div>
         ))}
       </div>
-      <ClearFilters />
+      <div className="hidden small:block">
+        <ClearFilters />
+      </div>
     </div>
   )
 }

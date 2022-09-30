@@ -1,7 +1,7 @@
 import clsx from "clsx"
 import React, { useCallback } from "react"
 import { useMenu, UseMenuProps } from "react-instantsearch-hooks"
-import PanelTitle from "../filter-list/PanelTitle"
+import PanelTitle from "../desktop-filter-list/PanelTitle"
 
 export type MenuProps = React.ComponentProps<"div"> & UseMenuProps
 

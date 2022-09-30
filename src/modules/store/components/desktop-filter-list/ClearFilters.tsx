@@ -17,11 +17,9 @@ const ClearFilters = () => {
   }, [query])
 
   return (
-    <div>
-      <Button variant="secondary" onClick={refine}>
-        Wyczyść wszystkie
-      </Button>
-    </div>
+    <Button variant="alternative" onClick={refine}>
+      Wyczyść wszystkie
+    </Button>
   )
 }
 
