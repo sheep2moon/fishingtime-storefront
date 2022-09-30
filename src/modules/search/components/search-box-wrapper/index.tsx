@@ -34,7 +34,7 @@ type SearchBoxProps = {
 
 const SearchBoxWrapper = ({
   children,
-  placeholder = "Wyszukaj produkty...",
+  placeholder = "Wyszukaj...",
   autoFocus = false,
   ...rest
 }: SearchBoxProps) => {

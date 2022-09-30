@@ -59,7 +59,7 @@ const Nav = () => {
               {/* LOGO */}
               <div className="flex items-center h-full relative">
                 <Link href="/">
-                  <a className="text-lg small:text-xl-semi w-60 2xsmall:w-72 h-1 mx-[-2rem] small:w-64 flex items-center ">
+                  <a className="text-lg small:text-xl-semi w-52 2xsmall:w-60 xsmall:w-72 h-1 mx-[-2rem] small:w-64 flex items-center ">
                     <Image
                       src="/cut.svg"
                       layout="fill"

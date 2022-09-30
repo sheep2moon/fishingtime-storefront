@@ -11,37 +11,41 @@ type SliderProps = {
 }
 
 function PriceSlider({ attribute, label }: SliderProps) {
-  const min = 100,
-    max = 80000
   const { range, canRefine, refine, start } = useRange({
     attribute,
-    min,
-    max,
   })
 
-  const [values, setValues] = useState({ min: min / 100, max: max / 100 })
-  const [userChange, setUserChange] = useState(false)
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserChange(true)
-    setValues((prev) => ({
-      ...prev,
-      [e.target.name]: parseInt(e.target.value),
-    }))
+  const [values, setValues] = useState({ min: 0, max: 999999 })
+
+  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   setValues((prev) => ({
+  //     ...prev,
+  //     [e.target.name]: parseInt(e.target.value),
+  //   }))
+  // }
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>, i: number) => {
+    let nValues = []
+    nValues[i] = parseInt(e.target.value)
+    const missedIndex = i ? 0 : 1
+    if (typeof start[missedIndex] !== "number") nValues[missedIndex] = undefined
+
+    console.log({ nValues })
+
+    refine(nValues)
   }
 
   const debouncedValues = useDebounce(values, 500)
 
   useEffect(() => {
-    if (
-      userChange &&
-      debouncedValues &&
-      debouncedValues.min > 0 &&
-      debouncedValues.max > 0
-    ) {
+    if (debouncedValues) {
       refine([debouncedValues.min * 100, debouncedValues.max * 100])
-      setUserChange(false)
     }
-  }, [debouncedValues, refine, userChange])
+  }, [debouncedValues, refine])
+
+  useEffect(() => {
+    console.log({ start })
+  }, [start])
 
   return (
     <div>
@@ -53,14 +57,14 @@ function PriceSlider({ attribute, label }: SliderProps) {
         </div> */}
         <div className="grid grid-cols-2 mb-2">
           <InputNumber
-            value={values.min}
-            onChange={handleInputChange}
+            value={start[0] as number}
+            onChange={(e) => handleInputChange(e, 0)}
             label="Od"
             name="min"
           />
           <InputNumber
-            value={values.max}
-            onChange={handleInputChange}
+            value={start[1] as number}
+            onChange={(e) => handleInputChange(e, 1)}
             label="Do"
             name="max"
           />

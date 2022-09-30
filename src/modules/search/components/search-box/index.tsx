@@ -39,7 +39,7 @@ const ControlledSearchBox = ({
   }
 
   return (
-    <div {...props} className="w-full ">
+    <div {...props} className="w-full max-w-[100px] xsmall:max-w-max">
       <form action="" noValidate onSubmit={handleSubmit} onReset={handleReset}>
         <div className="flex items-center justify-between ">
           <input
@@ -52,7 +52,7 @@ const ControlledSearchBox = ({
             type="search"
             value={value}
             onChange={onChange}
-            className="text-base-regular placeholder:transition-colors placeholder:text-gray-500 rounded-md p-2 focus:placeholder:text-gray-900 focus:outline-none flex-1 bg-transparent"
+            className="text-base-regular text-sm placeholder:transition-colors placeholder:text-gray-500 rounded-md p-2 focus:placeholder:text-gray-900 focus:outline-none flex-1 bg-transparent"
           />
           {value && (
             <button

@@ -11,6 +11,7 @@ export type ProductHit = {
   variants: ProductVariant[]
   collection_handle: string | null
   collection_id: string | null
+  hs_code: string
 }
 
 export type HitProps = {

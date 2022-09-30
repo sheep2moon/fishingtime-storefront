@@ -51,15 +51,12 @@ export function InfiniteProductHits({}) {
           ref={sentinelRef}
           aria-hidden="true"
         ></span>
-        {!isLastPage &&
+        {/* {!isLastPage &&
           repeat(20).map((index) => (
-            <li
-              key={index}
-              className="w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72"
-            >
+            <li key={index} className="w-44 h-72">
               <SkeletonProductPreview />
             </li>
-          ))}
+          ))} */}
       </div>
     </div>
   )

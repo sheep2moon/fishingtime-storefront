@@ -24,23 +24,25 @@ const ProductHitPreview = ({ hit }: HitProps) => {
   return (
     <div
       className={clsx(
-        "shadow-lg shadow-slate-300 rounded-md p-1 w-full max-w-[256px]",
+        "shadow-lg shadow-slate-300 rounded-md w-full max-w-[256px]",
         {
           "opacity-50": !is_available,
         }
       )}
     >
       <Link href={`/products/${hit.handle}`}>
-        <a className="block w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72">
-          <div className=" flex flex-col justify-between h-full">
-            <div className=" p-1 ">
+        <a className="block relative  w-32 xsmall:w-44 small:w-52">
+          <div className="flex flex-col p-1 justify-between h-full">
+            <div className="p-1 ">
               <Thumbnail thumbnail={hit.thumbnail} size="full" />
             </div>
-            <div className="text-base-regularh h-full py-2 flex flex-col justify-between text-stone-900">
+            <div className="text-base h-full py-2 flex flex-col justify-between text-stone-900">
               <span className="border-t border-emerald-900 px-1 font-semibold text-sm inline-block h-12 leading-6 text-ellipsis overflow-hidden">
                 {hit.title}
               </span>
-              <span className="text-right block">{price.toFixed(2)}zł</span>
+              <span className="text-right block px-2">
+                {price.toFixed(2)}zł
+              </span>
             </div>
           </div>
         </a>

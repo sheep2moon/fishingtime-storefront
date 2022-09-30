@@ -6,6 +6,7 @@ import PanelTitle from "./PanelTitle"
 const labelsMap: { [key: string]: string } = {
   "variants.prices.amount": "Cena",
   "collection.title": "Kategoria",
+  hs_code: "Producent",
 }
 
 const CurrentFilters = () => {
