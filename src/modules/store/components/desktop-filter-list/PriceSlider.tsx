@@ -20,7 +20,9 @@ function PriceSlider({ attribute, label }: SliderProps) {
   })
 
   const [values, setValues] = useState({ min: min / 100, max: max / 100 })
+  const [userChange, setUserChange] = useState(false)
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserChange(true)
     setValues((prev) => ({
       ...prev,
       [e.target.name]: parseInt(e.target.value),
@@ -30,10 +32,16 @@ function PriceSlider({ attribute, label }: SliderProps) {
   const debouncedValues = useDebounce(values, 500)
 
   useEffect(() => {
-    if (debouncedValues && debouncedValues.min > 0 && debouncedValues.max > 0) {
+    if (
+      userChange &&
+      debouncedValues &&
+      debouncedValues.min > 0 &&
+      debouncedValues.max > 0
+    ) {
       refine([debouncedValues.min * 100, debouncedValues.max * 100])
+      setUserChange(false)
     }
-  }, [debouncedValues, refine])
+  }, [debouncedValues, refine, userChange])
 
   return (
     <div>
