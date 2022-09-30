@@ -1,4 +1,5 @@
 import React from "react"
+import { RangeInput } from "react-instantsearch-hooks-web"
 import RefinementList from "../refinement-list"
 import CurrentFilters from "./CurrentFilters"
 import PriceSlider from "./PriceSlider"
@@ -22,8 +23,7 @@ const FilterList = () => {
         operator="or"
         handle=""
       />
-
-      <PriceSlider attribute="variants.prices.amount" label="Cena" />
+      {/* <PriceSlider attribute="variants.prices.amount" label="Cena" /> */}
     </div>
   )
 }
