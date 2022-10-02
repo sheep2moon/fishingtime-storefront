@@ -10,7 +10,7 @@ const labelsMap: { [key: string]: string } = {
 }
 
 const CurrentFilters = () => {
-  const { items, canRefine, refine } = useCurrentRefinements()
+  const { items, refine } = useCurrentRefinements()
 
   const filteredItems = useMemo(() => {
     return items.filter(

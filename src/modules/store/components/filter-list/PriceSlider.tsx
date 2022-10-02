@@ -1,6 +1,5 @@
-import React, { ChangeEvent, useEffect, useState } from "react"
+import React, { ChangeEvent, useState } from "react"
 import { useRange } from "react-instantsearch-hooks-web"
-import useDebounce from "../../../../lib/hooks/use-debounce"
 import Button from "../../../common/components/button"
 import InputNumber from "../../../common/components/input-number"
 import PanelTitle from "./PanelTitle"
@@ -23,18 +22,6 @@ function PriceSlider({ attribute }: SliderProps) {
     max: range.max,
   })
 
-  useEffect(() => {
-    console.log("refine")
-    console.log(canRefine, range)
-    // if (values.max > 0) {
-    //   refine([
-    //     Number.isFinite(values.min) ? values.min : undefined,
-    //     Number.isFinite(values.max) ? values.max : undefined,
-    //   ])
-    // }
-    // refine([min, max])
-  }, [min, max])
-
   const handleRefine = () => {
     refine([min, max])
   }
@@ -48,10 +35,6 @@ function PriceSlider({ attribute }: SliderProps) {
     <div>
       <PanelTitle>Cena</PanelTitle>
       <div className="p-2">
-        {/* <div className="flex justify-between">
-          <p>{(minSlider / 100).toFixed(2)}zł</p>
-          <p>{(maxSlider / 100).toFixed(2)}zł</p>
-        </div> */}
         <div className="grid grid-cols-2 mb-2">
           <InputNumber
             value={min as number}

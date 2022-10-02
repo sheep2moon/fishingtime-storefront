@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-import { useRouter } from "next/router"
 import { Configure, InstantSearch } from "react-instantsearch-hooks-web"
 import { searchClient } from "../../lib/search-client"
 import Head from "../../modules/common/components/head"
@@ -13,48 +11,6 @@ import SearchBox from "../../modules/search/components/search-box"
 import FilterList from "../../modules/store/components/filter-list"
 
 const CategoryStore: NextPageWithLayout = () => {
-  const router = useRouter()
-  const { query, isFallback, replace } = router
-  // const [searchFilters, setSearchFilters] = useState("")
-
-  // useEffect(() => {
-  //   const filters = []
-  //   filters.push("status=published")
-  //   if (
-  //     query.handle &&
-  //     query.handle !== "all" &&
-  //     query.handle !== "pozostale"
-  //   ) {
-  //     filters.push(`collection.metadata.parent=${query.handle}`)
-  //   }
-  //   setSearchFilters(filters.join(" AND "))
-  // }, [query])
-
-  // const handleStateChange: InstantSearchProps["onStateChange"] = ({
-  //   uiState,
-  //   setUiState,
-  // }) => {
-  //   console.log(uiState)
-  //   if(uiState?.products?.refinementList?["collection.title"][0] === "sr"){
-  //     console.log("ta");
-  //   }
-
-  //   // console.log(parsed)
-
-  //   // router.push({pathname: basePath,query: })
-  //   setUiState(uiState)
-  // }
-
-  // useEffect(() => {
-  //   const handleRouteChange = () => {
-  //     if (window.location.href.includes("collection")) window.location.reload()
-  //   }
-  //   window.addEventListener("popstate", handleRouteChange)
-  //   return () => {
-  //     window.removeEventListener("popstate", handleRouteChange)
-  //   }
-  // }, [router.asPath])
-
   const routing = {
     stateMapping: simple(),
     router: history({
@@ -68,7 +24,6 @@ const CategoryStore: NextPageWithLayout = () => {
     }),
   }
 
-  if (isFallback) return <div>SKELETON TODO</div>
   return (
     <>
       <Head title="Sklep" description="Zobacz asortyment naszego sklepu." />

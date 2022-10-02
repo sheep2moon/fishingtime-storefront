@@ -2,16 +2,10 @@ import React, { useEffect, useRef, useState, useCallback } from "react"
 import {
   useRefinementList,
   UseRefinementListProps,
-  useClearRefinements,
 } from "react-instantsearch-hooks"
 import { RefinementListWidgetParams } from "instantsearch.js/es/widgets/refinement-list/refinement-list"
 import Checkbox from "../../../common/components/checkbox"
 import PanelTitle from "../filter-list/PanelTitle"
-import { useRouter } from "next/router"
-import {
-  handleToTitle,
-  titleToHandle,
-} from "../../../../lib/util/transform-titles-links"
 
 export type RefinementListProps = React.ComponentProps<"div"> &
   UseRefinementListProps &
@@ -29,15 +23,11 @@ const RefinementList = (props: RefinementListProps) => {
     []
   )
 
-  const {
-    canToggleShowMore,
-    isFromSearch,
-    isShowingMore,
-    items,
-    refine,
-    searchForItems,
-    toggleShowMore,
-  } = useRefinementList({ ...props, transformItems, limit: 30 })
+  const { items, refine } = useRefinementList({
+    ...props,
+    transformItems,
+    limit: 30,
+  })
 
   if (items.length === 0) return null
   return (
@@ -63,16 +53,6 @@ const RefinementList = (props: RefinementListProps) => {
           </li>
         ))}
       </ul>
-
-      {/* {props.showMore && canToggleShowMore && (
-        <button
-          className=""
-          disabled={!canToggleShowMore}
-          onClick={toggleShowMore}
-        >
-          {isShowingMore ? "Zwiń" : "Rozwiń"}
-        </button>
-      )} */}
     </div>
   )
 }

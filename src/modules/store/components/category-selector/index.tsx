@@ -21,22 +21,6 @@ const CategorySelector = () => {
   const [expanded, setExpanded] = useState("")
   const [isSelectedAll, setIsSelectedAll] = useState(false)
 
-  // const transformItems = useCallback(
-  //   (items) =>
-  //     items.filter((item: any) => {
-  //       return item.count > 0
-  //     }),
-  //   []
-  // )
-  // const {
-  //   canToggleShowMore,
-  //   isFromSearch,
-  //   isShowingMore,
-  //   items,
-  //   refine,
-  //   searchForItems,
-  //   toggleShowMore,
-  // }
   const mainCategory = useMenu({
     attribute: "collection.metadata.parent",
     sortBy: ["name:asc"],
@@ -72,11 +56,6 @@ const CategorySelector = () => {
       subCategory.refine(i?.value)
     }
   }
-
-  // useEffect(() => {
-  //   console.log("CLEAR")
-  //   setExpanded("")
-  // }, [clear])
 
   const isCollectionRefined = (itemKey: string) => {
     const i = subCategory.items.find((item) => item.value === itemKey)
