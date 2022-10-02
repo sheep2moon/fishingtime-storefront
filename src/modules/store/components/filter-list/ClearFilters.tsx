@@ -10,14 +10,13 @@ import Button from "../../../common/components/button"
 
 const ClearFilters = () => {
   const { refine, canRefine } = useClearRefinements()
-  const { query } = useRouter()
 
-  useEffect(() => {
+  const handleClear = () => {
     refine()
-  }, [query])
+  }
 
   return (
-    <Button variant="alternative" onClick={refine}>
+    <Button variant="alternative" disabled={!canRefine} onClick={handleClear}>
       Wyczyść wszystkie
     </Button>
   )

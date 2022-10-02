@@ -20,10 +20,12 @@ export type RefinementListProps = React.ComponentProps<"div"> &
     handle?: string
   }
 
-const RefinementList = (props: RefinementListProps) => {
+const SubcategoryList = (props: RefinementListProps) => {
   const transformItems = useCallback(
     (items) =>
       items.filter((item: any) => {
+        console.log(item)
+
         return item.count > 0
       }),
     []
@@ -37,7 +39,7 @@ const RefinementList = (props: RefinementListProps) => {
     refine,
     searchForItems,
     toggleShowMore,
-  } = useRefinementList({ ...props, transformItems, limit: 30 })
+  } = useRefinementList({ ...props, transformItems })
 
   if (items.length === 0) return null
   return (
@@ -64,7 +66,7 @@ const RefinementList = (props: RefinementListProps) => {
         ))}
       </ul>
 
-      {/* {props.showMore && canToggleShowMore && (
+      {props.showMore && canToggleShowMore && (
         <button
           className=""
           disabled={!canToggleShowMore}
@@ -72,9 +74,9 @@ const RefinementList = (props: RefinementListProps) => {
         >
           {isShowingMore ? "Zwiń" : "Rozwiń"}
         </button>
-      )} */}
+      )}
     </div>
   )
 }
 
-export default RefinementList
+export default SubcategoryList

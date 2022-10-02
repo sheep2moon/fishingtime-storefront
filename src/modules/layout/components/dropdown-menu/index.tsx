@@ -8,6 +8,7 @@ import ChevronDown from "../../../common/icons/chevron-down"
 import NavLink from "./NavLink"
 import { navLinks } from "../../../../lib/data/NavLinks"
 import { titleToHandle } from "../../../../lib/util/transform-titles-links"
+import { createSubcategoryURL } from "../../../../lib/util/create-search-link"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
@@ -76,7 +77,8 @@ const DropdownMenu = () => {
                                     {collectionSections[key].collections.map(
                                       (collection) => (
                                         <CollectionLink
-                                          href={`/sklep/${key}?kolekcja=${titleToHandle(
+                                          href={`/sklep/all?${createSubcategoryURL(
+                                            key,
                                             collection.title
                                           )}`}
                                           key={collection.id}

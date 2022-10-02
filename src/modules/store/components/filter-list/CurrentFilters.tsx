@@ -1,23 +1,29 @@
-import React from "react"
+import React, { useEffect, useMemo } from "react"
 import { useCurrentRefinements } from "react-instantsearch-hooks-web"
 import ClearFilters from "./ClearFilters"
 import PanelTitle from "./PanelTitle"
 
 const labelsMap: { [key: string]: string } = {
   "variants.prices.amount": "Cena",
-  "collection.title": "Kategoria",
+  "collection.title": "Podkategoria",
   hs_code: "Producent",
 }
 
 const CurrentFilters = () => {
   const { items, canRefine, refine } = useCurrentRefinements()
 
+  const filteredItems = useMemo(() => {
+    return items.filter(
+      (item) => item.attribute !== "collection.metadata.parent"
+    )
+  }, [items])
+
   return (
     <div>
       <PanelTitle>Aktywne Filtry</PanelTitle>
       <div className="flex flex-wrap gap-1 my-1 mx-2">
-        {items.length === 0 && <span>Brak</span>}
-        {items.map((item) => (
+        {filteredItems.length === 0 && <span>Brak</span>}
+        {filteredItems.map((item) => (
           <div
             key={item.attribute}
             className=" bg-slate-100 border border-slate-300 flex items-center rounded-md"

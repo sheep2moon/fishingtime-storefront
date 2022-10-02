@@ -3,7 +3,7 @@ import React from "react"
 type CheckboxProps = {
   checked?: boolean
   onChange?: () => void
-  label: string
+  label?: string
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({

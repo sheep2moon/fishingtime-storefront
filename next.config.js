@@ -12,7 +12,7 @@ module.exports = withPWA({
 
 module.exports = withStoreConfig({
   features: store.features,
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: [
       "fishing-medusa-storage.s3.eu-central-1.amazonaws.com",
