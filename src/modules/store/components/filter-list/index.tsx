@@ -1,11 +1,14 @@
 import clsx from "clsx"
+import { useRouter } from "next/router"
 import { useState } from "react"
+import { useClearRefinements } from "react-instantsearch-hooks-web"
 import Button from "../../../common/components/button"
 import ClearFilters from "./ClearFilters"
 import Filters from "./Filters"
 
 const FilterList = () => {
   const [filtersOpened, setFiltersOpened] = useState(false)
+
   return (
     <div className="w-full small:max-w-xs">
       <div className="fixed bottom-2 left-2 z-50 small:hidden">
@@ -19,10 +22,12 @@ const FilterList = () => {
       >
         <div className="relative">
           <Filters />
-
+          <div className="hidden small:block">
+            <ClearFilters />
+          </div>
           <div
             className={clsx(
-              "grid grid-cols-2 fixed bottom-0 left-0 right-0 border-t border-gray-400",
+              "grid grid-cols-2 fixed bottom-0 left-0 right-0 border-t border-gray-400 small:hidden",
               { hidden: !filtersOpened }
             )}
           >

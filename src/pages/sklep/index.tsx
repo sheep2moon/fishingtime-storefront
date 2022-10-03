@@ -11,18 +11,18 @@ import SearchBox from "../../modules/search/components/search-box"
 import FilterList from "../../modules/store/components/filter-list"
 
 const CategoryStore: NextPageWithLayout = () => {
-  const routing = {
-    stateMapping: simple(),
-    router: history({
-      getLocation() {
-        if (typeof window === "undefined") {
-          return location
-        }
+  // const routing = {
+  //   stateMapping: simple(),
+  //   router: history({
+  //     getLocation() {
+  //       if (typeof window === "undefined") {
+  //         return location
+  //       }
 
-        return window.location
-      },
-    }),
-  }
+  //       return window.location
+  //     },
+  //   }),
+  // }
 
   return (
     <>
@@ -31,8 +31,8 @@ const CategoryStore: NextPageWithLayout = () => {
         indexName="products"
         searchClient={searchClient}
         // onStateChange={handleStateChange}
-        routing={routing}
-        stalledSearchDelay={200}
+        // routing={routing}
+        // stalledSearchDelay={200}
       >
         <Configure filters={"status=published"} />
 

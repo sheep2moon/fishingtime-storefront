@@ -14,12 +14,14 @@ import ChevronDown from "../../../common/icons/chevron-down"
 import PanelTitle from "../filter-list/PanelTitle"
 import { VscDebugStackframeDot } from "react-icons/vsc"
 import Checkbox from "../../../common/components/checkbox"
+import { useRouter } from "next/router"
 
 const CategorySelector = () => {
   const categoriesData: { [key: string]: customCollection } =
     useCustomNavCollections()
   const [expanded, setExpanded] = useState("")
   const [isSelectedAll, setIsSelectedAll] = useState(false)
+  const router = useRouter()
 
   const mainCategory = useMenu({
     attribute: "collection.metadata.parent",
@@ -32,6 +34,20 @@ const CategorySelector = () => {
   })
   const clear = useClearRefinements()
 
+  useEffect(() => {
+    console.log("OnMOUNT")
+    console.log(router.query)
+    console.log(router.asPath)
+    if (router.query.kategoria) {
+      handleSelectMainCategory(router.query.kategoria as string)
+    }
+    if (router.query.podkategoria) {
+      clear.refine()
+      handleSelectSubcategory(router.query.podkategoria as string)
+    }
+    router.push({ query: {} })
+  }, [router.asPath])
+
   const handleExpand = (itemKey: string) => {
     setExpanded(itemKey)
   }
@@ -42,16 +58,14 @@ const CategorySelector = () => {
     setIsSelectedAll(true)
     mainCategory.refine(itemKey)
   }
-  const handleSelectSubcategory = (itemName: string) => {
-    subCategory.refine(itemName)
+  const handleSelectSubcategory = (subCategoryName: string) => {
+    subCategory.refine(subCategoryName)
     setIsSelectedAll(false)
   }
 
   const handleSelectAll = () => {
     setIsSelectedAll(true)
     const i = subCategory.items.find((item) => item.isRefined)
-    console.log(i)
-
     if (i) {
       subCategory.refine(i?.value)
     }

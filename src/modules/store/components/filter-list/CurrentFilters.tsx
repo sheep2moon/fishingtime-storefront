@@ -62,9 +62,6 @@ const CurrentFilters = () => {
           </div>
         ))}
       </div>
-      <div className="hidden small:block">
-        <ClearFilters />
-      </div>
     </div>
   )
 }

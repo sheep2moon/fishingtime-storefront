@@ -36,7 +36,7 @@ const DropdownMenu = () => {
                   className={clsx(
                     "relative h-full flex items-center transition-all ease-out duration-200 gap-1 p-4 text-lg bg-emerald-700 border-l-2 border-r-2 border-emerald-900 shadow-sm shadow-emerald-900 "
                   )}
-                  onClick={() => push("/store")}
+                  onClick={() => push("/sklep")}
                 >
                   Kategorie
                   <ChevronDown />
@@ -67,7 +67,7 @@ const DropdownMenu = () => {
                                 <CollectionLink
                                   icon={collectionSections[key].icon}
                                   title={collectionSections[key].title}
-                                  href={`/sklep/${key}`}
+                                  href={`/sklep?kategoria=${key}`}
                                   onClick={close}
                                 />
                               </Popover.Button>
@@ -77,10 +77,7 @@ const DropdownMenu = () => {
                                     {collectionSections[key].collections.map(
                                       (collection) => (
                                         <CollectionLink
-                                          href={`/sklep/all?${createSubcategoryURL(
-                                            key,
-                                            collection.title
-                                          )}`}
+                                          href={`/sklep?kategoria=${key}&podkategoria=${collection.title}`}
                                           key={collection.id}
                                           title={collection.title}
                                           onClick={close}

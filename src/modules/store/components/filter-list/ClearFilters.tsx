@@ -9,14 +9,14 @@ import {
 import Button from "../../../common/components/button"
 
 const ClearFilters = () => {
-  const { refine, canRefine } = useClearRefinements()
-
-  const handleClear = () => {
-    refine()
-  }
+  const { canRefine, refine } = useClearRefinements()
 
   return (
-    <Button variant="alternative" disabled={!canRefine} onClick={handleClear}>
+    <Button
+      variant="alternative"
+      disabled={!canRefine}
+      onClick={() => refine()}
+    >
       Wyczyść wszystkie
     </Button>
   )
