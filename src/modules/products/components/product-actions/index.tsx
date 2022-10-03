@@ -51,7 +51,14 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
         </div>
       )}
 
-      <div className="mb-4">
+      {product.hs_code && (
+        <div className="text-lg">
+          <span className="font-semibold mr-1">Producent:</span>
+          <span>{product.hs_code}</span>
+        </div>
+      )}
+
+      <div className="mt-4 mb-2">
         {selectedPrice ? (
           <div className="flex flex-col text-gray-700">
             <span
@@ -79,12 +86,7 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
           <div></div>
         )}
       </div>
-      {product.hs_code && (
-        <div className="text-lg">
-          <span className="font-semibold mr-1">Producent:</span>
-          <span>{product.hs_code}</span>
-        </div>
-      )}
+
       <Button onClick={addToCart}>
         {!inStock ? "Brak w magazynie" : "Dodaj do koszyka"}
       </Button>

@@ -9,6 +9,7 @@ type HitProps = {
 
 const ProductHitPreview = ({ hit }: HitProps) => {
   const is_available = hit.variants.some((v) => v.inventory_quantity > 0)
+  console.log(hit)
 
   let price = 0
   if (hit.variants[0].prices) price = hit.variants[0].prices[0].amount
@@ -36,13 +37,22 @@ const ProductHitPreview = ({ hit }: HitProps) => {
             <div className="p-1 ">
               <Thumbnail thumbnail={hit.thumbnail} size="full" />
             </div>
-            <div className="text-base h-full py-2 flex flex-col justify-between text-stone-900">
-              <span className="border-t border-emerald-900 px-1 font-semibold text-sm inline-block h-12 leading-6 text-ellipsis overflow-hidden">
+            <div className="text-base h-full flex flex-col justify-between text-stone-900">
+              <span className="text-sm font-light text-right">
+                {hit.hs_code || "\u00A0"}
+              </span>
+              <span className="border-t border-emerald-900/50 px-1 font-medium text-sm inline-block h-12 leading-6 text-ellipsis overflow-hidden">
                 {hit.title}
               </span>
-              <span className="text-right block px-2">
-                {price.toFixed(2)}zł
-              </span>
+              <div className="flex justify-between items-center px-2">
+                {is_available && (
+                  <span className="text-xs text-emerald-600">Dostępny</span>
+                )}
+                {!is_available && (
+                  <span className="text-xs text-rose-600">Niedostępny</span>
+                )}
+                <span className="">{price.toFixed(2)}zł</span>
+              </div>
             </div>
           </div>
         </a>

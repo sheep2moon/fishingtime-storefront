@@ -14,7 +14,7 @@ type NavLink = {
 
 export const navLinks: NavLink[] = [
     {
-        href: "/sklep/all",
+        href: "/sklep?kategoria=all",
         title: "Przeglądaj wszystko"
     },
     {

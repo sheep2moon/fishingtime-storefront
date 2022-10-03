@@ -74,7 +74,7 @@ const MainMenu = () => {
         <div className="flex flex-col flex-1 text-large-regular text-gray-900">
           <ul className="flex flex-col gap-y-2">
             <li className="bg-gray-50 p-4">
-              <Link href="/sklep/all">
+              <Link href="/sklep?kategoria=all">
                 <a>
                   <button
                     className="flex items-center justify-between w-full"
@@ -107,26 +107,14 @@ const MainMenu = () => {
                         {open && (
                           <Disclosure.Panel className="flex flex-col gap-4 p-2 pl-6">
                             <CollectionLink
-                              href={`/sklep/${key}`}
+                              href={`/sklep?kategoria=${key}`}
                               title="Pokaż Wszystko"
                               onClick={close}
                             />
                             {collectionSections[key].collections.map(
                               (collection) => (
-                                // <span
-                                //   onClick={() =>
-                                //     handleSelectCollection(collection.id)
-                                //   }
-                                //   key={collection.id}
-                                //   className="flex items-center p-2 cursor-pointer hover:bg-slate-200"
-                                // >
-                                //   <ChevronDown className="-rotate-90 " />
-                                //   <span>{collection.title}</span>
-                                // </span>
                                 <CollectionLink
-                                  href={`/sklep/${key}?kolekcja=${titleToHandle(
-                                    collection.title
-                                  )}`}
+                                  href={`/sklep?kategoria=${key}&podkategoria=${collection.title}`}
                                   key={collection.id}
                                   title={collection.title}
                                   onClick={close}

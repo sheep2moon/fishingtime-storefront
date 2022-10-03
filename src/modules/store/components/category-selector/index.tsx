@@ -35,25 +35,32 @@ const CategorySelector = () => {
   const clear = useClearRefinements()
 
   useEffect(() => {
-    console.log("OnMOUNT")
-    console.log(router.query)
-    console.log(router.asPath)
-    if (router.query.kategoria) {
-      handleSelectMainCategory(router.query.kategoria as string)
-    }
-    if (router.query.podkategoria) {
+    if (router.query.kategoria && !router.query.podkategoria) {
+      if (router.query.kategoria === "all") {
+        clear.refine()
+      } else {
+        handleSelectMainCategory(router.query.kategoria as string)
+      }
+    } else if (router.query.kategoria && router.query.podkategoria) {
       clear.refine()
+      mainCategory.refine(router.query.kategoria as string)
       handleSelectSubcategory(router.query.podkategoria as string)
     }
     router.push({ query: {} })
   }, [router.asPath])
 
-  const handleExpand = (itemKey: string) => {
-    setExpanded(itemKey)
-  }
+  // const handleExpand = (itemKey: string) => {
+  //   setExpanded(itemKey)
+  // }
+
+  useEffect(() => {
+    const currentlyRefined = mainCategory.items.find((c) => c.isRefined)
+    if (currentlyRefined) setExpanded(currentlyRefined.value)
+    else setExpanded("")
+  }, [mainCategory.items])
 
   const handleSelectMainCategory = (itemKey: string) => {
-    handleExpand(expanded === itemKey ? "" : itemKey)
+    // handleExpand(expanded === itemKey ? "" : itemKey)
     clear.refine()
     setIsSelectedAll(true)
     mainCategory.refine(itemKey)
