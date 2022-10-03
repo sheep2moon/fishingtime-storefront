@@ -48,7 +48,7 @@ const Nav = () => {
         "!fixed": isHome,
       })}
     >
-      <header className="relative h-16 small:h-28 mx-auto transition-colors bg-white duration-200 group-hover:bg-white shadow-lg text-base">
+      <header className="relative h-16 small:h-28 mx-auto transition-colors bg-white duration-200 group-hover:bg-white shadow-lg text-base no-scrollbar">
         <nav className="text-gray-900  flex items-center justify-start w-full h-full text-small-regular transition-colors duration-200">
           <div className="flex flex-col w-full h-full">
             <div className="flex h-16 justify-between items-center px-1 2xsmall:px-4 max-w-[1440px] mx-auto w-full">

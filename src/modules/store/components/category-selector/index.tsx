@@ -91,52 +91,55 @@ const CategorySelector = () => {
           <div
             onClick={() => handleSelectMainCategory(mainCategory.value)}
             className={clsx(
-              "flex justify-between items-center rounded-sm bg-slate-200 hover:bg-slate-300 p-1",
+              "flex justify-between items-center rounded-sm hover:bg-slate-100 p-1",
               {
                 "font-bold": mainCategory.isRefined,
               }
             )}
           >
             <span>{navCollections[mainCategory.value].title}</span>
-            <ChevronDown
+            {/* <ChevronDown
               className={clsx({
                 "rotate-180": mainCategory.value === expanded,
               })}
-            />
+            /> */}
           </div>
           {mainCategory.value === expanded && (
-            <ul className="pl-2">
-              <li onClick={() => handleSelectAll()}>
-                <div
-                  className={clsx("flex items-center", {
-                    "text-amber-700 font-bold": isSelectedAll,
-                  })}
-                >
-                  <VscDebugStackframeDot />
-                  <span>Wszystko</span>
-                </div>
-              </li>
-              {categoriesData[mainCategory.value].collections.map(
-                (collection) => (
-                  <li
-                    key={collection.id}
-                    className=""
-                    onClick={() => handleSelectSubcategory(collection.title)}
+            <div className="flex">
+              <span className="ml-2 mb-[11px] w-[2px] max-h-fit bg-slate-400"></span>
+              <ul className="">
+                <li className="" onClick={() => handleSelectAll()}>
+                  <div
+                    className={clsx("flex items-center", {
+                      "text-amber-700 font-bold": isSelectedAll,
+                    })}
                   >
-                    <div
-                      className={clsx("flex items-center", {
-                        "text-amber-700 font-bold": isCollectionRefined(
-                          collection.title
-                        ),
-                      })}
+                    <span className="bg-slate-400 h-[2px] w-3 mr-2 rounded-r-md"></span>
+                    <span>Wszystko</span>
+                  </div>
+                </li>
+                {categoriesData[mainCategory.value].collections.map(
+                  (collection) => (
+                    <li
+                      key={collection.id}
+                      className=""
+                      onClick={() => handleSelectSubcategory(collection.title)}
                     >
-                      <VscDebugStackframeDot />
-                      <span>{collection.title}</span>
-                    </div>
-                  </li>
-                )
-              )}
-            </ul>
+                      <div
+                        className={clsx("flex items-center", {
+                          "text-amber-700 font-bold": isCollectionRefined(
+                            collection.title
+                          ),
+                        })}
+                      >
+                        <span className="bg-slate-400 h-[2px] w-3 mr-2 rounded-r-sm"></span>
+                        <span>{collection.title}</span>
+                      </div>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
           )}
         </div>
       ))}

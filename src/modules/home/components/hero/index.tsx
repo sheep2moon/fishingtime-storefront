@@ -11,7 +11,9 @@ const Hero = () => {
         <p className="text-base-regular max-w-[32rem] mb-6 drop-shadow-md shadow-black">
           tekst dolny
         </p>
-        <UnderlineLink href="/sklep/all">Przejdź do sklepu</UnderlineLink>
+        <UnderlineLink href="/sklep?kategoria=all">
+          Przejdź do sklepu
+        </UnderlineLink>
       </div>
       <Image
         src="/hero.jpg"

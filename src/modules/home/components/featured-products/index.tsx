@@ -13,16 +13,18 @@ const FeaturedProducts = () => {
           <p className="text-2xl-regular text-gray-900 max-w-lg">
             Wyróżnione produkty.
           </p>
-          <UnderlineLink href="/sklep/all">Przejdź do sklepu</UnderlineLink>
+          <UnderlineLink href="/sklep?kategoria=all">
+            Przejdź do sklepu
+          </UnderlineLink>
         </div>
-        <ul className="flex gap-2 flex-wrap justify-center small:justify-start">
+        <ul className="grid grid-cols-2 gap-1 xsmall:grid-cols-3 small:grid-cols-6 justify-center small:justify-start">
           {data
             ? data.map((product) => (
                 <li key={product.id}>
                   <ProductPreview {...product} />
                 </li>
               ))
-            : Array.from(Array(4).keys()).map((i) => (
+            : Array.from(Array(6).keys()).map((i) => (
                 <li key={i}>
                   <SkeletonProductPreview />
                 </li>

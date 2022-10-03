@@ -26,7 +26,7 @@ const CartDropdown = () => {
       onMouseLeave={close}
     >
       <Popover className="relative h-full">
-        <Link href="/cart" passHref>
+        <Link href="/cart" passHref aria-label="Przejdź do koszyka">
           <Popover.Button className="h-full flex items-center gap-1 relative w-12">
             <BsCart3 className="text-3xl small:text-lg font-light" />
             <div className="flex items-center text-lg relative ">

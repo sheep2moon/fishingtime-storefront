@@ -19,7 +19,7 @@ const ProductPreview = ({
       })}
     >
       <Link href={`/products/${handle}`}>
-        <a className="block w-64 2xsmall:h-72 2xsmall:w-44 small:w-52 small:h-72">
+        <a className="block w-full max-w-xs">
           <div className=" flex flex-col justify-between h-full">
             <div className=" p-1 ">
               <Thumbnail thumbnail={thumbnail} size="full" />
