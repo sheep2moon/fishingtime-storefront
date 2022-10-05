@@ -94,6 +94,7 @@ export const useCustomNavCollections = (): {
       collections: [],
     },
   }
+  console.log(data)
 
   if (data) {
     data.forEach((c) => {
@@ -104,6 +105,7 @@ export const useCustomNavCollections = (): {
       }
     })
   }
+  console.log(navCollections)
 
   return navCollections
 }

@@ -35,6 +35,8 @@ const CategorySelector = () => {
   const clear = useClearRefinements()
 
   useEffect(() => {
+    console.log(router)
+
     if (router.query.kategoria && !router.query.podkategoria) {
       if (router.query.kategoria === "all") {
         clear.refine()
@@ -83,6 +85,10 @@ const CategorySelector = () => {
     return i?.isRefined
   }
 
+  useEffect(() => {
+    console.log(mainCategory.items)
+  }, [mainCategory])
+
   return (
     <div>
       <PanelTitle>Kategorie</PanelTitle>
@@ -97,7 +103,7 @@ const CategorySelector = () => {
               }
             )}
           >
-            <span>{navCollections[mainCategory.value].title}</span>
+            <span>{navCollections[mainCategory.value]?.title}</span>
             {/* <ChevronDown
               className={clsx({
                 "rotate-180": mainCategory.value === expanded,

@@ -9,7 +9,6 @@ type HitProps = {
 
 const ProductHitPreview = ({ hit }: HitProps) => {
   const is_available = hit.variants.some((v) => v.inventory_quantity > 0)
-  console.log(hit)
 
   let price = 0
   if (hit.variants[0].prices) price = hit.variants[0].prices[0].amount
