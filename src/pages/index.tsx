@@ -13,6 +13,7 @@ const Home: NextPageWithLayout = () => {
         description="Wkrótce otwarcie sklepu internetowego."
       />
       <Hero />
+
       <FeaturedProducts />
     </>
   )
