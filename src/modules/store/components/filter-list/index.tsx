@@ -5,6 +5,7 @@ import { useClearRefinements } from "react-instantsearch-hooks-web"
 import Button from "../../../common/components/button"
 import ClearFilters from "./ClearFilters"
 import Filters from "./Filters"
+import { BiFilterAlt } from "react-icons/bi"
 
 const FilterList = () => {
   const [filtersOpened, setFiltersOpened] = useState(false)
@@ -12,7 +13,14 @@ const FilterList = () => {
   return (
     <div className="w-full small:max-w-xs">
       <div className="fixed bottom-2 left-2 z-50 small:hidden">
-        <Button onClick={() => setFiltersOpened(true)}>Filtruj</Button>
+        <Button
+          variant="primary"
+          className="flex items-center gap-1"
+          onClick={() => setFiltersOpened(true)}
+        >
+          <BiFilterAlt />
+          Filtruj
+        </Button>
       </div>
       <div
         className={clsx(
