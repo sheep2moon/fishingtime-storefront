@@ -1,4 +1,10 @@
-import { Configure, InstantSearch } from "react-instantsearch-hooks-web"
+import {
+  Configure,
+  InstantSearch,
+  InstantSearchProps,
+  useInstantSearch,
+} from "react-instantsearch-hooks-web"
+import type { UiState } from "instantsearch.js"
 import { searchClient } from "../../lib/search-client"
 import Head from "../../modules/common/components/head"
 import Layout from "../../modules/layout/templates"
@@ -9,8 +15,19 @@ import SortSelector from "../../modules/store/components/sort-selector"
 import { NextPageWithLayout } from "../../types/global"
 import SearchBox from "../../modules/search/components/search-box"
 import FilterList from "../../modules/store/components/filter-list"
+import { useRouter } from "next/router"
+import {
+  searchStateToUrl,
+  urlToSearchState,
+} from "../../lib/util/searchstate-url"
+import { GetServerSidePropsContext } from "next"
+import { useEffect, useState } from "react"
 
-const CategoryStore: NextPageWithLayout = () => {
+const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = ({
+  query,
+}) => {
+  const router = useRouter()
+
   // const routing = {
   //   stateMapping: simple(),
   //   router: history({
@@ -24,18 +41,46 @@ const CategoryStore: NextPageWithLayout = () => {
   //   }),
   // }
 
+  const initialUiState = urlToSearchState(query)
+
+  const onStateChange: InstantSearchProps["onStateChange"] = ({
+    uiState,
+    setUiState,
+  }) => {
+    let q = ""
+    if (
+      router.query.kategoria !==
+      uiState.products.menu?.["collection.metadata.parent"]
+    ) {
+      console.log("TODO: czyszczenie podkategorii")
+      setUiState({
+        products: {
+          ...uiState,
+          menu: { ...uiState.products.menu, ["collection.handle"]: "" },
+        },
+      })
+      q = searchStateToUrl(uiState, true)
+    } else {
+      q = searchStateToUrl(uiState, false)
+      setUiState(uiState)
+    }
+
+    router.push({ query: q }, undefined, { shallow: true }).then(() => {})
+  }
+
   return (
     <>
       <Head title="Sklep" description="Zobacz asortyment naszego sklepu." />
       <InstantSearch
         indexName="products"
         searchClient={searchClient}
-        // onStateChange={handleStateChange}
+        onStateChange={onStateChange}
+        initialUiState={initialUiState}
         // routing={routing}
         // stalledSearchDelay={200}
       >
         <Configure filters={"status=published"} />
-
+        <UpdateUiState />
         <div>
           <div className="flex flex-col items-center">
             <div className="flex flex-col small:flex-row gap-1 pb-6 w-full items-start small:justify-center content-container mt-2">
@@ -62,4 +107,27 @@ export default CategoryStore
 
 CategoryStore.getLayout = (page) => {
   return <Layout>{page}</Layout>
+}
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const q = context.query
+
+  return {
+    props: { query: context.query }, // will be passed to the page component as props
+  }
+}
+
+const UpdateUiState = () => {
+  const { setUiState, uiState } = useInstantSearch()
+  const router = useRouter()
+
+  useEffect(() => {
+    const q = searchStateToUrl(uiState, false)
+    if (q !== router.asPath.split("?")[1]) {
+      const newState = urlToSearchState(router.query)
+      setUiState(newState)
+    }
+  }, [router.asPath])
+
+  return <></>
 }

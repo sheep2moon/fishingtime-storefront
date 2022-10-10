@@ -10,6 +10,7 @@ type LayoutCollection = {
   id: string
   title: string
   parent_collection: any
+  handle: string
 }
 
 export const fetchCollectionData = async (): Promise<LayoutCollection[]> => {
@@ -34,6 +35,7 @@ export const fetchCollectionData = async (): Promise<LayoutCollection[]> => {
     const parent_collection =
       Object.keys(c.metadata).length > 0 ? c.metadata.parent : false
     return {
+      handle: c.handle,
       id: c.id,
       title: c.title,
       parent_collection,

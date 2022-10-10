@@ -28,28 +28,29 @@ const CategorySelector = () => {
     sortBy: ["name:asc"],
   })
   const subCategory = useMenu({
-    attribute: "collection.title",
+    attribute: "collection.handle",
     sortBy: ["name:asc"],
     limit: 999,
   })
   const clear = useClearRefinements()
 
-  useEffect(() => {
-    console.log(router)
-
-    if (router.query.kategoria && !router.query.podkategoria) {
-      if (router.query.kategoria === "all") {
-        clear.refine()
-      } else {
-        handleSelectMainCategory(router.query.kategoria as string)
-      }
-    } else if (router.query.kategoria && router.query.podkategoria) {
-      clear.refine()
-      mainCategory.refine(router.query.kategoria as string)
-      handleSelectSubcategory(router.query.podkategoria as string)
-    }
-    router.push({ query: {} })
-  }, [router.asPath])
+  // useEffect(() => {
+  //   console.log(router)
+  //   if (router.query.goto) {
+  //     if (router.query.kategoria && !router.query.podkategoria) {
+  //       if (router.query.kategoria === "all") {
+  //         clear.refine()
+  //       } else {
+  //         handleSelectMainCategory(router.query.kategoria as string)
+  //       }
+  //     } else if (router.query.kategoria && router.query.podkategoria) {
+  //       clear.refine()
+  //       mainCategory.refine(router.query.kategoria as string)
+  //       handleSelectSubcategory(router.query.podkategoria as string)
+  //     }
+  //   }
+  // router.push({ query: {} })
+  // }, [router.asPath])
 
   // const handleExpand = (itemKey: string) => {
   //   setExpanded(itemKey)
@@ -63,21 +64,18 @@ const CategorySelector = () => {
 
   const handleSelectMainCategory = (itemKey: string) => {
     // handleExpand(expanded === itemKey ? "" : itemKey)
-    clear.refine()
-    setIsSelectedAll(true)
+    // handleSelectAll()
     mainCategory.refine(itemKey)
+    // subCategory.refine("")
   }
-  const handleSelectSubcategory = (subCategoryName: string) => {
-    subCategory.refine(subCategoryName)
+  const handleSelectSubcategory = (subCategoryHandle: string) => {
+    subCategory.refine(subCategoryHandle)
     setIsSelectedAll(false)
   }
 
   const handleSelectAll = () => {
-    setIsSelectedAll(true)
-    const i = subCategory.items.find((item) => item.isRefined)
-    if (i) {
-      subCategory.refine(i?.value)
-    }
+    // setIsSelectedAll(true)
+    subCategory.refine("")
   }
 
   const isCollectionRefined = (itemKey: string) => {
@@ -86,8 +84,9 @@ const CategorySelector = () => {
   }
 
   useEffect(() => {
-    console.log(mainCategory.items)
-  }, [mainCategory])
+    const isSelectedAll = !subCategory.items.some((item) => item.isRefined)
+    setIsSelectedAll(isSelectedAll)
+  }, [subCategory.items])
 
   return (
     <div>
@@ -129,12 +128,12 @@ const CategorySelector = () => {
                     <li
                       key={collection.id}
                       className=""
-                      onClick={() => handleSelectSubcategory(collection.title)}
+                      onClick={() => handleSelectSubcategory(collection.handle)}
                     >
                       <div
                         className={clsx("flex items-center", {
                           "text-amber-700 font-bold": isCollectionRefined(
-                            collection.title
+                            collection.handle
                           ),
                         })}
                       >

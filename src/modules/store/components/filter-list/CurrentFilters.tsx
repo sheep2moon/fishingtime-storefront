@@ -5,7 +5,7 @@ import PanelTitle from "./PanelTitle"
 
 const labelsMap: { [key: string]: string } = {
   "variants.prices.amount": "Cena",
-  "collection.title": "Podkategoria",
+  "collection.handle": "Podkategoria",
   hs_code: "Producent",
 }
 

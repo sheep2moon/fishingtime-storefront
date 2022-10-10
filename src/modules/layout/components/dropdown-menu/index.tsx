@@ -77,7 +77,7 @@ const DropdownMenu = () => {
                                     {collectionSections[key].collections.map(
                                       (collection) => (
                                         <CollectionLink
-                                          href={`/sklep?kategoria=${key}&podkategoria=${collection.title}`}
+                                          href={`/sklep?kategoria=${key}&podkategoria=${collection.handle}`}
                                           key={collection.id}
                                           title={collection.title}
                                           onClick={close}

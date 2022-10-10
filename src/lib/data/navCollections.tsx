@@ -18,7 +18,7 @@ import { TbCircles } from "react-icons/tb"
 export type customCollection = {
   title: string
   icon: JSX.Element
-  collections: { id: string; title: string }[]
+  collections: { id: string; title: string; handle: string }[]
 }
 
 export const navCollections: { [key: string]: customCollection } = {
