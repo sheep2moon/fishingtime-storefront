@@ -26,6 +26,7 @@ const CategorySelector = () => {
   const mainCategory = useMenu({
     attribute: "collection.metadata.parent",
     sortBy: ["name:asc"],
+    limit: 999,
   })
   const subCategory = useMenu({
     attribute: "collection.handle",
