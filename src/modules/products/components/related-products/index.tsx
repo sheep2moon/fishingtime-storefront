@@ -63,7 +63,7 @@ const RelatedProducts = ({ product }: RelatedProductsProps) => {
         </p>
       </div>
 
-      <ul className="flex gap-2 flex-wrap justify-center">
+      <ul className="grid grid-cols-2 gap-1 xsmall:grid-cols-3 small:grid-cols-6 justify-center small:justify-start">
         {previews.map((p) => (
           <li key={p.id}>
             <ProductPreview {...p} />
