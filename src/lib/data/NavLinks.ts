@@ -1,7 +1,6 @@
-
 type NavLink = {
-    href: string,
-    title: string
+  href: string
+  title: string
 }
 
 // <NavLink href="/store">Kontakt</NavLink>
@@ -13,24 +12,24 @@ type NavLink = {
 //         <NavLink href="/regulamin-sklepu">Regulamin</NavLink>
 
 export const navLinks: NavLink[] = [
-    {
-        href: "/sklep?kategoria=all",
-        title: "Przeglądaj wszystko"
-    },
-    {
-        href: "/polityka-prywatnosci",
-        title: "Polityka Prywatności"
-    },
-    {
-        href: "/regulamin-sklepu",
-        title: "Regulamin"
-    },
-    {
-        href: "/sklep-test",
-        title: "Rabaty"
-    },
-    {
-        href: "/sklep-test",
-        title: "Wysyłka"
-    },
+  {
+    href: "/sklep",
+    title: "Przeglądaj wszystko",
+  },
+  {
+    href: "/polityka-prywatnosci",
+    title: "Polityka Prywatności",
+  },
+  {
+    href: "/regulamin-sklepu",
+    title: "Regulamin",
+  },
+  {
+    href: "/sklep-test",
+    title: "Rabaty",
+  },
+  {
+    href: "/sklep-test",
+    title: "Wysyłka",
+  },
 ]

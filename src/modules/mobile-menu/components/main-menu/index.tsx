@@ -74,7 +74,7 @@ const MainMenu = () => {
         <div className="flex flex-col flex-1 text-large-regular text-gray-900">
           <ul className="flex flex-col gap-y-2">
             <li className="bg-gray-50 p-4">
-              <Link href="/sklep?kategoria=all">
+              <Link href="/sklep">
                 <a>
                   <button
                     className="flex items-center justify-between w-full"

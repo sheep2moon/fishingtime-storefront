@@ -13,9 +13,7 @@ const FeaturedProducts = () => {
           <p className="text-2xl-regular text-gray-900 max-w-lg">
             Wyróżnione produkty.
           </p>
-          <UnderlineLink href="/sklep?kategoria=all">
-            Przejdź do sklepu
-          </UnderlineLink>
+          <UnderlineLink href="/sklep">Przejdź do sklepu</UnderlineLink>
         </div>
         <ul className="grid grid-cols-2 gap-1 xsmall:grid-cols-3 small:grid-cols-6 justify-center small:justify-start">
           {data
