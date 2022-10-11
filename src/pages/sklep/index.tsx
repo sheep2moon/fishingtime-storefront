@@ -21,7 +21,7 @@ import {
   urlToSearchState,
 } from "../../lib/util/searchstate-url"
 import { GetServerSidePropsContext } from "next"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = ({
   query,
@@ -42,17 +42,21 @@ const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = ({
   // }
 
   const initialUiState = urlToSearchState(query)
+  const setStateId: { current: NodeJS.Timeout | null } = useRef(null)
 
   const onStateChange: InstantSearchProps["onStateChange"] = ({
     uiState,
     setUiState,
   }) => {
+    console.log("stateChange")
+
+    clearTimeout(setStateId.current as NodeJS.Timeout)
     let q = ""
     if (
+      router.query.kategoria &&
       router.query.kategoria !==
-      uiState.products.menu?.["collection.metadata.parent"]
+        uiState.products.menu?.["collection.metadata.parent"]
     ) {
-      console.log("TODO: czyszczenie podkategorii")
       setUiState({
         products: {
           ...uiState,
@@ -65,7 +69,9 @@ const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = ({
       setUiState(uiState)
     }
 
-    router.push({ query: q }, undefined, { shallow: true }).then(() => {})
+    setStateId.current = setTimeout(() => {
+      router.push({ query: q }, undefined, { shallow: true }).then(() => {})
+    }, 700)
   }
 
   return (

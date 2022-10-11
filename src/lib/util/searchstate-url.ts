@@ -7,6 +7,7 @@ export const searchStateToUrl = (
   clearSubcategories: boolean
 ) => {
   let q: string[] = []
+  console.log(state.products)
 
   if (state.products) {
     if (state.products.menu) {
@@ -19,12 +20,10 @@ export const searchStateToUrl = (
         q.push("podkategoria=" + state.products.menu["collection.handle"])
       }
     }
-    // if (state.products.refinementList) {
-    //   //HANDLE REFINEMENTS
-    //   Object.keys(state.products.refinementList).forEach((key) => {
-    //     q.push(`${key}=${state.products.refinementList?.[key]}`)
-    //   })
-    // }
+    if (state.products.refinementList?.hs_code) {
+      //HANDLE REFINEMENTS
+      q.push("producent=" + state.products.refinementList?.hs_code.join("+"))
+    }
     if (state.products.sortBy) {
       //HANDLE sortBy
       q.push("sortuj=" + state.products.sortBy)
@@ -32,6 +31,11 @@ export const searchStateToUrl = (
     if (state.products.page) {
       q.push("page=" + state.products.page)
     }
+    // if (state.products.refinementList){
+    //   Object.keys(state.products.refinementList).forEach(refinement => {
+    //     q.push(`refinement=${refinement.j}`)
+    //   })
+    // }
   }
   return q.join("&")
 }
@@ -40,12 +44,13 @@ export const urlToSearchState = (q: ParsedUrlQuery) => {
   let uiState: {
     configure: { filters: string }
     menu: { [key: string]: string }
-    refinementList?: { [key: string]: string[] }
+    refinementList: { [key: string]: string[] }
     sortBy?: string
     page?: number
   } = {
     configure: { filters: "status=published" },
     menu: {},
+    refinementList: {},
   }
   // let uiState: UiState = {products:{}}
   if (q.kategoria) {
@@ -60,7 +65,10 @@ export const urlToSearchState = (q: ParsedUrlQuery) => {
   if (q.page) {
     uiState.page = parseInt(q.page as string)
   }
-  if (q.page) {
+  if (q.producent) {
+    if (typeof q.producent === "string") {
+      uiState.refinementList["hs_code"] = q.producent.split("+")
+    }
   }
 
   return { products: { ...uiState } }
