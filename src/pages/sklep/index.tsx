@@ -23,9 +23,11 @@ import {
 import { GetServerSidePropsContext } from "next"
 import { useEffect, useRef, useState } from "react"
 
-const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = ({
-  query,
-}) => {
+// {
+//   query,
+// }
+
+const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = () => {
   const router = useRouter()
 
   // const routing = {
@@ -41,7 +43,7 @@ const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = ({
   //   }),
   // }
 
-  const initialUiState = urlToSearchState(query)
+  // const initialUiState = urlToSearchState(query)
   const setStateId: { current: NodeJS.Timeout | null } = useRef(null)
 
   const onStateChange: InstantSearchProps["onStateChange"] = ({
@@ -81,7 +83,7 @@ const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = ({
         indexName="products"
         searchClient={searchClient}
         onStateChange={onStateChange}
-        initialUiState={initialUiState}
+        // initialUiState={initialUiState}
         // routing={routing}
         // stalledSearchDelay={200}
       >
@@ -115,13 +117,13 @@ CategoryStore.getLayout = (page) => {
   return <Layout>{page}</Layout>
 }
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const q = context.query
+// export async function getServerSideProps(context: GetServerSidePropsContext) {
+//   const q = context.query
 
-  return {
-    props: { query: context.query }, // will be passed to the page component as props
-  }
-}
+//   return {
+//     props: { query: context.query }, // will be passed to the page component as props
+//   }
+// }
 
 const UpdateUiState = () => {
   const { setUiState, uiState } = useInstantSearch()

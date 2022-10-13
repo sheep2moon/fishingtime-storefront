@@ -62,12 +62,11 @@ export function InfiniteProductHits({}) {
           ref={sentinelRef}
           aria-hidden="true"
         ></span>
-        {hits.length === 0 &&
-          repeat(20).map((index) => (
-            <li key={index} className="w-44 h-72">
-              <SkeletonProductPreview />
-            </li>
-          ))}
+        {/* {repeat(20).map((index) => (
+          <li key={index} className="w-44 h-72 list-none">
+            <SkeletonProductPreview />
+          </li>
+        ))} */}
       </div>
     </div>
   )
