@@ -4,13 +4,10 @@ import {
   InstantSearchProps,
   useInstantSearch,
 } from "react-instantsearch-hooks-web"
-import type { UiState } from "instantsearch.js"
 import { searchClient } from "../../lib/search-client"
 import Head from "../../modules/common/components/head"
 import Layout from "../../modules/layout/templates"
 import { InfiniteProductHits } from "../../modules/store/components/products-list"
-import { simple } from "instantsearch.js/es/lib/stateMappings"
-import { history } from "instantsearch.js/es/lib/routers"
 import SortSelector from "../../modules/store/components/sort-selector"
 import { NextPageWithLayout } from "../../types/global"
 import SearchBox from "../../modules/search/components/search-box"
@@ -21,29 +18,14 @@ import {
   urlToSearchState,
 } from "../../lib/util/searchstate-url"
 import { GetServerSidePropsContext } from "next"
-import { useEffect, useRef, useState } from "react"
-
-// {
-//   query,
-// }
+import { useEffect, useRef } from "react"
 
 const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = () => {
   const router = useRouter()
 
-  // const routing = {
-  //   stateMapping: simple(),
-  //   router: history({
-  //     getLocation() {
-  //       if (typeof window === "undefined") {
-  //         return location
-  //       }
+  const initialUiState = urlToSearchState(router.query)
+  console.log(initialUiState)
 
-  //       return window.location
-  //     },
-  //   }),
-  // }
-
-  // const initialUiState = urlToSearchState(query)
   const setStateId: { current: NodeJS.Timeout | null } = useRef(null)
 
   const onStateChange: InstantSearchProps["onStateChange"] = ({
@@ -51,6 +33,7 @@ const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = () => {
     setUiState,
   }) => {
     console.log("stateChange")
+    console.log(router.query)
 
     clearTimeout(setStateId.current as NodeJS.Timeout)
     let q = ""
@@ -70,6 +53,7 @@ const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = () => {
       q = searchStateToUrl(uiState, false)
       setUiState(uiState)
     }
+    console.log(q)
 
     setStateId.current = setTimeout(() => {
       router.push({ query: q }, undefined, { shallow: true }).then(() => {})
@@ -83,7 +67,7 @@ const CategoryStore: NextPageWithLayout<GetServerSidePropsContext> = () => {
         indexName="products"
         searchClient={searchClient}
         onStateChange={onStateChange}
-        // initialUiState={initialUiState}
+        initialUiState={initialUiState}
         // routing={routing}
         // stalledSearchDelay={200}
       >
@@ -116,14 +100,6 @@ export default CategoryStore
 CategoryStore.getLayout = (page) => {
   return <Layout>{page}</Layout>
 }
-
-// export async function getServerSideProps(context: GetServerSidePropsContext) {
-//   const q = context.query
-
-//   return {
-//     props: { query: context.query }, // will be passed to the page component as props
-//   }
-// }
 
 const UpdateUiState = () => {
   const { setUiState, uiState } = useInstantSearch()

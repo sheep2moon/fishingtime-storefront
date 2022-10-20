@@ -7,8 +7,7 @@ import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collectio
 import ChevronDown from "../../../common/icons/chevron-down"
 import NavLink from "./NavLink"
 import { navLinks } from "../../../../lib/data/NavLinks"
-import { titleToHandle } from "../../../../lib/util/transform-titles-links"
-import { createSubcategoryURL } from "../../../../lib/util/create-search-link"
+import { IoMdList } from "react-icons/io"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
@@ -38,6 +37,7 @@ const DropdownMenu = () => {
                   )}
                   onClick={() => push("/sklep")}
                 >
+                  <IoMdList className="text-slate-50" />
                   Kategorie
                   <ChevronDown />
                 </Popover.Button>

@@ -17,6 +17,9 @@ import { TbCircles } from "react-icons/tb"
 
 import { useNavigationCollections } from "./use-layout-data"
 import { customCollection } from "../data/navCollections"
+import SpinningWheel from "../../modules/common/icons/categories-icons/spinning-wheel"
+import FishingBox from "../../modules/common/icons/categories-icons/fishing-box"
+import SpinningBait from "../../modules/common/icons/categories-icons/spinning-bait"
 
 export const useCustomNavCollections = (): {
   [key: string]: customCollection
@@ -29,7 +32,7 @@ export const useCustomNavCollections = (): {
       collections: [],
     },
     kolowrotki: {
-      icon: <FcFilmReel />,
+      icon: <SpinningWheel />,
       title: "Kołowrotki",
       collections: [],
     },
@@ -39,7 +42,7 @@ export const useCustomNavCollections = (): {
       collections: [],
     },
     "torby-pojemniki": {
-      icon: <BsInboxes />,
+      icon: <FishingBox />,
       title: "Torby i pojemniki",
       collections: [],
     },
@@ -59,7 +62,7 @@ export const useCustomNavCollections = (): {
       collections: [],
     },
     "przynety-spinningowe": {
-      icon: <GiFishingLure />,
+      icon: <SpinningBait />,
       title: "Przynęty spinningowe",
       collections: [],
     },

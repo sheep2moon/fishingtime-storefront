@@ -4,6 +4,7 @@ import Hero from "@modules/home/components/hero"
 import Layout from "@modules/layout/templates"
 import { ReactElement } from "react"
 import { NextPageWithLayout } from "types/global"
+import FeaturedCategories from "../modules/home/components/featured-categories"
 
 const Home: NextPageWithLayout = () => {
   return (
@@ -13,7 +14,7 @@ const Home: NextPageWithLayout = () => {
         description="Wkrótce otwarcie sklepu internetowego."
       />
       <Hero />
-
+      <FeaturedCategories />
       <FeaturedProducts />
     </>
   )
