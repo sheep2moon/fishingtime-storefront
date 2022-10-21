@@ -10,7 +10,6 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { VscAccount } from "react-icons/vsc"
-import logo from "../../../../../public/logo3.svg"
 
 const Nav = () => {
   const { pathname } = useRouter()

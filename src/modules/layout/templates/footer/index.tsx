@@ -1,8 +1,6 @@
-import FooterNav from "@modules/layout/components/footer-nav"
 import Link from "next/link"
 import { SiGooglemaps } from "react-icons/si"
 import { GiPhone } from "react-icons/gi"
-import Image from "next/image"
 
 const Footer = () => {
   return (
