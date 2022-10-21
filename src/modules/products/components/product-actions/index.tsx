@@ -7,6 +7,7 @@ import Link from "next/link"
 import React, { useMemo, useEffect } from "react"
 import { Product } from "types/medusa"
 import { navCollections } from "../../../../lib/data/navCollections"
+import InputNumber from "../../../common/components/input-number"
 import ProductBreadcrumbs from "../product-breadcrumbs"
 
 type ProductActionsProps = {
@@ -14,8 +15,17 @@ type ProductActionsProps = {
 }
 
 const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
-  const { updateOptions, addToCart, options, inStock, variant } =
-    useProductActions()
+  const {
+    updateOptions,
+    addToCart,
+    options,
+    inStock,
+    variant,
+    quantity,
+    increaseQuantity,
+    decreaseQuantity,
+    maxQuantityMet,
+  } = useProductActions()
 
   const price = useProductPrice({ id: product.id, variantId: variant?.id })
 
@@ -66,7 +76,8 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
                 "text-rose-600": selectedPrice.price_type === "sale",
               })}
             >
-              {selectedPrice.calculated_price}
+              <span>Cena:</span>
+              {selectedPrice.calculated_price.replace("PLN", "") + "zł"}
             </span>
             {selectedPrice.price_type === "sale" && (
               <>
@@ -83,7 +94,29 @@ const ProductActions: React.FC<ProductActionsProps> = ({ product }) => {
             )}
           </div>
         ) : (
-          <div></div>
+          <div>Produkt niedostępny</div>
+        )}
+      </div>
+
+      <div className="flex flex-col my-4">
+        <span>Wybierz ilość</span>
+        <div className="flex items-center space-x-3">
+          <Button className="w-8" onClick={decreaseQuantity}>
+            -
+          </Button>
+          <InputNumber
+            className="w-16 text-lg text-center"
+            value={quantity}
+            readOnly={true}
+          />
+          <Button className="w-8" onClick={increaseQuantity}>
+            +
+          </Button>
+        </div>
+        {maxQuantityMet && (
+          <span className="text-rose-900 font-bold">
+            Większa ilość niedostępna
+          </span>
         )}
       </div>
 
