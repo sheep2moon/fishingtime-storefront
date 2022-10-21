@@ -37,7 +37,7 @@ const Hero = () => {
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo!
               </h2>
 
-              <p className="hidden max-w-md text-white/90 md:mt-6 md:block md:text-lg md:leading-relaxed">
+              <p className=" max-w-md text-white/90 md:mt-6 md:block md:text-lg md:leading-relaxed">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Inventore officia corporis quasi doloribus iure architecto quae
                 voluptatum beatae excepturi dolores.
