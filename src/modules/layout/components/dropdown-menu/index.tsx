@@ -6,8 +6,9 @@ import CollectionLink from "../../../common/components/CollectionLink"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import ChevronDown from "../../../common/icons/chevron-down"
 import NavLink from "./NavLink"
-import { navLinks } from "../../../../lib/data/navLinks"
+
 import { IoMdList } from "react-icons/io"
+import { navLinks } from "../../../../lib/data/navLinks"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")
