@@ -8,7 +8,7 @@ import ChevronDown from "../../../common/icons/chevron-down"
 import NavLink from "./NavLink"
 
 import { IoMdList } from "react-icons/io"
-import { navLinks } from "../../../../lib/data/navLinks"
+import { navLinks } from "../../../../lib/data/nav-links"
 
 const DropdownMenu = () => {
   const [open, setOpen] = useState("none")

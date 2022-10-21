@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { useCollections } from "medusa-react"
 import Link from "next/link"
 import { useStore } from "../../../../lib/context/store-context"
-import { navLinks } from "../../../../lib/data/navLinks"
+import { navLinks } from "../../../../lib/data/nav-links"
 import { useCustomNavCollections } from "../../../../lib/hooks/use-nav-collections"
 import CountrySelect from "../country-select"
 
