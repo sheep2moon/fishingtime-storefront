@@ -34,18 +34,18 @@ const Hero = () => {
           <div className="content-container">
             <div className="max-w-lg text-center sm:text-left ">
               <h2 className="text-2xl font-bold text-white sm:text-3xl md:text-5xl">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo!
+                Produkty oferowane na stronie są częścią oferty sklepu
+                stacjonarnego.
               </h2>
 
               <p className=" max-w-md text-white/90 md:mt-6 md:block md:text-lg md:leading-relaxed">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Inventore officia corporis quasi doloribus iure architecto quae
-                voluptatum beatae excepturi dolores.
+                Sklep internetowy jest w produkcji. Składanie zamówień jest
+                obecnie nie możliwe.
               </p>
 
               <div className="mt-4 sm:mt-8">
                 <div className="bg-emerald-900 w-fit text-slate-50 rounded-md mx-auto md:mx-0">
-                  <UnderlineLink href="/sklep">Przejdź do sklepu</UnderlineLink>
+                  <UnderlineLink href="/sklep">Zobacz ofertę</UnderlineLink>
                 </div>
               </div>
             </div>

@@ -23,7 +23,7 @@ const Footer = () => {
           <div>
             <p className="font-medium">Godziny otwarcia</p>
             <div className="mt-4">
-              <ul className="flex flex-col">
+              <ul className="flex flex-col mb-2">
                 <li className="grid grid-cols-2 text-sm">
                   <span className="font-semibold">Poniedziałek:</span>
                   8:00-16:00
@@ -53,6 +53,10 @@ const Footer = () => {
                   Nieczynne
                 </li>
               </ul>
+              <span className="font-semibold ">
+                <span className="w-3 h-3 bg-emerald-700 inline-block mr-1"></span>
+                Po zamknięciu sklep otwarty na telefon
+              </span>
             </div>
           </div>
 
@@ -64,14 +68,14 @@ const Footer = () => {
                   <GiPhone />
                   Telefon:
                 </div>
-                <span className="tracking-wider">555555555</span>
+                <span className="tracking-wider">726 539 114</span>
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-2 font-bold">
                   <SiGooglemaps />
                   Sklep stacjonarny:
                 </div>
-                <span className="">Garbów, ul. Młyńska</span>
+                <span className="">Garbów, ul. Młyńska 6</span>
               </div>
             </div>
           </div>

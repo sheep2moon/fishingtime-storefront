@@ -11,7 +11,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
   const [currentImage, setCurrentImage] = useState(0)
 
   return (
-    <div className="flex items-start relative">
+    <div className="flex items-start relative w-full max-w-3xl mx-auto">
       <div className="flex flex-col flex-1 small:mx-16 gap-y-4 ">
         <div className="relative aspect-square w-full  my-1 shadow-md">
           <Image
@@ -22,7 +22,7 @@ const ImageGallery = ({ images }: ImageGalleryProps) => {
             alt={`podgląd produktu ${currentImage + 1}`}
           />
         </div>
-        <div className=" flex gap-x-2 flex-wrap px-2">
+        <div className=" flex gap-x-2 flex-wrap px-2 ">
           {images.map((image, index) => {
             return (
               <button
