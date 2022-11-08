@@ -29,8 +29,8 @@ const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
     },
     ref
   ) => {
-    const innerRef = useRef<HTMLSelectElement>(null)
     const [isPlaceholder, setIsPlaceholder] = useState(false)
+    const innerRef = useRef<HTMLSelectElement>(null)
 
     useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(
       ref,
