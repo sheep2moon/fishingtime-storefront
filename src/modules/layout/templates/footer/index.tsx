@@ -102,7 +102,7 @@ const Footer = () => {
             <nav className="mt-4 flex flex-col space-y-2 text-md text-gray-900">
               <a
                 className="hover:opacity-75 flex items-center gap-1"
-                href=""
+                href="https://www.facebook.com/profile.php?id=100036785661608"
                 target="_blank"
                 rel="noreferrer"
               >
