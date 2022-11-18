@@ -70,13 +70,19 @@ const Footer = () => {
                 </div>
                 <span className="tracking-wider">726 539 114</span>
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 font-bold">
-                  <SiGooglemaps />
-                  Sklep stacjonarny:
+              <a
+                href="https://goo.gl/maps/eeWMCUMgShWGZRty7"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2 font-bold">
+                    <SiGooglemaps />
+                    Sklep stacjonarny:
+                  </div>
+                  <span className="">Garbów, ul. Młyńska 6</span>
                 </div>
-                <span className="">Garbów, ul. Młyńska 6</span>
-              </div>
+              </a>
             </div>
           </div>
 
