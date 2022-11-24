@@ -54,7 +54,7 @@ const CART_KEY = "medusa_cart_id"
 export const StoreProvider = ({ children }: StoreProps) => {
   const { cart, setCart, createCart, updateCart } = useCart()
   const [countryCode, setCountryCode] = useState<string | undefined>(undefined)
-  const { timedOpen } = useCartDropdown()
+  const { open } = useCartDropdown()
   const addLineItem = useCreateLineItem(cart?.id!)
   const removeLineItem = useDeleteLineItem(cart?.id!)
   const adjustLineItem = useUpdateLineItem(cart?.id!)
@@ -265,7 +265,7 @@ export const StoreProvider = ({ children }: StoreProps) => {
         onSuccess: ({ cart }) => {
           setCart(cart)
           storeCart(cart.id)
-          timedOpen()
+          open()
         },
         onError: (error) => {
           handleError(error)

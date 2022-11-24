@@ -49,6 +49,10 @@
   }
 }
 
+html{
+  overflow-y: overlay;
+}
+
 @layer components {
   .content-container {
     @apply max-w-[1440px] w-full mx-auto px-1

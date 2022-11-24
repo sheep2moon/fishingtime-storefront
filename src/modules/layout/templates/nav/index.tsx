@@ -10,6 +10,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 import { VscAccount } from "react-icons/vsc"
+import CartSidebar from "../../components/cart-sidebar"
 
 const Nav = () => {
   const { pathname } = useRouter()
@@ -80,7 +81,8 @@ const Nav = () => {
                   </Link>
                 </div>
                 {/* CART */}
-                <CartDropdown />
+                {/* <CartDropdown /> */}
+                <CartSidebar />
               </div>
             </div>
             <div className="hidden small:block h-12 bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-900 text-slate-50 ">

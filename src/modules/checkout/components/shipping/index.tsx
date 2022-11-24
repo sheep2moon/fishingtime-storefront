@@ -61,7 +61,7 @@ const Shipping: React.FC<ShippingProps> = ({ cart }) => {
             {
               type: "validate",
               message:
-                "An error occurred while adding shipping. Please try again.",
+                "Wystąpił błąd podczas ustawienia dostawy. Spróbuj ponownie.",
             },
             { shouldFocus: true }
           ),
